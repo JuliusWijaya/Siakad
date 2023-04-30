@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
+
+class Dosen extends Model
+{
+    use HasFactory;
+
+    protected $table   = 'dosens';
+    protected $guarded = ['id'];
+
+    public function scopeFilters($query, array $filter)
+    {
+        $query->when($filter['search'] ?? false, function ($query, $filter) {
+            return $query->where('nama', 'like', '%' . $filter . '%');
+        });
+    }
+
+    public function mahasiswa()
+    {
+        return $this->hasMany(Mahasiswa::class);
+    }
+}

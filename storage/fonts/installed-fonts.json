@@ -1,0 +1,16 @@
+{
+    "poppins": {
+        "normal": "C:\\Julius Wijaya\\Laravel 9\\tatapp\\storage\\fonts\/poppins_normal_442dffd12abdf0df26c14405d3f49bfa",
+        "500": "poppins_500_6a6f5e017da7e062546fd806ab3b249c"
+    },
+    "roboto": {
+        "normal": "C:\\Julius Wijaya\\Laravel 9\\tatapp\\storage\\fonts\/roboto_normal_7bc701b343c10631f60048716b96e4f7",
+        "bold": "roboto_bold_8db5cb5d0586c1e891426d13097b1d04"
+    },
+    "silkscreen": {
+        "normal": "silkscreen_normal_a17bcd88f6901446863fbc2978317e76"
+    },
+    "source sans pro": {
+        "italic": "source_sans_pro_italic_27672a92dcedb2218abd2dadee4fe950"
+    }
+}
