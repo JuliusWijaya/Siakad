@@ -30,8 +30,7 @@
                             <input class="form-control" type="password" id="password" name="password" />
                         </div>
                         <div class="mb-3">
-                            <button class="btn btn-primary">Login</button>
-                            <a class="btn btn-danger ml-2" href="/">Back</a>
+                            <button class="btn btn-primary col-md-12">Login</button>
                         </div>
                     </form>
                     <p class="text-center">

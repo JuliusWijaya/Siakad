@@ -32,13 +32,16 @@
                             <input class="form-control" type="password" id="password_confirm" name="password_confirm" />
                         </div>
                         <div class="mb-3">
-                            <button class="btn btn-primary">Register</button>
-                            <a class="btn btn-danger ml-2" href="/login">Back</a>
+                            <button class="btn btn-primary col-md-12">Register</button>
                         </div>
+                        <p class="text-center">
+                            Already have an account
+                            <a class="text-decoration-none" href="/login">Login</a>
+                        </p>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-@endsection(content)
+@endsection()
