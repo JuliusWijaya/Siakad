@@ -33,8 +33,7 @@
                         <div class="form-group mb-0">
                             <label for="jk">JK</label>
                             <select class="form-control" name="jk" id="jk">
-                                <option value="{{ $mahasiswa->jk }}" @selected(old('jk', $mahasiswa->jk) ==
-                                    $mahasiswa->id)>
+                                <option value="{{ $mahasiswa->jk }}" @selected(old('jk', $mahasiswa->jk) == $mahasiswa->id)>
                                     {{$mahasiswa->jk}}
                                 </option>
                                 <option value="{{ $jenis }}">{{ $jenis }}</option>

@@ -59,4 +59,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('.form-control').datetimepicker({
+            locale: 'id',
+        });
+    });
+</script>
 @endsection
