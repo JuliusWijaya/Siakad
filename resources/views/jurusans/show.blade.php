@@ -35,7 +35,7 @@
                         @method('delete')
                         @csrf
                         <button type="submit" class="badge badge-danger border-0"
-                            onclick="return confirm('Apakah Anda Yakin Ingin Menghapus ??')">
+                            onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Jurusan {{ $details->id_jurusan }} ??')">
                             <i class="fa-regular fa-circle-xmark"></i>
                         </button>
                     </form>

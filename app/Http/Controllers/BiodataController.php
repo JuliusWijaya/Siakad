@@ -65,7 +65,7 @@ class BiodataController extends Controller
             'nama_jurusan'  => $request->nama_jurusan,
         ]);
 
-        return redirect('/jurusan')->with('status', 'Data Berhasil Di Simpan!');
+        return redirect('/jurusan')->with('status', 'Jurusan Baru Berhasil Di Simpan!');
     }
 
     /**
@@ -126,7 +126,7 @@ class BiodataController extends Controller
                 'nama_jurusan'  => $request->nama_jurusan,
             ]);
 
-        return redirect('/jurusan')->with('status', 'Data Berhasil Di Edit');
+        return redirect('/jurusan')->with('status', 'Jurusan ' . $jurusan->nama_jurusan . ' Berhasil Di Edit');
     }
 
     /**
@@ -139,6 +139,6 @@ class BiodataController extends Controller
     {
         jurusan::destroy($jurusan->id);
 
-        return redirect('/jurusan')->with('status', 'Data Berhasil Di Hapus');
+        return redirect('/jurusan')->with('status', 'Jurusan ' . $jurusan->nama_jurusan . ' Berhasil Di Hapus');
     }
 }

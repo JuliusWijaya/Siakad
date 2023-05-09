@@ -98,7 +98,7 @@
             <tbody>
                 @forelse($jurusans as $index => $data)
                 <tr>
-                    <td>{{ $index + $jurusans->firstItem() }}</td>
+                    <td class="text-center">{{ $index + $jurusans->firstItem() }}</td>
                     <td>{{ $data->id_jurusan }}</td>
                     <td>{{ $data->nama_jurusan }}</td>
                     <td class=" text-center">
@@ -126,7 +126,7 @@
                 Print
             </button>
         </a>
-        <div class="col-10 d-flex justify-content-end mx-5">
+        <div class="col-10 d-flex justify-content-end">
             {{ $jurusans->links() }}
         </div>
     </div>
