@@ -49,6 +49,6 @@ Route::get('/jurusan', [BiodataController::class, 'index'])->middleware('auth');
 Route::get('/jurusan/add', [BiodataController::class, 'create'])->middleware('auth');
 Route::post('/jurusan', [BiodataController::class, 'store'])->middleware('auth');
 Route::delete('/jurusan/{jurusan}', [BiodataController::class, 'destroy']);
-Route::get('/jurusan/{jurusan}/edit', [BiodataController::class, 'edit'])->middleware('auth');
+Route::get('/jurusan/{jurusan:id_jurusan}/edit', [BiodataController::class, 'edit'])->middleware('auth');
 Route::put('/jurusan/{jurusan}', [BiodataController::class, 'update']);
-Route::get('/jurusan/{jurusan}/details', [BiodataController::class, 'show'])->middleware('auth');
+Route::get('/jurusan/{jurusan:id_jurusan}/details', [BiodataController::class, 'show'])->middleware('auth');

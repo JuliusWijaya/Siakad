@@ -14,11 +14,11 @@ class Dosen extends Model
     protected $table   = 'dosens';
     protected $guarded = ['id'];
 
-    public function getTglLahirAttribute()
-    {
-        return Carbon::parse($this->attributes['tgl_lahir'])
-            ->translatedFormat('d F Y');
-    }
+    // public function getTglLahirAttribute()
+    // {
+    //     return Carbon::parse($this->attributes['tgl_lahir'])
+    //         ->translatedFormat('d F Y');
+    // }
 
     public function scopeFilters($query, array $filter)
     {

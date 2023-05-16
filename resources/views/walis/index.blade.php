@@ -2,7 +2,6 @@
 
 @section('content')
 <div class="container">
-    @if ($walis->count())
     <div class="row">
         <div class="col-10 pt-5" style="margin: 0 auto;">
             @if(session()->has('success'))
@@ -24,7 +23,7 @@
                     Cetak PDF
                 </a>
             </div>
-
+            @if ($walis->count())
             <div class="card">
                 <div class="card-header mt-3">
                     <h3 class="card-title text-center">Form Wali</h3>

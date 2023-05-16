@@ -16,8 +16,8 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="id_jurusan">ID JURUSAN</label>
-                        <input type="text" class="form-control @error('id_jurusan') is-invalid @enderror" name="id_jurusan"
-                            id="id_jurusan" value="{{ old('id_jurusan') }}">
+                        <input type="text" class="form-control @error('id_jurusan') is-invalid @enderror"
+                            name="id_jurusan" id="id_jurusan" value="{{ old('id_jurusan') }}">
                         @error('id_jurusan')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -26,8 +26,8 @@
                     </div>
                     <div class="form-group">
                         <label for="nama_jurusan">NAMA</label>
-                        <input type="text" class="form-control @error('nama_jurusan') is-invalid @enderror" name="nama_jurusan"
-                            id="nama_jurusan" value="{{ old('nama_jurusan') }}">
+                        <input type="text" class="form-control @error('nama_jurusan') is-invalid @enderror"
+                            name="nama_jurusan" id="nama_jurusan" value="{{ old('nama_jurusan') }}">
                         @error('nama_jurusan')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -45,7 +45,6 @@
 </div>
 <!-- End Modal -->
 
-@if($jurusans->count())
 <div class="col-sm-7" style="margin: 0 auto;">
     <div class="row mt-3">
         @if (session('status'))
@@ -85,7 +84,7 @@
             </button>
             {{-- <a href="/biodata/add" class="btn btn-primary">Add</a>  --}}
         </div>
-        
+@if($jurusans->count())
         <table class="table table-bordered table-hover">
             <thead>
                 <tr class="text-center">
@@ -102,7 +101,7 @@
                     <td>{{ $data->id_jurusan }}</td>
                     <td>{{ $data->nama_jurusan }}</td>
                     <td class=" text-center">
-                        <a href="/jurusan/{{ $data->id }}/details" class="btn btn-info btn-sm">
+                        <a href="/jurusan/{{ $data->id_jurusan }}/details" class="btn btn-info btn-sm">
                             <i class="fa-solid fa-eye"></i>
                         </a>
                     </td>

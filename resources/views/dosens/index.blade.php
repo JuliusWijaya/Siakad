@@ -43,36 +43,34 @@
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="card-body table-responsive p-0  ">
-                    <table class="table table-bordered table-hover text-nowrap">
-                        <thead>
-                            <tr class="text-center">
-                                <th>NO</th>
-                                <th>NID</th>
-                                <th>NAMA</th>
-                                <th>TGL LAHIR</th>
-                                <th>ALAMAT</th>
-                                <th>ACTION</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($dosens as $dosen)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $dosen->nid }}</td>
-                                <td>{{ $dosen->nama }}</td>
-                                <td>{{ $dosen->tgl_lahir }}</td>
-                                <td>{{ $dosen->alamat }}</td>
-                                <td class="text-center">
-                                    <a href="{{ route('dosen.show', $dosen->id) }}"  class="btn btn-info btn-sm">
-                                        <i class="fa-solid fa-eye"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                <table id="example" class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="text-center">
+                            <th>NO</th>
+                            <th>NID</th>
+                            <th>NAMA</th>
+                            <th>ALAMAT</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($dosens as $dosen)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $dosen->nid }}</td>
+                            <td>{{ $dosen->nama }}</td>
+                            <td>{{ $dosen->alamat }}</td>
+                            <td class="text-center">
+                                <a href="{{ route('dosen.show', $dosen->id) }}"  class="btn btn-info btn-sm">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
                 </div>
             </div>
         </div>

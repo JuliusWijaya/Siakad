@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('nid');
             $table->string('nama', 100);
             $table->char('tgl_lahir', 12);
-            $table->string('alamat', 50);
+            $table->string('alamat', 100);
             $table->timestamps();
         });
     }

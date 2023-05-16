@@ -25,7 +25,7 @@
                         </span>
                     </a>
 
-                    <a href="/jurusan/{{ $details->id }}/edit" class="ml-2">
+                    <a href="/jurusan/{{ $details->id_jurusan }}/edit" class="ml-2">
                         <span class="badge badge-success">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </span>
