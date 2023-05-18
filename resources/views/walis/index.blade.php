@@ -64,8 +64,8 @@
                                 <td>{{ $wali->nama_wali }}</td>
                                 <td>{{ $wali->umur }}</td>
                                 <td>{{ $wali->pekerjaan }}</td>
-                                <td>{{ $wali->mahasiswa->nama_mhs }}</td>
-                                <td>{{ $wali->mahasiswa->jurusan }}</td>
+                                <td>{{ (isset($wali->mahasiswa->nama_mhs)) ? $wali->mahasiswa->nama_mhs : 'Not Found' }}</td>
+                                <td>{{ (isset($wali->mahasiswa->jurusan)) ? $wali->mahasiswa->jurusan : 'Not Found' }}</td>
                                 <td>
                                     <a href="/wali/{{$wali->id}}/edit" class="btn btn-warning">
                                         <i class="fa-solid fa-pen-to-square"></i>
