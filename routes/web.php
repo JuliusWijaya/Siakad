@@ -40,6 +40,9 @@ Route::get('/dashboard', [DashboardController::class, 'dashboard'])->middleware(
 Route::resource('mahasiswa', MahasiswaController::class);
 Route::resource('wali', WaliController::class);
 Route::resource('dosen', DosenController::class);
+Route::resource('user', UsersController::class);
+
+Route::get('/user/{users:name}/details', [UsersController::class, 'show'])->middleware('auth');
 Route::get('/print/mhs', [PrintController::class, 'printPdf'])->middleware('auth');
 Route::get('/jurusan/print', [PrintController::class, 'downloadPdf'])->middleware('auth');
 Route::get('/print/wali', [PrintController::class, 'printWali'])->middleware('auth');

@@ -46,7 +46,7 @@
 <!-- End Modal -->
 
 <div class="col-sm-7" style="margin: 0 auto;">
-    <div class="row mt-3">
+    <div class="row mt-3">  
         @if (session('status'))
         <div class="alert alert-success alert-dismissible fade show col-lg-12 text-center" role="alert">
             <strong>Hai {{ auth()->user()->name }}</strong> {{ session('status') }}
@@ -84,56 +84,56 @@
             </button>
             {{-- <a href="/biodata/add" class="btn btn-primary">Add</a>  --}}
         </div>
-@if($jurusans->count())
-        <table class="table table-bordered table-hover">
-            <thead>
-                <tr class="text-center">
-                    <th>NO</th>
-                    <th scope="col">ID JURUSAN</th>
-                    <th scope="col">NAMA JURUSAN</th>
-                    <th scope="col">ACTION</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($jurusans as $index => $data)
-                <tr>
-                    <td class="text-center">{{ $index + $jurusans->firstItem() }}</td>
-                    <td>{{ $data->id_jurusan }}</td>
-                    <td>{{ $data->nama_jurusan }}</td>
-                    <td class=" text-center">
-                        <a href="/jurusan/{{ $data->id_jurusan }}/details" class="btn btn-info btn-sm">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                    </td>
-                </tr>
-                @empty
-                <tr>
-                    <td colspan="5" class="text-center">
-                        <div class="alert alert-danger" role="alert">
-                            Data Tidak Ada!
-                        </div>
-                    </td>
-                </tr>
-                @endforelse
-            </tbody>
-        </table>
-    </div>
-    <div class="row">
-        <a href="/jurusan/print" target="_blank">
-            <button class="btn btn-success btn-sm ml-3">
-                <i class="fa-solid fa-print"></i>
-                Print
-            </button>
-        </a>
-        <div class="col-10 d-flex justify-content-end">
-            {{ $jurusans->links() }}
-        </div>
-    </div>
-    @else
-    <p class="alert alert-danger text-center text-dark mt-5 col-md-5 text-white" style="margin: 0 auto">
-        Not Found Jurusan
-    </p>
-    @endif
+        @if($jurusans->count())
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="text-center">
+                            <th>NO</th>
+                            <th scope="col">ID JURUSAN</th>
+                            <th scope="col">NAMA JURUSAN</th>
+                            <th scope="col">ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($jurusans as $index => $data)
+                        <tr>
+                            <td class="text-center">{{ $index + $jurusans->firstItem() }}</td>
+                            <td>{{ $data->id_jurusan }}</td>
+                            <td>{{ $data->nama_jurusan }}</td>
+                            <td class=" text-center">
+                                <a href="/jurusan/{{ $data->id_jurusan }}/details" class="btn btn-info btn-sm">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="5" class="text-center">
+                                <div class="alert alert-danger" role="alert">
+                                    Data Tidak Ada!
+                                </div>
+                            </td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <a href="/jurusan/print" target="_blank">
+                    <button class="btn btn-success btn-sm ml-3">
+                        <i class="fa-solid fa-print"></i>
+                        Print
+                    </button>
+                </a>
+                <div class="col-10 d-flex justify-content-end">
+                    {{ $jurusans->links() }}
+                </div>
+            </div>
+        @else
+            <p class="alert alert-danger text-center text-dark mt-5 col-md-5 text-white" style="margin: 0 auto">
+                Not Found Jurusan
+            </p>
+        @endif
 </div>
 @endsection
 

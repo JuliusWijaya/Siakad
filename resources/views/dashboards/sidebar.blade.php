@@ -63,6 +63,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="/user" class="nav-link {{ Request::is('user*') ? 'active' : '' }}">
+                        <i class="fa-solid fa-user-gear"></i>
+                        <p>
+                            User
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-header">SETTINGS</li>
                 <li class="nav-item">
                     <a href="/password" class="nav-link">
