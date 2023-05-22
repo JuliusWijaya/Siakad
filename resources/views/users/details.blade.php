@@ -30,12 +30,12 @@
                             <i class="fa-solid fa-pen-to-square"></i>
                         </span>
                     </a>
-                    
+
                     <form action="/user/{{ $users->id }}" method="POST" class="d-inline ml-2">
-                        @method('delete')
+                        @method('DELETE')
                         @csrf
                         <button type="submit" class="badge badge-danger border-0"
-                            onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Jurusan {{ $users->name }} ??')">
+                            onclick="return confirm('Apakah Anda Yakin Ingin Menghapus User {{ $users->name }} ??')">
                             <i class="fa-regular fa-circle-xmark"></i>
                         </button>
                     </form>

@@ -3,9 +3,9 @@
 @section('content')
 <div class="col-sm-7" style="margin: 0 auto;">
     <div class="row mt-3">  
-        @if (session('status'))
+        @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show col-lg-12 text-center" role="alert">
-            <strong>Hai {{ auth()->user()->name }}</strong> {{ session('status') }}
+            <strong>Hai {{ auth()->user()->name }}</strong> {{ session('success') }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -33,8 +33,12 @@
         </div>
 
         <div class="text-end">
-            <a href="/biodata/add" class="btn btn-primary">Add</a> 
+            <a href="{{ route('user.create') }}" class="btn btn-primary">
+                <i class="fa-solid fa-user-plus"></i>
+                Add
+            </a> 
         </div>
+        
         @if($users->count())
                 <table class="table table-bordered table-hover">
                     <thead>

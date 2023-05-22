@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Dosen;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -30,7 +32,11 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        $title = 'Add User';
+
+        return view('users.create', [
+            'title' => $title,
+        ]);
     }
 
     /**
@@ -41,7 +47,19 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'      => 'required|min:5|max:20',
+            'email'     => 'required|email:dns',
+            'password'  => 'required|min:6|max:20'
+        ]);
+
+        User::create([
+            'name'      => $request->name,
+            'email'     => $request->email,
+            'password'  => Hash::make($request->password)
+        ]);
+
+        return redirect('/user')->with('success', 'User Baru Berhasil Ditambahkan');
     }
 
     /**
@@ -53,6 +71,7 @@ class UsersController extends Controller
     public function show(User $users)
     {
         $title  = 'Detail User';
+
         return view('users.details', compact('users', 'title'));
     }
 
@@ -62,9 +81,11 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        $title = 'Edit User';
+
+        return view('users.edit', compact('user', 'title'));
     }
 
     /**
@@ -85,8 +106,10 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return redirect('/user')->with('success', 'User Berhasil Delete');
     }
 }

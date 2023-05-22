@@ -1,0 +1,54 @@
+@extends('layouts.main')
+
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6" style="margin: 0 auto;">
+            <div class="card mt-5">
+                <h5 class="card-title text-center mt-2 mb-0">Add User</h5>
+                <div class="card-body">
+                    <form method="POST" action="/user">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="form-group mb-0">
+                                <label for="name">NAME</label>
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
+                                    value="{{ old('name') }}" placeholder="Masukan Name">
+                                @error('name')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                            <div class="form-group mb-0">
+                                <label for="email">EMAIL</label>
+                                <input type="text" class="form-control @error('email') is-invalid @enderror" id="email"
+                                    name="email" value="{{ old('email') }}" placeholder="Masukan Email">
+                                @error('email')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                            <div class="form-group mb-0">
+                                <label for="password">PASSWORD</label>
+                                <input type="password" class="form-control @error('password') is-invalid @enderror" id="password"
+                                    name="password" value="{{ old('password') }}" placeholder="Masukan Password">
+                                @error('password')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="modal-footer mb-0">
+                            <a href="/mahasiswa" class="btn btn-secondary">Close</a>
+                            <button class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
