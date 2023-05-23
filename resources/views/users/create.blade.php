@@ -42,7 +42,7 @@
                             </div>
                         </div>
                         <div class="modal-footer mb-0">
-                            <a href="/mahasiswa" class="btn btn-secondary">Close</a>
+                            <a href="/user" class="btn btn-secondary">Close</a>
                             <button class="btn btn-primary">Save</button>
                         </div>
                     </form>

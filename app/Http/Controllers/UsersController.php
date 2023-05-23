@@ -59,7 +59,7 @@ class UsersController extends Controller
             'password'  => Hash::make($request->password)
         ]);
 
-        return redirect('/user')->with('success', 'User Baru Berhasil Ditambahkan');
+        return redirect('/user')->with('success', $request->name . ' Berhasil Ditambahkan');
     }
 
     /**
@@ -95,10 +95,22 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'name'  => 'required|min:5|max:20',
+            'email' => 'required|email:dns'
+        ]);
+
+        User::where('id', $user->id)
+            ->update([
+                'name'  => $request->name,
+                'email' => $request->email
+            ]);
+
+        return redirect('/user')->with('success', $user->name . ' Berhasil Diedit');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -110,6 +122,6 @@ class UsersController extends Controller
     {
         $user->delete();
 
-        return redirect('/user')->with('success', 'User Berhasil Delete');
+        return redirect('/user')->with('success', $user->name . ' Berhasil Di Delete');
     }
 }

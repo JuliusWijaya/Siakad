@@ -17,7 +17,7 @@
 
         <div class="col-md-4">
             <!-- Form Pencarian -->
-            <form method="GET" action="/users">
+            <form method="GET" action="/user">
                 @csrf
                 <div class="input-group mb-3">
                     <input type="text" class="form-control bi bi-search" value="{{ Request('search') }}" name="search"
@@ -74,7 +74,7 @@
                 </table>
             </div>
             <div class="row">
-                <a href="/jurusan/print" target="_blank">
+                <a href="/users/print" target="_blank">
                     <button class="btn btn-success btn-sm ml-3">
                         <i class="fa-solid fa-print"></i>
                         Print
