@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 
 use App\Models\jurusan;
+use App\Exports\ExportJurusan;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 
 
@@ -140,5 +142,10 @@ class BiodataController extends Controller
         jurusan::destroy($jurusan->id);
 
         return redirect('/jurusan')->with('status', 'Jurusan ' . $jurusan->nama_jurusan . ' Berhasil Di Hapus');
+    }
+
+    public function export()
+    {
+        return Excel::download(new ExportJurusan, 'jurusan.xlsx');
     }
 }

@@ -119,14 +119,21 @@
                 </table>
             </div>
             <div class="row">
-                <a href="/jurusan/print" target="_blank">
-                    <button class="btn btn-success btn-sm ml-3">
-                        <i class="fa-solid fa-print"></i>
-                        Print
-                    </button>
-                </a>
-                <div class="col-10 d-flex justify-content-end">
-                    {{ $jurusans->links() }}
+                <div class="col-sm-6">
+                    <div class="d-flex justify-content-start">
+                        <a href="/jurusan/print" class="btn btn-success btn-sm ml-3" target="_blank">
+                            <i class="fa-solid fa-print"></i>
+                            Print
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="d-flex justify-content-end">
+                        <a href="/jurusan/export" class="btn btn-secondary btn-sm">
+                            <i class="fa-solid fa-print"></i>
+                            Export Excel
+                        </a>
+                    </div>     
                 </div>
             </div>
         @else

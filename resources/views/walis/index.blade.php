@@ -13,16 +13,25 @@
             </div>
             @endif
 
-            <div>
-                <a href="{{ route('wali.create') }}" class="btn btn-primary btn-sm mb-3">
-                    <i class="fa-solid fa-user-plus"></i>
-                    Add
-                </a> 
-                <a href="/print/wali" class="btn btn-success btn-sm mb-3 ml-3" target="_blank">
-                    <i class="fa-solid fa-print"></i>
-                    Cetak PDF
-                </a>
+            <div class="row">
+                <div class="col-md-6 justify-content-start">
+                    <a href="{{ route('wali.create') }}" class="btn btn-primary btn-sm mb-3">
+                        <i class="fa-solid fa-user-plus"></i>
+                        Add
+                    </a> 
+                </div>
+                <div class="col-md-6 d-flex justify-content-end">
+                    <a href="/print/wali" class="btn btn-success btn-sm mb-3" target="_blank">
+                        <i class="fa-solid fa-print"></i>
+                        Cetak PDF
+                    </a>
+                    <a href="/export/wali" class="btn btn-secondary btn-sm mb-3 ml-2">
+                        <i class="fa-solid fa-print"></i>
+                        Export Excel
+                    </a>
+                </div>
             </div>
+
             @if ($walis->count())
             <div class="card">
                 <div class="card-header mt-3">

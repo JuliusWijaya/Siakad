@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Dosen;
 use App\Models\jurusan;
 use App\Models\Mahasiswa;
+use App\Exports\ExportMahasiswa;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 
 
@@ -134,5 +136,10 @@ class MahasiswaController extends Controller
         Mahasiswa::destroy($mahasiswa->id);
 
         return redirect('/mahasiswa')->with('success', 'Mahasiswa Berhasil Didelete');
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new ExportMahasiswa, 'mahasiswa.xlsx');
     }
 }

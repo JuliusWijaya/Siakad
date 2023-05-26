@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Dosen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Exports\ExportUser;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UsersController extends Controller
 {
@@ -123,5 +125,10 @@ class UsersController extends Controller
         $user->delete();
 
         return redirect('/user')->with('success', $user->name . ' Berhasil Di Delete');
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new ExportUser, 'user.xlsx');
     }
 }

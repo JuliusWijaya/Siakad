@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\jurusan;
+
 use Illuminate\Http\Request;
 use App\Models\Wali;
 use App\Models\Mahasiswa;
+use App\Exports\ExportWali;
+use Maatwebsite\Excel\Facades\Excel;
 
 class WaliController extends Controller
 {
@@ -126,5 +128,10 @@ class WaliController extends Controller
         Wali::destroy($wali->id);
 
         return redirect('/wali')->with('success', 'Wali Berhasil Didelete');
+    }
+
+    public function export()
+    {
+        return Excel::download(new ExportWali, 'wali.xlsx');
     }
 }

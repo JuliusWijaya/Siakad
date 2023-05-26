@@ -14,7 +14,7 @@
         <div class="col-md-12">
             <h2 class="text-center pb-2">Form User</h2>
         </div>
-
+        
         <div class="col-md-4">
             <!-- Form Pencarian -->
             <form method="GET" action="/user">
@@ -74,12 +74,22 @@
                 </table>
             </div>
             <div class="row">
-                <a href="/users/print" target="_blank">
-                    <button class="btn btn-success btn-sm ml-3">
-                        <i class="fa-solid fa-print"></i>
-                        Print
-                    </button>
-                </a>
+                <div class="col-md-6">
+                    <a href="/users/print" target="_blank">
+                        <button class="btn btn-success btn-sm ml-3">
+                            <i class="fa-solid fa-print"></i>
+                            Print
+                        </button>
+                    </a>
+                </div>
+                <div class="col-md-6 d-flex justify-content-end">
+                    <a href="/users/export">
+                        <button class="btn btn-secondary btn-sm">
+                            <i class="fa-solid fa-print"></i>
+                            Export Excel
+                        </button>
+                    </a>
+                </div>
             </div>
         @else
             <p class="alert alert-danger text-center text-dark mt-5 col-md-5 text-white" style="margin: 0 auto">

@@ -13,15 +13,23 @@
             </div>
             @endif
 
-            <div>
-                <a href="{{ route('dosen.create') }}" class="btn btn-primary btn-sm mb-3">
-                    <i class="fa-solid fa-user-plus"></i>
-                    Add
-                </a>
-                <a href="/print/dosen" class="btn btn-success btn-sm mb-3 ml-3" target="_blank">
-                    <i class="fa-solid fa-print"></i>
-                    Cetak PDF
-                </a>
+            <div class="row">
+                <div class="col-md-6 d-flex justify-content-start">
+                    <a href="{{ route('dosen.create') }}" class="btn btn-primary btn-sm mb-3">
+                        <i class="fa-solid fa-user-plus"></i>
+                        Add
+                    </a>
+                </div>
+                <div class="col-md-6 d-flex justify-content-end">
+                    <a href="/print/dosen" class="btn btn-success btn-sm mb-3" target="_blank">
+                        <i class="fa-solid fa-print"></i>
+                        Cetak PDF
+                    </a>
+                    <a href="/export/dosen" class="btn btn-secondary btn-sm mb-3 ml-3">
+                        <i class="fa-solid fa-print"></i>
+                        Export Excel
+                    </a>
+                </div>
             </div>
 
             <div class="card">

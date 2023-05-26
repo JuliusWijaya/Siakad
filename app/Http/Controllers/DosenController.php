@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Dosen;
+use App\Exports\ExportDosen;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DosenController extends Controller
 {
@@ -125,5 +127,10 @@ class DosenController extends Controller
         Dosen::destroy($dosen->id);
 
         return redirect('/dosen')->with('success', 'Dosen Berhasil DiHapus');
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new ExportDosen, 'dosen.xlsx');
     }
 }

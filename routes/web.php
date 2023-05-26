@@ -44,9 +44,15 @@ Route::resource('user', UsersController::class);
 
 Route::get('/user/{users:name}/details', [UsersController::class, 'show'])->middleware('auth');
 Route::get('/print/mhs', [PrintController::class, 'printPdf'])->middleware('auth');
+Route::get('/export/mhs', [MahasiswaController::class, 'exportExcel'])->middleware('auth');
 Route::get('/jurusan/print', [PrintController::class, 'downloadPdf'])->middleware('auth');
+Route::get('/jurusan/export', [BiodataController::class, 'export'])->middleware('auth');
 Route::get('/print/wali', [PrintController::class, 'printWali'])->middleware('auth');
+Route::get('/export/wali', [WaliController::class, 'export'])->middleware('auth');
 Route::get('/print/dosen', [PrintController::class, 'printDosen'])->middleware('auth');
+Route::get('/export/dosen', [DosenController::class, 'exportExcel'])->middleware('auth');
+Route::get('/users/print', [PrintController::class, 'printUser'])->middleware('auth');
+Route::get('/users/export', [UsersController::class, 'exportExcel'])->middleware('auth');
 
 Route::get('/jurusan', [BiodataController::class, 'index'])->middleware('auth');
 Route::get('/jurusan/add', [BiodataController::class, 'create'])->middleware('auth');
