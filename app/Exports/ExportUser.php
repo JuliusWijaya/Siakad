@@ -41,7 +41,7 @@ class ExportUser implements FromCollection, WithHeadings, ShouldAutoSize, WithEv
                 $event->sheet->getDelegate()->getStyle($cellRange)->getFont()->setSize(14);
                 $event->sheet->getDelegate()->getStyle($cellRanges)->getFont()->setBold(true);
 
-                $event->sheet->getStyle('A1:C10')->applyFromArray([
+                $event->sheet->getStyle('A1:C11')->applyFromArray([
                     'borders' => [
                         'allBorders' => [
                             'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
