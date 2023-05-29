@@ -6,7 +6,8 @@
         <div class="col-12">
             <h1 class="text-center mb-4">{{ $name }}</h1>
         </div>
-        <div class="card" style="width: 18rem;">
+
+        <div class="card xs:mt-3" style="width: 18rem;">
             <img src="https://source.unsplash.com/600x500?laravel" class="card-img-top" alt="programming">
             <div class="card-body">
                 <h5 class="card-title">About Laravel</h5>
@@ -17,7 +18,7 @@
                 <a href="https://laravel.com/docs/10.x" class="btn btn-primary" target="_blank">Click Here</a>
             </div>
         </div>
-        <div class="card" style="width: 18rem;">
+        <div class="card xs:mt-3" style="width: 18rem;">
             <img src="https://source.unsplash.com/600x500?php" class="card-img-top" alt="programming">
             <div class="card-body">
                 <h5 class="card-title">About Laravel</h5>
