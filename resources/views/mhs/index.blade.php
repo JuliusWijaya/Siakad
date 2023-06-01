@@ -79,7 +79,7 @@
                                         @method('DELETE')
                                         @csrf
                                         <button class="btn btn-danger ml-2"
-                                            onclick="return confirm('Serius Mahasiswa {{$mhs->nama}} Akan Di Hapus ?')">
+                                            onclick="return confirm('Serius Mahasiswa {{ $mhs->nama_mhs }} Akan Di Hapus ?')">
                                             <i class="fa-regular fa-circle-xmark">
                                             </i>
                                         </button>

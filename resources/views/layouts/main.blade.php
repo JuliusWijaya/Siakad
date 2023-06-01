@@ -25,7 +25,7 @@
 
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="/css/OverlayScrollbars.min.css">
-
+    
     <title>@yield('title', $title)</title>
     <style>
         body {
@@ -41,6 +41,7 @@
         </div>
         @include('dashboards.navbar')
         @include('dashboards.sidebar')
+        @include('sweetalert::alert')
         @yield('content')
     </div>
 
@@ -54,7 +55,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
         integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous">
     </script>
-
+  
     <!-- AdminLTE App -->
     <script src="/js/adminlte.js"></script>
     <!-- AdminLTE for demo purposes -->

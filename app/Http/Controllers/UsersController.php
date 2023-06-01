@@ -61,7 +61,9 @@ class UsersController extends Controller
             'password'  => Hash::make($request->password)
         ]);
 
-        return redirect('/user')->with('success', $request->name . ' Berhasil Ditambahkan');
+        alert()->success('Success', 'New User Successfully Added');
+
+        return redirect('/user');
     }
 
     /**
@@ -110,7 +112,9 @@ class UsersController extends Controller
                 'email' => $request->email
             ]);
 
-        return redirect('/user')->with('success', $user->name . ' Berhasil Diedit');
+        alert()->success('Success', $user->name . ' Successfully Has Been Edit');
+
+        return redirect('/user');
     }
 
 
@@ -124,7 +128,9 @@ class UsersController extends Controller
     {
         $user->delete();
 
-        return redirect('/user')->with('success', $user->name . ' Berhasil Di Delete');
+        alert()->success('Success', $user->name . ' Has Been Delete');
+
+        return redirect('/user');
     }
 
     public function exportExcel()

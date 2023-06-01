@@ -63,7 +63,9 @@ class MahasiswaController extends Controller
 
         Mahasiswa::create($validatedData);
 
-        return redirect('/mahasiswa')->with('success', 'Mahasiswa Baru Berhasil Ditambahkan');
+        alert()->success('Success', 'New Students Successfully Added');
+
+        return redirect('/mahasiswa');
     }
 
     /**
@@ -122,7 +124,9 @@ class MahasiswaController extends Controller
 
         $mahasiswa->fill($request->post())->save();
 
-        return redirect('/mahasiswa')->with('success', 'Mahasiswa Berhasil Diupdate');
+        alert()->success('Success', $mahasiswa->nama_mhs . ' Successfully Has Been Edit');
+
+        return redirect('/mahasiswa');
     }
 
     /**
@@ -135,7 +139,9 @@ class MahasiswaController extends Controller
     {
         Mahasiswa::destroy($mahasiswa->id);
 
-        return redirect('/mahasiswa')->with('success', 'Mahasiswa Berhasil Didelete');
+        alert()->success('Success', $mahasiswa->nama_mhs . ' Has Been Delete');
+
+        return redirect('/mahasiswa');
     }
 
     public function exportExcel()

@@ -7,6 +7,7 @@ use App\Models\jurusan;
 use App\Exports\ExportJurusan;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class BiodataController extends Controller
@@ -67,7 +68,9 @@ class BiodataController extends Controller
             'nama_jurusan'  => $request->nama_jurusan,
         ]);
 
-        return redirect('/jurusan')->with('status', 'Jurusan Baru Berhasil Di Simpan!');
+        alert()->success('Success', 'New Major Successfully Added');
+
+        return redirect('/jurusan');
     }
 
     /**
@@ -78,6 +81,10 @@ class BiodataController extends Controller
      */
     public function show(jurusan $jurusan)
     {
+        $title = 'Delete Jurusan!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
+
         return view('jurusans.show', [
             'details' => $jurusan,
             'title'   => 'Details Jurusan'
@@ -128,7 +135,9 @@ class BiodataController extends Controller
                 'nama_jurusan'  => $request->nama_jurusan,
             ]);
 
-        return redirect('/jurusan')->with('status', 'Jurusan ' . $jurusan->nama_jurusan . ' Berhasil Di Edit');
+        alert()->success('Success', $jurusan->nama_jurusan . ' Successfully Has Been Edit');
+
+        return redirect('/jurusan');
     }
 
     /**
@@ -141,7 +150,9 @@ class BiodataController extends Controller
     {
         jurusan::destroy($jurusan->id);
 
-        return redirect('/jurusan')->with('status', 'Jurusan ' . $jurusan->nama_jurusan . ' Berhasil Di Hapus');
+        alert()->success('Success', $jurusan->nama_jurusan . ' Jurusan Has Been Delete');
+
+        return redirect('/jurusan');
     }
 
     public function export()

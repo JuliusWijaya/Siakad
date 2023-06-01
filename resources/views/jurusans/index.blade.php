@@ -47,14 +47,10 @@
 
 <div class="col-sm-7" style="margin: 0 auto;">
     <div class="row mt-3">  
-        @if (session('status'))
-        <div class="alert alert-success alert-dismissible fade show col-lg-12 text-center" role="alert">
-            <strong>Hai {{ auth()->user()->name }}</strong> {{ session('status') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+        @if (session()->has('success'))
+            {{ session('success') }}
         @endif
+
         <div class="col-md-12">
             <h2 class="text-center pb-2">Form Jurusan</h2>
         </div>
@@ -84,6 +80,7 @@
             </button>
             {{-- <a href="/biodata/add" class="btn btn-primary">Add</a>  --}}
         </div>
+
         @if($jurusans->count())
                 <table class="table table-bordered table-hover">
                     <thead>
