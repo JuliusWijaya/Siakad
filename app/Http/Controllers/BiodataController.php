@@ -150,7 +150,7 @@ class BiodataController extends Controller
     {
         jurusan::destroy($jurusan->id);
 
-        alert()->success('Success', $jurusan->nama_jurusan . ' Jurusan Has Been Delete');
+        alert()->success('Success', 'Jurusan ' . $jurusan->nama_jurusan . ' Has Been Delete');
 
         return redirect('/jurusan');
     }

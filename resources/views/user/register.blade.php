@@ -2,46 +2,61 @@
 
 @section('content')
 <div class="container">
-    <div class="row mt-5">
-        <div class="card" style="width: 38rem;margin: 10px auto;">
-            <div class="card-body">
-                <h3 class="card-title text-center">Register</h3>
-                <div class="col">
-                    @if($errors->any())
-                    @foreach($errors->all() as $err)
-                    <p class="alert alert-danger">{{ $err }}</p>
-                    @endforeach
-                    @endif
-                    <form action="{{ route('register.action') }}" method="POST">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="name"><strong>Name</strong></label>
-                            <input class="form-control" type="text" id="name" name="name" value="{{ old('name') }}" />
-                        </div>
-                        <div class="mb-3">
-                            <label for="email"><strong>Email</strong></label>
-                            <input class="form-control" type="email" id="email" name="email"
-                                value="{{ old('email') }}" />
-                        </div>
-                        <div class="mb-3">
-                            <label for="password"><strong>Password</strong></label>
-                            <input class="form-control" type="password" id="password" name="password" />
-                        </div>
-                        <div class="mb-3">
-                            <label for="password_confirm"><strong>Password Confirmation</strong></label>
-                            <input class="form-control" type="password" id="password_confirm" name="password_confirm" />
-                        </div>
-                        <div class="mb-3">
-                            <button class="btn btn-primary col-md-12">Register</button>
-                        </div>
-                        <p class="text-center">
-                            Already have an account
-                            <a class="text-decoration-none" href="/login">Login</a>
-                        </p>
-                    </form>
-                </div>
-            </div>
-        </div>
+    <div class="col-left">
+       
     </div>
-</div>
+    <div class="col-right">
+      <img src="./Assets/img/wave.svg" alt="Bg Wave" class="background-up" />
+      <div class="content-right">
+        <div class="content-header">
+          <h1>Register</h1>
+          <h3>Pleas Register Now</h3>
+        </div>
+        @if($errors->any())
+            @foreach($errors->all() as $err)
+                <p style="color: red; font-size: 1.3rem; text-align: center;" >{{ $err }}</p>
+            @endforeach       
+        @endif
+        <form action="{{ route('register.action') }}" method="POST">
+           @csrf 
+          <div class="content-body">
+            <div class="input-group">
+              <label for="name" class="form-label">Name :</label>
+              <input type="text" name="name" class="form-input" id="name" placeholder="exp: john@example.com" value="{{ old('name') }}" />
+            </div>
+            <div class="input-group">
+              <label for="email" class="form-label">Email :</label>
+              <input type="text" name="email" class="form-input" id="email" placeholder="exp: john@example.com" value="{{ old('email') }}" />
+            </div>
+            <div class="input-group">
+              <label for="password" class="form-label">Password :</label>
+              <div class="password-group">
+                <input type="password" name="password" class="form-input" id="password" placeholder="*******" />
+                <button type="button" id="btnShowPassword">
+                  <i class="fa fa-eye-slash"></i>
+                </button>
+              </div>
+            </div>
+            <div class="input-group">
+              <label for="password_confirm" class="form-label">Confirm Password :</label>
+              <div class="password-group">
+                <input type="password" name="password_confirm" class="form-input" id="password_confirm" placeholder="*******" />
+                <button type="button" id="btnPassword">
+                  <i class="fa fa-eye-slash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="content-footer">
+            <button id="btnLogin" type="submit">Register</button>
+          </div>
+        </form>
+
+        <div class="line">or</div>
+
+        <div class="signup">Already have an account <a href="/login">Sign in</a></div>
+      </div>
+    </div>
+  </div>
 @endsection()
+

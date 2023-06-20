@@ -2,43 +2,54 @@
 
 @section('content')
 <div class="container">
-    <div class="card" style="width: 25rem;margin: 60px auto;">
-        <div class="card-body">
-            <div class="row">
-                @if(session('status'))
-                <p class="alert alert-success text-center ">
-                    {{ session('status') }}
-                </p>
-                @endif
-
-                @if($errors->any())
-                @foreach($errors->all() as $err)
-                <p class="alert alert-danger">{{ $err }}</p>
-                @endforeach
-                @endif
-
-                <h3 class="card-title text-center">Login</h3>
-                <div class="col-md-12">
-                    <form action="{{ route('login.action') }}" method="POST">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="email"><strong>Email</strong></label>
-                            <input class="form-control" type="email" id="email" name="email" value="{{ old('email') }}" />
-                        </div>
-                        <div class="mb-3">
-                            <label for="password"><strong>Password</strong></label>
-                            <input class="form-control" type="password" id="password" name="password" />
-                        </div>
-                        <div class="mb-3">
-                            <button class="btn btn-primary col-md-12">Login</button>
-                        </div>
-                    </form>
-                    <p class="text-center">
-                        Create New <a href="/register" style="text-decoration:none; font-size: 14px;">Account</a>
-                    </p>
-                </div>
-            </div>
-        </div>
+    <div class="col-left">
+        @if($errors->any())
+            @foreach($errors->all() as $err)
+                <p>{{ $err }}</p>
+            @endforeach
+        @endif
     </div>
-</div>
+    <div class="col-right">
+      <img src="./Assets/img/wave.svg" alt="Bg Wave" class="background-up" />
+      <div class="content-right">
+        <div class="content-header">
+          <h1>Welcome Back</h1>
+          <h3>Login to your account</h3>
+        </div>
+
+        <form action="{{ route('login.action') }}" method="POST">
+          @csrf
+          <div class="content-body">
+            <div class="input-group">
+              <label for="email" class="form-label">Email :</label>
+              <input type="email" name="email" class="form-input" id="email" value="{{ old('email') }}" placeholder="exp: john@example.com" />
+            </div>
+            <div class="input-group">
+              <label for="password" class="form-label">Password :</label>
+              <div class="password-group">
+                <input type="password" name="password" class="form-input" id="password" placeholder="*******" />
+                <button type="button" id="btnShowPassword">
+                  <i class="fa fa-eye-slash"></i>
+                </button>
+              </div>
+            </div>
+            <a href="#" class="forget">Forget Password</a>
+          </div>
+          <div class="content-footer">
+            <button id="btnLogin">Login</button>
+          </div>
+        </form>
+
+        <div class="line">or</div>
+
+        <a href="#" id="btnGoogle">
+          <img src="./Assets/img/119930_google_512x512.png" alt="Google Logo" />
+          Sign in with Google
+        </a>
+
+        <div class="signup">Don't have an account <a href="/register">Signup</a></div>
+      </div>
+    </div>
+  </div>
 @endsection
+

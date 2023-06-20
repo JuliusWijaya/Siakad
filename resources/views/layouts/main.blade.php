@@ -25,6 +25,9 @@
 
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="/css/OverlayScrollbars.min.css">
+
+    {{-- Auto Complete --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
     
     <title>@yield('title', $title)</title>
     <style>
@@ -35,15 +38,18 @@
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
+    @include('sweetalert::alert')
     <div class="wrapper">
         <div class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__shake" src="/img/1.png" alt="LP3I LOGO" height="125" width="150">
         </div>
         @include('dashboards.navbar')
         @include('dashboards.sidebar')
-        @include('sweetalert::alert')
         @yield('content')
     </div>
+
+    {{-- CDN SweetAlert --}}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <!-- Bootstrap 4 -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
@@ -55,13 +61,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
         integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous">
     </script>
-  
+    
+    {{-- Auto Complete --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    
     <!-- AdminLTE App -->
     <script src="/js/adminlte.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="/js/pages/dashboard.js"></script>
+
+    @yield('js')
 </body>
 
 </html>

@@ -32,11 +32,18 @@
                             <i class="fa-solid fa-pen-to-square"></i>
                         </span>
                     </a>
+                    {{-- <a href="#" data-id="{{ $details->id }}" data-nama="{{ $details->id_jurusan }}" class="ml-2 delete">
+                        <span class="badge badge-danger">
+                            <i class="fa-regular fa-circle-xmark"></i>
+                        </span>
+                    </a> --}}
 
-                    <form action="/jurusan/{{ $details->id }}" method="POST" class="d-inline ml-2">
-                        @method('delete')
+                    <form action="/jurusan/{{ $details->id }}/delete" method="POST" class="d-inline ml-2">
+                        @method('DELETE')
                         @csrf
-                        <button type="submit" data-confirm-delete="true" class="badge badge-danger border-0 remove">
+                        <button 
+                            onclick="return confirm('Serius jurusan {{ $details->id_jurusan }} akan dihapus ?')" 
+                            class="badge badge-danger border-0">
                             <i class="fa-regular fa-circle-xmark"></i>
                         </button>
                     </form>
@@ -46,3 +53,29 @@
     </div>
 </div>
 @endsection
+
+@section('js')
+<script>
+    // $('.delete').click(function() {
+    //     var jrs = $(this).attr('data-nama');
+    //     swal({
+    //         title: "Are you sure?",
+    //         text: "Kamu akan menghapus " + jrs + " !",
+    //         icon: "warning",
+    //         buttons: true,
+    //         dangerMode: true,
+    //     })
+    //     .then((willDelete) => {
+    //         window.location = "/delete/"+ jrs +"";
+    //         if (willDelete) {
+    //             swal("Successfully has been deleted!", {
+    //             icon: "success",
+    //             });
+    //         } else {
+    //             swal("Data Has been cancel deleted!");
+    //         }
+    //     });       
+    // });
+</script>
+@endsection
+

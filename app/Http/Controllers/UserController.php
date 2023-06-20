@@ -30,7 +30,10 @@ class UserController extends Controller
         ]);
 
         $user->save();
-        return redirect()->route('login')->with('status', 'Registration Success. Pleas Login');
+
+        alert()->success('Success', 'Registration Success. Pleas Login');
+
+        return redirect()->route('login');
     }
 
     public function login()

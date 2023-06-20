@@ -134,4 +134,13 @@ class WaliController extends Controller
     {
         return Excel::download(new ExportWali, 'wali.xlsx');
     }
+
+    public function autocomplete(Request $request)
+    {
+        $data = Mahasiswa::select("nama_mhs as value", "id")
+            ->where('nama_mhs', 'LIKE', '%' . $request->get('search') . '%')
+            ->get();
+
+        return response()->json($data);
+    }
 }

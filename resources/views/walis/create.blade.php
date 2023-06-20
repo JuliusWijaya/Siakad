@@ -12,12 +12,8 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="mahasiswa_id">ID MAHASISWA</label>
-                                <select class="form-control @error('mahasiswa_id') is-invalid @enderror" name="mahasiswa_id" id="mahasiswa_id">
-                                    <option>-- Pilih MHS --</option>
-                                    @foreach ($mahasiswa as $mhs)
-                                    <option value="{{ $mhs->id }}" @selected(old('mahasiswa_id') == $mhs->id)>{{ $mhs->nama_mhs }}</option>
-                                    @endforeach
-                                </select>
+                              <input type="text" class="form-control @error('mahasiswa_id') is-invalid @enderror"
+                                 name="mahasiswa_id" id="search" value="{{ old('mahasiswa_id') }}" placeholder="Masukan Nama Mahasiswa" autofocus required>
                                 @error('mahasiswa_id')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -65,4 +61,32 @@
         </div>
     </div>
 </div>
+@endsection
+
+
+@section('js')
+<script type="text/javascript">
+    var path = "{{ route('searchmhs') }}";
+  
+    $("#search").autocomplete({
+        source: function( request, response ) {
+          $.ajax({
+            url: path,
+            type: 'GET',
+            dataType: "json",
+            data: {
+               search: request.term
+            },
+            success: function(data) {
+               response(data);
+            }
+          });
+        },
+        select: function (event, ui) {
+           $('#search').val(ui.item.id);
+           console.log(ui.item); 
+           return false;
+        }
+    });
+</script>
 @endsection

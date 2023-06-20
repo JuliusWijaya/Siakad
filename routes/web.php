@@ -42,6 +42,8 @@ Route::resource('wali', WaliController::class);
 Route::resource('dosen', DosenController::class);
 Route::resource('user', UsersController::class);
 
+Route::get('autocomplete', [WaliController::class, 'autocomplete'])->name('searchmhs');
+
 Route::get('/user/{users:name}/details', [UsersController::class, 'show'])->middleware('auth');
 Route::get('/print/mhs', [PrintController::class, 'printPdf'])->middleware('auth');
 Route::get('/export/mhs', [MahasiswaController::class, 'exportExcel'])->middleware('auth');
@@ -56,8 +58,9 @@ Route::get('/users/export', [UsersController::class, 'exportExcel'])->middleware
 
 Route::get('/jurusan', [BiodataController::class, 'index'])->middleware('auth');
 Route::get('/jurusan/add', [BiodataController::class, 'create'])->middleware('auth');
+// Route::get('/delete/{jurusan}', [BiodataController::class, 'destroy'])->name('delete')->middleware('auth');
 Route::post('/jurusan', [BiodataController::class, 'store'])->middleware('auth');
-Route::delete('/jurusan/{jurusan}', [BiodataController::class, 'destroy']);
+Route::delete('/jurusan/{jurusan}/delete', [BiodataController::class, 'destroy']);
 Route::get('/jurusan/{jurusan:id_jurusan}/edit', [BiodataController::class, 'edit'])->middleware('auth');
 Route::put('/jurusan/{jurusan}', [BiodataController::class, 'update']);
 Route::get('/jurusan/{jurusan:id_jurusan}/details', [BiodataController::class, 'show'])->middleware('auth');
