@@ -78,7 +78,7 @@
                     <a href="/users/print" target="_blank">
                         <button class="btn btn-success btn-sm ml-3">
                             <i class="fa-solid fa-print"></i>
-                            Print PDF
+                            Print
                         </button>
                     </a>
                 </div>

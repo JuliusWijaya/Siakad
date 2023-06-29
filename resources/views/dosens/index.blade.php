@@ -23,7 +23,7 @@
                 <div class="col-md-6 d-flex justify-content-end">
                     <a href="/print/dosen" class="btn btn-success btn-sm mb-3" target="_blank">
                         <i class="fa-solid fa-print"></i>
-                        Cetak PDF
+                        Print
                     </a>
                     <a href="/export/dosen" class="btn btn-secondary btn-sm mb-3 ml-3">
                         <i class="fa-solid fa-print"></i>

@@ -17,8 +17,8 @@ class DosenFactory extends Factory
     public function definition()
     {
         return [
-            'nid'   => $this->faker->randomNumber(6, true),
-            'nama'  => $this->faker->name(),
+            'nid'       => $this->faker->randomNumber(6, true),
+            'nama'      => $this->faker->name(),
             'tgl_lahir' => $this->faker->date('d_m_Y'),
             'alamat'    => $this->faker->address()
         ];

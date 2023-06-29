@@ -13,4 +13,12 @@ class User extends Authenticatable
     protected $table      = 'users';
     protected $primaryKey = 'id';
     protected $guarded    = ['id'];
+
+    public function scopeUser($query, array $get)
+    {
+        $query->when($get['search'] ?? false, function ($query, $get) {
+            return $query->where('name', 'like', '%' . $get . '%')
+                ->orWhere('email', 'like', '%' . $get . '%');
+        });
+    }
 }

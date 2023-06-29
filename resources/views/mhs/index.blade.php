@@ -23,7 +23,7 @@
                 <div class="col-md-6 d-flex justify-content-end">
                     <a href="/print/mhs" class="btn btn-success btn-sm mb-3 ml-3" target="_blank">
                         <i class="fa-solid fa-print"></i>
-                        Cetak PDF
+                       Print
                     </a>
                     <a href="/export/mhs" class="btn btn-secondary btn-sm mb-3 ml-3">
                         <i class="fa-solid fa-print"></i>
@@ -94,7 +94,7 @@
         </div>
     </div>
     @else
-    <p class="alert alert-danger text-center text-dark mt-5 col-md-5 text-white" style="margin: 0 auto">Not Found
+    <p class="alert alert-danger text-center text-dark mt-5 col-md-4 text-white" style="margin: 0 auto">Not Found
         Mahasiswa</p>
     @endif
 </div>

@@ -24,7 +24,7 @@ class PrintController extends Controller
         $pdf = PDF::loadView('jurusans.printpdf', $data);
         $pdf->setPaper('A4', 'potrait');
 
-        return $pdf->stream('biodata.pdf');
+        return $pdf->stream('jurusan.pdf');
     }
 
     public function printPdf()

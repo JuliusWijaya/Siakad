@@ -74,6 +74,7 @@ class UserController extends Controller
         $user->password = Hash::make($request->new_password);
         $user->save();
         $request->session()->regenerate();
+
         return redirect('/dashboard')->with('status', 'Success Password Changed!');
     }
 

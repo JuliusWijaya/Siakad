@@ -23,7 +23,7 @@
                 <div class="col-md-6 d-flex justify-content-end">
                     <a href="/print/wali" class="btn btn-success btn-sm mb-3" target="_blank">
                         <i class="fa-solid fa-print"></i>
-                        Cetak PDF
+                       Print
                     </a>
                     <a href="/export/wali" class="btn btn-secondary btn-sm mb-3 ml-2">
                         <i class="fa-solid fa-print"></i>
@@ -83,7 +83,7 @@
                                         @method('DELETE')
                                         @csrf
                                         <button class="btn btn-danger ml-2"
-                                            onclick="return confirm('Serius Wali {{$wali->nama}} Akan Di Hapus ?')">
+                                            onclick="return confirm('Serius Wali {{$wali->nama_wali}} Akan Di Hapus ?')">
                                             <i class="fa-regular fa-circle-xmark"></i>
                                         </button>
                                     </form>

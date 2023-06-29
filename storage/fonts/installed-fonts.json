@@ -11,12 +11,32 @@
     },
     "roboto": {
         "normal": "C:\\Julius Wijaya\\Laravel 9\\tatapp\\storage\\fonts\/roboto_normal_7bc701b343c10631f60048716b96e4f7",
-        "bold": "roboto_bold_8db5cb5d0586c1e891426d13097b1d04"
+        "bold": "C:\\Julius Wijaya\\Laravel 9\\tatapp\\storage\\fonts\/roboto_bold_8db5cb5d0586c1e891426d13097b1d04",
+        "100": "C:\\Julius Wijaya\\Laravel 9\\tatapp\\storage\\fonts\/roboto_100_1c4e32da7e6c8539dd3a51af38f413be",
+        "300": "C:\\Julius Wijaya\\Laravel 9\\tatapp\\storage\\fonts\/roboto_300_32acfcb296f555e063ebba2be7db9e2f",
+        "500": "roboto_500_5774d6fb05eba3d096525f821dbe4137"
     },
     "silkscreen": {
         "normal": "silkscreen_normal_a17bcd88f6901446863fbc2978317e76"
     },
     "source sans pro": {
         "italic": "source_sans_pro_italic_27672a92dcedb2218abd2dadee4fe950"
+    },
+    "font awesome 6 brands": {
+        "normal": "font_awesome_6_brands_normal_36faa0e194d3288643f7144dedd8e1b1"
+    },
+    "font awesome 6 free": {
+        "normal": "C:\\Julius Wijaya\\Laravel 9\\tatapp\\storage\\fonts\/font_awesome_6_free_normal_cf2d7daaeabedac0226ae26fc7e4f075",
+        "900": "font_awesome_6_free_900_665c8d2ea728525da852b5cd3a1d51a5"
+    },
+    "font awesome 5 brands": {
+        "normal": "font_awesome_5_brands_normal_36faa0e194d3288643f7144dedd8e1b1"
+    },
+    "font awesome 5 free": {
+        "900": "C:\\Julius Wijaya\\Laravel 9\\tatapp\\storage\\fonts\/font_awesome_5_free_900_665c8d2ea728525da852b5cd3a1d51a5",
+        "normal": "font_awesome_5_free_normal_cf2d7daaeabedac0226ae26fc7e4f075"
+    },
+    "fontawesome": {
+        "normal": "fontawesome_normal_6aa5cc0b95be2651581a2d7ad4a9d038"
     }
 }

@@ -18,7 +18,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::latest()->get();
+        $users = User::latest()->user(request(['search']))->get();
         $title = 'Dashboard User';
 
         return view('users.index', [
