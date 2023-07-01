@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BiodataController;
 use App\Http\Controllers\WaliController;
 use App\Http\Controllers\DashboardController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 
 
@@ -26,17 +27,34 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('home', ['title' => 'Home']);
 // })->name('home');
-Route::get('register', [UserController::class, 'register'])->name('register')->middleware('guest');
-Route::post('register', [UserController::class, 'register_action'])->name('register.action');
-Route::get('login', [UserController::class, 'login'])->name('login')->middleware('guest');
-Route::post('login', [UserController::class, 'login_action'])->name('login.action');
-Route::post('password', [UserController::class, 'password_action'])->name('password.action');
-Route::post('logout', [UserController::class, 'logout'])->name('logout');
+
 Route::get('/', [PagesController::class, 'home']);
 Route::get('/about', [PagesController::class, 'about']);
-Route::get('/password', [UserController::class, 'password'])->name('password');
 
-Route::get('/dashboard', [DashboardController::class, 'dashboard'])->middleware('auth');
+Route::get('register', [UserController::class, 'register'])->name('register')->middleware('guest');
+Route::post('register', [UserController::class, 'register_action'])->name('register.action');
+
+Route::get('/email/verify', function () {
+    $title = 'Verify Email';
+
+    return view('auth.verify-email', compact('title'));
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/dashboard');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::get('login', [UserController::class, 'login'])->name('login')->middleware('guest');
+Route::post('login', [UserController::class, 'login_action'])->name('login.action');
+
+Route::get('/password', [UserController::class, 'password'])->name('password');
+Route::post('password', [UserController::class, 'password_action'])->name('password.action');
+Route::post('logout', [UserController::class, 'logout'])->name('logout');
+
+Route::get('/dashboard', [DashboardController::class, 'dashboard'])->middleware(['auth', 'verified']);
+
 Route::resource('mahasiswa', MahasiswaController::class);
 Route::resource('wali', WaliController::class);
 Route::resource('dosen', DosenController::class);
@@ -58,7 +76,6 @@ Route::get('/users/export', [UsersController::class, 'exportExcel'])->middleware
 
 Route::get('/jurusan', [BiodataController::class, 'index'])->middleware('auth');
 Route::get('/jurusan/add', [BiodataController::class, 'create'])->middleware('auth');
-// Route::get('/delete/{jurusan}', [BiodataController::class, 'destroy'])->name('delete')->middleware('auth');
 Route::post('/jurusan', [BiodataController::class, 'store'])->middleware('auth');
 Route::delete('/jurusan/{jurusan}/delete', [BiodataController::class, 'destroy']);
 Route::get('/jurusan/{jurusan:id_jurusan}/edit', [BiodataController::class, 'edit'])->middleware('auth');

@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
 
 class UserController extends Controller
 {
@@ -23,17 +24,17 @@ class UserController extends Controller
             'password_confirm' => 'required|same:password'
         ]);
 
-        $user = new User([
+        $user =  User::create([
             'name'      => $request->name,
             'email'     => $request->email,
             'password'  => Hash::make($request->password)
         ]);
 
-        $user->save();
+        event(new Registered($user));
 
-        alert()->success('Success', 'Registration Success. Pleas Login');
+        Auth::login($user);
 
-        return redirect()->route('login');
+        return redirect('/email/verify');
     }
 
     public function login()

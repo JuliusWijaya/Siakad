@@ -22,7 +22,7 @@
                         <i class="fa-solid fa-arrow-right-to-bracket"></i>
                         Login
                     </a>
-                </li>
+                </li>  
                 @endguest
             </ul>
         </div>
