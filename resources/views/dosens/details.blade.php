@@ -38,7 +38,7 @@
                                 <i class="fa-solid fa-arrow-left"></i>
                             </span>
                         </a>
-                        <a href="/dosen/{{ $dosen->id }}/edit" class="badge badge-warning">
+                        <a href="/dosen/{{ $dosen->slug }}/edit" class="badge badge-warning">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </a>
                         <form action="/dosen/{{ $dosen->id }}" method="POST" class="d-inline ml-2">

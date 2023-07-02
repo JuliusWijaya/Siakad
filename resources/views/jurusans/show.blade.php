@@ -27,16 +27,11 @@
                         </span>
                     </a>
 
-                    <a href="/jurusan/{{ $details->id_jurusan }}/edit" class="ml-2">
+                    <a href="/jurusan/{{ $details->slug }}/edit" class="ml-2">
                         <span class="badge badge-success">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </span>
                     </a>
-                    {{-- <a href="#" data-id="{{ $details->id }}" data-nama="{{ $details->id_jurusan }}" class="ml-2 delete">
-                        <span class="badge badge-danger">
-                            <i class="fa-regular fa-circle-xmark"></i>
-                        </span>
-                    </a> --}}
 
                     <form action="/jurusan/{{ $details->id }}/delete" method="POST" class="d-inline ml-2">
                         @method('DELETE')

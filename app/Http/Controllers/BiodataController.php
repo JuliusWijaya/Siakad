@@ -7,7 +7,7 @@ use App\Models\jurusan;
 use App\Exports\ExportJurusan;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Str;
 
 
 class BiodataController extends Controller
@@ -46,26 +46,16 @@ class BiodataController extends Controller
      */
     public function store(Request $request)
     {
-        // Cara Pertama
-        // Memanggil Model
-        // $jurusan = new jurusan();
-
-        // $jurusan->nik    = $request->nik;
-        // $jurusan->nama   = $request->nama;
-
-
-        // $jurusan->save();
-
-        // Cara Kedua
-        // Validasi Input
         $request->validate([
             'id_jurusan'    => 'required|unique:jurusans',
             'nama_jurusan'  => 'required|max:50',
+            'slug'          => 'max:50',
         ]);
 
         jurusan::create([
             'id_jurusan'    => $request->id_jurusan,
             'nama_jurusan'  => $request->nama_jurusan,
+            'slug'          => Str::slug($request->nama_jurusan, '-'),
         ]);
 
         alert()->success('Success', 'New Major Successfully Added');
@@ -81,10 +71,6 @@ class BiodataController extends Controller
      */
     public function show(jurusan $jurusan)
     {
-        $title = 'Delete Jurusan!';
-        $text = "Are you sure you want to delete?";
-        confirmDelete($title, $text);
-
         return view('jurusans.show', [
             'details' => $jurusan,
             'title'   => 'Details Jurusan'
@@ -112,27 +98,16 @@ class BiodataController extends Controller
      */
     public function update(Request $request, jurusan $jurusan)
     {
-
-        // Cara Pertama
-        // $mi21a = mi21a::find($mi21a->id);
-        // $mi21a->nik    = $request->nik;
-        // $mi21a->nama   = $request->nama;
-        // $mi21a->alamat = $request->alamat;
-        // $mi21a->agama  = $request->agama;
-
-        // $mi21a->save();
-
-        // Validasi Ketika User Lupa Input
         $request->validate([
             'id_jurusan'    => 'required|max:18',
             'nama_jurusan'  => 'required|max:50',
         ]);
 
-        // Cara Kedua
         jurusan::where('id', $jurusan->id)
             ->update([
                 'id_jurusan'    => $request->id_jurusan,
                 'nama_jurusan'  => $request->nama_jurusan,
+                'slug'          => Str::slug($request->nama_jurusan, '-'),
             ]);
 
         alert()->success('Success', $jurusan->nama_jurusan . ' Successfully Has Been Edit');

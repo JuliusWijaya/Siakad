@@ -33,6 +33,7 @@
                     </div>
                 </div>
                 <!-- ./col -->
+                @if (auth()->user()->position == 1)
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
                     <div class="small-box bg-success">
@@ -76,6 +77,7 @@
                         <a href="/mahasiswa" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
+                @endif
             </div>
         </div>
     </section>

@@ -71,7 +71,7 @@
                             <td>{{ $dosen->nama }}</td>
                             <td>{{ $dosen->alamat }}</td>
                             <td class="text-center">
-                                <a href="{{ route('dosen.show', $dosen->id) }}"  class="btn btn-info btn-sm">
+                                <a href="/dosen/{{ $dosen->slug }}/details"  class="btn btn-info btn-sm">
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
                             </td>

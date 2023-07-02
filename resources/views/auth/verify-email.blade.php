@@ -13,10 +13,10 @@
 
 <body>
     <div class="container">
-        <div class="row justify-content-center" style="margin: 50px auto;">
+        <div class="row justify-content-center mt-5" style="margin: 50px auto;">
             <div class="col-md-6">
                 <div class="alert alert-success" role="alert">
-                    <h4 class="alert-heading">Registration Success. </h4>
+                    <h4 class="alert-heading">Registration Success.</h4>
                     <p>Verified email successfully send</p>
                     <hr>
                     <p class="mb-0">Pleas Verified Your Email!</p>

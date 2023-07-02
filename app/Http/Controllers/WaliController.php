@@ -8,6 +8,7 @@ use App\Models\Wali;
 use App\Models\Mahasiswa;
 use App\Exports\ExportWali;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Str;
 
 class WaliController extends Controller
 {
@@ -52,6 +53,7 @@ class WaliController extends Controller
         $validatedData = $request->validate([
             'mahasiswa_id' => 'required|unique:walis',
             'nama_wali'    => 'required|max:50',
+            'slug'         => 'max:50',
             'umur'         => 'required',
             'pekerjaan'    => 'required'
         ]);
@@ -102,6 +104,7 @@ class WaliController extends Controller
         $request->validate([
             'mahasiswa_id'  => 'required',
             'nama_wali'     => 'required|max:50',
+            'slug'          => 'max:50',
             'umur'          => 'required',
             'pekerjaan'     => 'required'
         ]);
@@ -110,8 +113,9 @@ class WaliController extends Controller
             ->update([
                 'mahasiswa_id'  => $request->mahasiswa_id,
                 'nama_wali'     => $request->nama_wali,
+                'slug'          => $request->nama_wali,
                 'umur'          => $request->umur,
-                'pekerjaan'     => $request->pekerjaan
+                'pekerjaan'     => $request->pekerjaan,
             ]);
 
         return redirect('/wali')->with('success', 'Wali Berhasil Diedit');

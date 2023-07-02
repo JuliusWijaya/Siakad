@@ -33,11 +33,13 @@ class DatabaseSeeder extends Seeder
         jurusan::create([
             'id_jurusan'    => 'MI',
             'nama_jurusan'  => 'Manajemen Informatika',
+            'slug'          => 'manajemen-informatika',
         ]);
 
         jurusan::create([
             'id_jurusan'    => 'MKP',
             'nama_jurusan'  => 'Manajemen Keuangan Perbankan',
+            'slug'          => 'manajemen-keuangan-perbankan',
         ]);
     }
 }

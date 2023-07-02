@@ -72,18 +72,9 @@
                                 <td>{{ $mhs->nama_mhs }}</td>
                                 <td>{{ $mhs->jurusan }}</td>
                                 <td class="text-center">
-                                    <a href="/mahasiswa/{{$mhs->id}}/edit" class="btn btn-warning">
-                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    <a href="/mahasiswa/{{ $mhs->slug }}/details" class="btn btn-info">
+                                        <i class="fa-solid fa-eye"></i>
                                     </a>
-                                    <form action="/mahasiswa/{{$mhs->id}}" method="POST" class="d-inline">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button class="btn btn-danger ml-2"
-                                            onclick="return confirm('Serius Mahasiswa {{ $mhs->nama_mhs }} Akan Di Hapus ?')">
-                                            <i class="fa-regular fa-circle-xmark">
-                                            </i>
-                                        </button>
-                                    </form>
                                 </td>
                             </tr>
                             @endforeach

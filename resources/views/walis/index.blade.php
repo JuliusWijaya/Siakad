@@ -76,7 +76,7 @@
                                 <td>{{ (isset($wali->mahasiswa->nama_mhs)) ? $wali->mahasiswa->nama_mhs : 'Not Found' }}</td>
                                 <td>{{ (isset($wali->mahasiswa->jurusan)) ? $wali->mahasiswa->jurusan : 'Not Found' }}</td>
                                 <td>
-                                    <a href="/wali/{{$wali->id}}/edit" class="btn btn-warning">
+                                    <a href="/wali/{{$wali->slug}}/edit" class="btn btn-warning">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
                                     <form action="/wali/{{$wali->id}}" method="POST" class="d-inline">

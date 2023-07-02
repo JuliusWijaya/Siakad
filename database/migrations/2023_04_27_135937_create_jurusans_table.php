@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->char('id_jurusan');
             $table->string('nama_jurusan');
+            $table->string('slug');
             $table->timestamps();
         });
     }

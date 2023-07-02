@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('mahasiswa_id');
             $table->string('nama_wali', 100);
+            $table->string('slug', 100)->nullable();
             $table->integer('umur');
             $table->string('pekerjaan', 100);
             $table->timestamps();

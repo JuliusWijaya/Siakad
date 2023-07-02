@@ -10,7 +10,7 @@ class jurusan extends Model
     use HasFactory;
 
     protected $table    = 'jurusans';
-    protected $fillable = ['id_jurusan', 'nama_jurusan'];
+    protected $fillable = ['id_jurusan', 'nama_jurusan', 'slug'];
 
     public function scopeSearch($query, array $gets)
     {

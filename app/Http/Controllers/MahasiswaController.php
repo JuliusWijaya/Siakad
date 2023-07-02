@@ -7,6 +7,7 @@ use App\Models\jurusan;
 use App\Models\Mahasiswa;
 use App\Exports\ExportMahasiswa;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 
@@ -54,6 +55,7 @@ class MahasiswaController extends Controller
         $validatedData = $request->validate([
             'nim'        => 'required|unique:mahasiswas',
             'nama_mhs'   => 'required|max:50',
+            'slug'       => 'max:50',
             'jk'         => 'required',
             'jurusan'    => 'required',
             'no_hp'      => 'required|max:13',
@@ -74,9 +76,15 @@ class MahasiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $title = 'Details Mahasiswa';
+        $slug  = Mahasiswa::where('slug', $slug)->first();
+
+        return view('mhs.details', [
+            'title'      => $title,
+            'details'    => $slug,
+        ]);
     }
 
     /**
@@ -115,6 +123,7 @@ class MahasiswaController extends Controller
         $request->validate([
             'nim'       => 'required|max:9',
             'nama_mhs'  => 'required|max:50',
+            'slug'      => 'max:50',
             'jk'        => 'required',
             'jurusan'   => 'required|max:35',
             'no_hp'     => 'required|max:13',

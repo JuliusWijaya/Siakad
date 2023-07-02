@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('nid');
             $table->string('nama', 100);
+            $table->string('slug', 100);
             $table->char('tgl_lahir', 12);
             $table->string('alamat', 100);
             $table->timestamps();

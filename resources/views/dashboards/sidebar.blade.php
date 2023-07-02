@@ -54,7 +54,7 @@
                         </p>
                     </a>
                 </li>
-                @endif
+             
                 <li class="nav-item">
                     <a href="/dosen" class="nav-link {{ Request::is('dosen*') ? 'active' : '' }}">
                         <i class="fa-solid fa-user-tie"></i>
@@ -71,6 +71,7 @@
                         </p>
                     </a>
                 </li>
+                @endif
                 <li class="nav-header">SETTINGS</li>
                 <li class="nav-item">
                     <a href="/password" class="nav-link">

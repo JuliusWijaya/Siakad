@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Dosen;
 use App\Exports\ExportDosen;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Str;
 
 class DosenController extends Controller
 {
@@ -49,6 +50,7 @@ class DosenController extends Controller
         $request->validate([
             'nid'        => 'required|max:9|unique:dosens',
             'nama'       => 'required|max:50',
+            'slug'       => 'max:50',
             'tgl_lahir'  => 'required',
             'alamat'     => 'required'
         ]);
@@ -73,7 +75,10 @@ class DosenController extends Controller
     {
         $title = 'Details Dosen';
 
-        return view('dosens.details', ['title'  => $title, 'dosen' => $dosen]);
+        return view('dosens.details', [
+            'title'  => $title,
+            'dosen'  => $dosen
+        ]);
     }
 
     /**
@@ -101,6 +106,7 @@ class DosenController extends Controller
         $request->validate([
             'nid'       => 'required|max:10',
             'nama'      => 'required|max:50',
+            'slug'      => 'max:50',
             'tgl_lahir' => 'required',
             'alamat'    => 'required|max:50'
         ]);
@@ -132,5 +138,17 @@ class DosenController extends Controller
     public function exportExcel()
     {
         return Excel::download(new ExportDosen, 'dosen.xlsx');
+    }
+
+    // Untuk mengupdate slug sekali action
+    public function massUpdate()
+    {
+        $dosen = Dosen::all();
+
+        collect($dosen)->map(function ($item) {
+            $item->slug = Str::slug($item->nama, '-');
+
+            $item->save();
+        });
     }
 }

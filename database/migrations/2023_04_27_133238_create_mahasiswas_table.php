@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('nim');
             $table->string('nama_mhs', 100);
+            $table->string('slug', 100)->nullable();
             $table->char('jk', 15);
             $table->string('jurusan', 50);
             $table->char('no_hp', 13);

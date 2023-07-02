@@ -98,7 +98,7 @@
                             <td>{{ $data->id_jurusan }}</td>
                             <td>{{ $data->nama_jurusan }}</td>
                             <td class=" text-center">
-                                <a href="/jurusan/{{ $data->id_jurusan }}/details" class="btn btn-info btn-sm">
+                                <a href="/jurusan/{{ $data->slug }}/details" class="btn btn-info btn-sm">
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
                             </td>
