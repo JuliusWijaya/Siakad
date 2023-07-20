@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-10 pt-5" style="margin: 0 auto;">
+        <div class="col-10 col-md-10 pt-5" style="margin: 0 auto;">
             @if(session()->has('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 Hai <strong>{{ auth()->user()->name }}</strong> {{ session('success')}}
@@ -53,7 +53,7 @@
                     </div>
                 </div>
 
-                <div class="card-body table-responsive p-0  ">
+                <div class="card-body table-responsive p-0">
                     <table class="table table-bordered table-hover text-nowrap">
                         <thead>
                             <tr class="text-center">

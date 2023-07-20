@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BiodataController;
 use App\Http\Controllers\WaliController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OrmawaController;
 use Database\Factories\DosenFactory;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
@@ -87,3 +88,5 @@ Route::delete('/jurusan/{jurusan}/delete', [BiodataController::class, 'destroy']
 Route::get('/jurusan/{jurusan:slug}/edit', [BiodataController::class, 'edit'])->middleware('auth');
 Route::put('/jurusan/{jurusan}', [BiodataController::class, 'update']);
 Route::get('/jurusan/{jurusan:slug}/details', [BiodataController::class, 'show'])->middleware('auth');
+
+Route::get('/ormawa', [OrmawaController::class, 'index']);

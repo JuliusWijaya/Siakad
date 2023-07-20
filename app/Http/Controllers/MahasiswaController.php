@@ -6,6 +6,7 @@ use App\Models\Dosen;
 use App\Models\jurusan;
 use App\Models\Mahasiswa;
 use App\Exports\ExportMahasiswa;
+use App\Models\Ormawa;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -39,9 +40,10 @@ class MahasiswaController extends Controller
     {
         $jurusans = jurusan::all();
         $dosens   = Dosen::all();
+        $ormawas  = Ormawa::all();
         $title = 'Create Mahasiswa';
 
-        return view('mhs.create', compact('jurusans', 'dosens', 'title'));
+        return view('mhs.create', compact('jurusans', 'dosens', 'ormawas', 'title'));
     }
 
     /**
@@ -60,7 +62,8 @@ class MahasiswaController extends Controller
             'jurusan'    => 'required',
             'no_hp'      => 'required|max:13',
             'alamat'     => 'required',
-            'dosen_id'   => 'required'
+            'dosen_id'   => 'required',
+            'ormawa_id'  => 'required',
         ]);
 
         Mahasiswa::create($validatedData);

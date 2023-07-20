@@ -39,4 +39,9 @@ class Mahasiswa extends Model
     {
         return $this->belongsTo(Dosen::class);
     }
+
+    public function ormawa()
+    {
+        return $this->belongsToMany(Ormawa::class, 'mahasiswas_ormawa', 'mahasiswa_id', 'ormawa_id');
+    }
 }

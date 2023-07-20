@@ -61,6 +61,7 @@
                                 <th>NIM</th>
                                 <th>NAMA</th>
                                 <th>JURUSAN</th>
+                                <th>ORMAWA</th>
                                 <th>ACTION</th>
                             </tr>
                         </thead>
@@ -71,6 +72,11 @@
                                 <td>{{ $mhs->nim }}</td>
                                 <td>{{ $mhs->nama_mhs }}</td>
                                 <td>{{ $mhs->jurusan }}</td>
+                                <td>
+                                    @foreach ($mhs->ormawa as $item)
+                                        {{ $item->name }} <br>
+                                    @endforeach
+                                </td>
                                 <td class="text-center">
                                     <a href="/mahasiswa/{{ $mhs->slug }}/details" class="btn btn-info">
                                         <i class="fa-solid fa-eye"></i>

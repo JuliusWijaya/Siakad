@@ -10,7 +10,7 @@
                     <form method="POST" action="/mahasiswa">
                         @csrf
                         <div class="modal-body">
-                            <div class="form-group mb-0">
+                            <div class="form-group mb-2">
                                 <label for="nim">NIM</label>
                                 <input type="text" class="form-control @error('nim') is-invalid @enderror" id="nim" name="nim"
                                     value="{{ old('nim') }}" placeholder="Masukan Nim">
@@ -20,7 +20,7 @@
                                 </div>
                                 @enderror
                             </div>
-                            <div class="form-group mb-0">
+                            <div class="form-group mb-2">
                                 <label for="nama_mhs">NAMA</label>
                                 <input type="text" class="form-control @error('nama_mhs') is-invalid @enderror" id="nama_mhs"
                                     name="nama_mhs" value="{{ old('nama_mhs') }}" placeholder="Masukan Nama Lengkap">
@@ -30,7 +30,7 @@
                                 </div>
                                 @enderror
                             </div>
-                            <div class="form-group mb-0">
+                            <div class="form-group mb-2">
                                 <label for="jk">JENIS KELAMIN</label>
                                 <select class="form-control" name="jk" id="jk">
                                     <option>-- Pilih JK --</option>
@@ -43,7 +43,7 @@
                                 </div>
                                 @enderror
                             </div>
-                            <div class="form-group mb-0">
+                            <div class="form-group mb-2">
                                 <label for="jurusan">JURUSAN</label>
                                 <select class="form-control" name="jurusan" id="jurusan">
                                     <option>-- Pilih Jurusan --</option>
@@ -61,7 +61,7 @@
                                 </div>
                                 @enderror
                             </div>
-                            <div class="form-group mb-0">
+                            <div class="form-group mb-2">
                                 <label for="no_hp">NO HP</label>
                                 <input type="text" class="form-control @error('no_hp') is-invalid @enderror" id="no_hp"
                                     name="no_hp" value="{{ old('no_hp') }}" placeholder="Masukan No Handphone">
@@ -71,7 +71,7 @@
                                 </div>
                                 @enderror
                             </div>
-                            <div class="form-group mb-0">
+                            <div class="form-group mb-2">
                                 <label for="alamat">ALAMAT</label>
                                 <input type="text" class="form-control @error('alamat') is-invalid @enderror" id="alamat"
                                     name="alamat" value="{{ old('alamat') }}" placeholder="Masukan Alamat">
@@ -81,7 +81,7 @@
                                 </div>
                                 @enderror
                             </div>
-                            <div class="form-group ">
+                            <div class="form-group">
                                 <label for="dosen_id">DOSEN</label>
                                 <select class="form-control @error('dosen_id') is-invalid @enderror" name="dosen_id" id="dosen_id">
                                     <option>-- Pilih Dosen --</option>
@@ -92,6 +92,22 @@
                                     @endforeach
                                 </select>
                                 @error('dosen_id')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                            <div class="form-group ">
+                                <label for="ormawa_id">ORMAWA</label>
+                                <select class="form-control @error('ormawa_id') is-invalid @enderror" name="ormawa_id" id="ormawa_id">
+                                    <option>-- Pilih Ormawa --</option>
+                                    @foreach ($ormawas as $ormawa)
+                                    <option value="{{ $ormawa->id }}" @selected(old('ormawa_id') == $ormawa->id)>
+                                        {{ $ormawa->name }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                                @error('ormawa_id')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>

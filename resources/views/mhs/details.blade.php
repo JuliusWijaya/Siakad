@@ -35,6 +35,7 @@
                         <label for="dosen_id" class="form-label">DOSEN :</label>
                         <input type="text" class="form-control" id="dosen_id" value="{{ $details->dosen->nama }}" readonly>
                     </div>
+                   
                     <div>
                         <a href="/mahasiswa">
                           <span class="badge badge-secondary">
