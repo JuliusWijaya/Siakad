@@ -1,6 +1,8 @@
 @extends('layouts.main')
 
 @section('content')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 <div class="container">
     <div class="row">
         <div class="col-md-6" style="margin: 50px auto;">
@@ -12,12 +14,13 @@
                         @csrf
                         <div class="form-group mb-0">
                             <label for="id_jurusan">ID MHS</label>
-                            <select class="form-control @error('mahasiswa_id') is-invalid @enderror" name="mahasiswa_id" id="mahasiswa_id">
+                            <select class="form-control @error('mahasiswa_id') is-invalid @enderror mhs py-2" name="mahasiswa_id"
+                                id="mahasiswa_id">
                                 <option>-- Pilih MHS --</option>
                                 @foreach ($mahasiswa as $mhs)
-                                <option value="{{ $mhs->id }}"
-                                     @selected(old('mahasiswa_id', $wali->mahasiswa_id) == $mhs->id)>
-                                     {{ $mhs->nama_mhs }}
+                                <option value="{{ $mhs->id }}" @selected(old('mahasiswa_id', $wali->mahasiswa_id) ==
+                                    $mhs->id)>
+                                    {{ $mhs->nama_mhs }}
                                 </option>
                                 @endforeach
                             </select>
@@ -40,7 +43,7 @@
                         <div class="form-group mb-0">
                             <label for="umur">UMUR</label>
                             <input type="text" class="form-control  @error('umur') is-invalid @enderror" id="umur"
-                            name="umur" value="{{ old('umur', $wali->umur) }}">
+                                name="umur" value="{{ old('umur', $wali->umur) }}">
                             @error('umur')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -49,21 +52,33 @@
                         </div>
                         <div class="form-group mb-0">
                             <label for="pekerjaan">JURUSAN</label>
-                            <input type="text" class="form-control  @error('pekerjaan') is-invalid @enderror" id="pekerjaan"
-                            name="pekerjaan" value="{{ old('pekerjaan',  $wali->pekerjaan) }}">
+                            <input type="text" class="form-control  @error('pekerjaan') is-invalid @enderror"
+                                id="pekerjaan" name="pekerjaan" value="{{ old('pekerjaan',  $wali->pekerjaan) }}">
                             @error('pekerjaan')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                             @enderror
                         </div>
-                    
-                        <button class="btn btn-primary mt-2">Update</button>
-                        <a href="/wali" class="btn btn-secondary mt-2 ml-2">Back</a>
+
+                        <div class="mt-3">
+                            <a href="/wali" class="btn btn-secondary">Back</a>
+                            <button class="btn btn-primary ml-3">Update</button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@endsection
+
+@section('js')
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.mhs').select2();
+    });
+</script>
 @endsection

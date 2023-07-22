@@ -6,6 +6,7 @@ use App\Models\jurusan;
 use App\Models\Mahasiswa;
 use App\Models\User;
 use App\Models\Dosen;
+use App\Models\Ormawa;
 use App\Models\Wali;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -41,5 +42,20 @@ class DatabaseSeeder extends Seeder
             'nama_jurusan'  => 'Manajemen Keuangan Perbankan',
             'slug'          => 'manajemen-keuangan-perbankan',
         ]);
+
+        $ormawa = [
+            ['name' => 'BEM'],
+            ['name' => 'HMKP'],
+            ['name' => 'HMP'],
+            ['name' => 'LSC'],
+            ['name' => 'LMA'],
+            ['name' => 'LCC'],
+            ['name' => 'SEAL'],
+            ['name' => 'LIAC']
+        ];
+
+        foreach ($ormawa as $orm) {
+            Ormawa::create($orm);
+        }
     }
 }
