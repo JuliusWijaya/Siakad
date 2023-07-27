@@ -89,4 +89,4 @@ Route::get('/jurusan/{jurusan:slug}/edit', [BiodataController::class, 'edit'])->
 Route::put('/jurusan/{jurusan}', [BiodataController::class, 'update']);
 Route::get('/jurusan/{jurusan:slug}/details', [BiodataController::class, 'show'])->middleware('auth');
 
-Route::get('/ormawa', [OrmawaController::class, 'index']);
+Route::resource('/ormawa', OrmawaController::class);
