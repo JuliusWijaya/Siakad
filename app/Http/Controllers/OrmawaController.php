@@ -37,13 +37,26 @@ class OrmawaController extends Controller
         return redirect('/ormawa');
     }
 
-    public function edit()
+    public function edit(Ormawa $ormawa)
     {
         $title = "Edit Ormawa";
 
         return view('ormawa.edit', [
             'title'     => $title,
+            'ormawa'    => $ormawa,
         ]);
+    }
+
+    public function update(Request $request, Ormawa $ormawa)
+    {
+        $validateData = $request->validate([
+            'name' => 'required',
+        ]);
+
+        Ormawa::where('id', $ormawa->id)
+            ->update($validateData);
+
+        return redirect('/ormawa');
     }
 
     public function destroy(Ormawa $ormawa)

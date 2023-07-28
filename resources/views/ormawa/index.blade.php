@@ -18,6 +18,7 @@
             <div>
                 <a href="{{ route('ormawa.create') }}" class="btn btn-primary btn-sm mb-3">Add Ormawa</a>
             </div>
+            
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -38,7 +39,7 @@
                             @endforeach
                         </td>
                         <td>   
-                            <a href="#" class="btn btn-warning">
+                            <a href="{{ route('ormawa.edit', $ormawa->id) }}" class="btn btn-warning">
                                 <i class="fa-regular fa-eye"></i>
                             </a>
                             <form class="d-inline" action="{{ route('ormawa.destroy', $ormawa->id) }}" method="POST">
