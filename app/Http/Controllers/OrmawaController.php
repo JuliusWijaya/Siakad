@@ -56,6 +56,8 @@ class OrmawaController extends Controller
         Ormawa::where('id', $ormawa->id)
             ->update($validateData);
 
+        alert()->success('Success', 'Ormawa Successfully Update');
+
         return redirect('/ormawa');
     }
 

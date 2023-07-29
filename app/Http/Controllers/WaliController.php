@@ -113,7 +113,7 @@ class WaliController extends Controller
             ->update([
                 'mahasiswa_id'  => $request->mahasiswa_id,
                 'nama_wali'     => $request->nama_wali,
-                'slug'          => $request->nama_wali,
+                'slug'          => Str::slug($request->nama_wali),
                 'umur'          => $request->umur,
                 'pekerjaan'     => $request->pekerjaan,
             ]);

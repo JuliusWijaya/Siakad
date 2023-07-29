@@ -43,8 +43,8 @@
                                 <i class="fa-regular fa-eye"></i>
                             </a>
                             <form class="d-inline" action="{{ route('ormawa.destroy', $ormawa->id) }}" method="POST">
-                                @method('DELETE')
                                 @csrf
+                                @method('DELETE')
                                 <button class="btn btn-danger">
                                     <i class="fa-regular fa-circle-xmark"></i>
                                 </button>

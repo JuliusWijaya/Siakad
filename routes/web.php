@@ -55,38 +55,42 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->middleware(['auth', 'verified']);
 
-Route::resource('mahasiswa', MahasiswaController::class);
-Route::get('/mahasiswa/{slug}/details', [MahasiswaController::class, 'show'])->middleware('auth');
-Route::get('/mahasiswa/{mahasiswa:slug}/edit', [MahasiswaController::class, 'edit'])->middleware('auth');
+Route::middleware('auth')->group(function () {
+    Route::middleware(['auth', 'only_admin'])->group(function () {
+        Route::resource('mahasiswa', MahasiswaController::class);
+        Route::get('/mahasiswa/{slug}/details', [MahasiswaController::class, 'show']);
+        Route::get('/mahasiswa/{mahasiswa:slug}/edit', [MahasiswaController::class, 'edit']);
 
-Route::resource('wali', WaliController::class);
-Route::get('/wali/{wali:slug}/edit', [WaliController::class, 'edit'])->middleware('auth');
-Route::get('autocomplete', [WaliController::class, 'autocomplete'])->name('searchmhs');
+        Route::resource('wali', WaliController::class);
+        Route::get('/wali/{wali:slug}/edit', [WaliController::class, 'edit']);
+        Route::get('autocomplete', [WaliController::class, 'autocomplete'])->name('searchmhs');
 
-Route::resource('dosen', DosenController::class);
-Route::get('/dosen/{dosen:slug}/details', [DosenController::class, 'show'])->middleware('auth');
-Route::get('/dosen/{dosen:slug}/edit', [DosenController::class, 'edit'])->middleware('auth');
+        Route::resource('dosen', DosenController::class);
+        Route::get('/dosen/{dosen:slug}/details', [DosenController::class, 'show']);
+        Route::get('/dosen/{dosen:slug}/edit', [DosenController::class, 'edit']);
 
-Route::resource('user', UsersController::class);
+        Route::resource('user', UsersController::class);
 
-Route::get('/user/{users:name}/details', [UsersController::class, 'show'])->middleware('auth');
-Route::get('/print/mhs', [PrintController::class, 'printPdf'])->middleware('auth');
-Route::get('/export/mhs', [MahasiswaController::class, 'exportExcel'])->middleware('auth');
-Route::get('/jurusan/print', [PrintController::class, 'downloadPdf'])->middleware('auth');
-Route::get('/jurusan/export', [BiodataController::class, 'export'])->middleware('auth');
-Route::get('/print/wali', [PrintController::class, 'printWali'])->middleware('auth');
-Route::get('/export/wali', [WaliController::class, 'export'])->middleware('auth');
-Route::get('/print/dosen', [PrintController::class, 'printDosen'])->middleware('auth');
-Route::get('/export/dosen', [DosenController::class, 'exportExcel'])->middleware('auth');
-Route::get('/users/print', [PrintController::class, 'printUser'])->middleware('auth');
-Route::get('/users/export', [UsersController::class, 'exportExcel'])->middleware('auth');
+        Route::get('/user/{users:name}/details', [UsersController::class, 'show']);
+        Route::resource('/ormawa', OrmawaController::class);
+    });
 
-Route::get('/jurusan', [BiodataController::class, 'index'])->middleware('auth');
-Route::get('/jurusan/add', [BiodataController::class, 'create'])->middleware('auth');
-Route::post('/jurusan', [BiodataController::class, 'store'])->middleware('auth');
-Route::delete('/jurusan/{jurusan}/delete', [BiodataController::class, 'destroy']);
-Route::get('/jurusan/{jurusan:slug}/edit', [BiodataController::class, 'edit'])->middleware('auth');
-Route::put('/jurusan/{jurusan}', [BiodataController::class, 'update']);
-Route::get('/jurusan/{jurusan:slug}/details', [BiodataController::class, 'show'])->middleware('auth');
+    Route::get('/print/mhs', [PrintController::class, 'printPdf']);
+    Route::get('/export/mhs', [MahasiswaController::class, 'exportExcel']);
+    Route::get('/jurusan/print', [PrintController::class, 'downloadPdf']);
+    Route::get('/jurusan/export', [BiodataController::class, 'export']);
+    Route::get('/print/wali', [PrintController::class, 'printWali']);
+    Route::get('/export/wali', [WaliController::class, 'export']);
+    Route::get('/print/dosen', [PrintController::class, 'printDosen']);
+    Route::get('/export/dosen', [DosenController::class, 'exportExcel']);
+    Route::get('/users/print', [PrintController::class, 'printUser']);
+    Route::get('/users/export', [UsersController::class, 'exportExcel']);
 
-Route::resource('/ormawa', OrmawaController::class);
+    Route::get('/jurusan', [BiodataController::class, 'index']);
+    Route::get('/jurusan/add', [BiodataController::class, 'create']);
+    Route::post('/jurusan', [BiodataController::class, 'store']);
+    Route::delete('/jurusan/{jurusan}/delete', [BiodataController::class, 'destroy']);
+    Route::get('/jurusan/{jurusan:slug}/edit', [BiodataController::class, 'edit']);
+    Route::put('/jurusan/{jurusan}', [BiodataController::class, 'update']);
+    Route::get('/jurusan/{jurusan:slug}/details', [BiodataController::class, 'show']);
+});

@@ -10,11 +10,11 @@
                 <h3 class="card-title text-center mt-2">{{ $title }}</h3>
                 <div class="card-body">
                     <form method="POST" action="{{ route('wali.update', $wali->id) }}" class="d-inline">
-                        @method('PUT')
                         @csrf
+                        @method('PUT')
                         <div class="form-group mb-0">
                             <label for="id_jurusan">ID MHS</label>
-                            <select class="form-control @error('mahasiswa_id') is-invalid @enderror mhs py-2" name="mahasiswa_id"
+                            <select class="form-control @error('mahasiswa_id') is-invalid @enderror my-2" name="mahasiswa_id"
                                 id="mahasiswa_id">
                                 <option>-- Pilih MHS --</option>
                                 @foreach ($mahasiswa as $mhs)
@@ -32,7 +32,7 @@
                         </div>
                         <div class="form-group mb-0">
                             <label for="nama_wali">NAMA WALI</label>
-                            <input type="text" class="form-control  @error('nama_wali') is-invalid @enderror"
+                            <input type="text" class="form-control  @error('nama_wali') is-invalid @enderror my-2"
                                 id="nama_wali" name="nama_wali" value="{{ old('nama_wali',  $wali->nama_wali) }}">
                             @error('nama_wali')
                             <div class="invalid-feedback">
@@ -42,7 +42,7 @@
                         </div>
                         <div class="form-group mb-0">
                             <label for="umur">UMUR</label>
-                            <input type="text" class="form-control  @error('umur') is-invalid @enderror" id="umur"
+                            <input type="text" class="form-control  @error('umur') is-invalid @enderror my-2" id="umur"
                                 name="umur" value="{{ old('umur', $wali->umur) }}">
                             @error('umur')
                             <div class="invalid-feedback">
@@ -74,11 +74,5 @@
 @endsection
 
 @section('js')
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('.mhs').select2();
-    });
-</script>
+
 @endsection
