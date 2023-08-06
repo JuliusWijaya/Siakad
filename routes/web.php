@@ -61,6 +61,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/mahasiswa/{slug}/details', [MahasiswaController::class, 'show']);
         Route::get('/mahasiswa/{mahasiswa:slug}/edit', [MahasiswaController::class, 'edit']);
 
+        Route::resource('kelas', KelasController::class);
+
         Route::resource('wali', WaliController::class);
         Route::get('/wali/{wali:slug}/edit', [WaliController::class, 'edit']);
         Route::get('autocomplete', [WaliController::class, 'autocomplete'])->name('searchmhs');

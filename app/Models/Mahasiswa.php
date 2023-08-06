@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Support\Arr;
 
 class Mahasiswa extends Model
 {
@@ -44,4 +45,13 @@ class Mahasiswa extends Model
     {
         return $this->belongsToMany(Ormawa::class, 'mahasiswas_ormawa', 'mahasiswa_id', 'ormawa_id');
     }
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class);
+    }
+
+    protected $attributes = array(
+        'kelas_id'  => 1,
+    );
 }

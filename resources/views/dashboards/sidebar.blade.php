@@ -47,6 +47,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="/kelas" class="nav-link {{ Request::is('kelas*') ? 'active' : '' }}">
+                        <i class="fa-solid fa-user-graduate"></i>
+                        <p>
+                            Kelas
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="/ormawa" class="nav-link {{ Request::is('ormawa*') ? 'active' : '' }}">
                         <i class="fa-solid fa-certificate"></i>
                         <p>
