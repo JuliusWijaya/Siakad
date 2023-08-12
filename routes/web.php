@@ -8,6 +8,7 @@ use App\Http\Controllers\BiodataController;
 use App\Http\Controllers\WaliController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrmawaController;
+use App\Models\Kelas;
 use Database\Factories\DosenFactory;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
@@ -62,6 +63,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/mahasiswa/{mahasiswa:slug}/edit', [MahasiswaController::class, 'edit']);
 
         Route::resource('kelas', KelasController::class);
+        Route::delete('/kelas/{kelas}/delete', [KelasController::class, 'destroy']);
+        Route::get('/kelas/{kelas}/edit', [KelasController::class, 'edit']);
 
         Route::resource('wali', WaliController::class);
         Route::get('/wali/{wali:slug}/edit', [WaliController::class, 'edit']);

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
-use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 
 class KelasController extends Controller
@@ -30,11 +29,33 @@ class KelasController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name'   => 'required|max:30',
+            'name'       => 'required|max:30',
+            'jumlah'     => 'required|max:80',
         ]);
 
         Kelas::create($validatedData);
         alert()->success('Success', 'New Class Successfully Added');
+        return redirect('/kelas');
+    }
+
+    public function edit(Kelas $kelas)
+    {
+        return view('kelas.edit', [
+            'title'     => 'Edit Kelas',
+            'kelas'     => $kelas
+        ]);
+    }
+
+    public function destroy(Kelas $kelas)
+    {
+        // Jika Berhasil Menghapus
+        if ($kelas == $kelas) {
+            Kelas::destroy($kelas->id);
+            alert()->success('Success', 'Class Successfully Delete');
+        } else {
+            alert()->error('Error Delete', 'Class Cant Not Delete');
+        }
+
         return redirect('/kelas');
     }
 }

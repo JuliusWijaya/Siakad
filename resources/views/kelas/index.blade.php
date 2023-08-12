@@ -25,6 +25,16 @@
                         </div>
                         @enderror
                     </div>
+                    <div class="form-group">
+                        <label for="jumlah">JUMLAH</label>
+                        <input type="number" class="form-control @error('jumlah') is-invalid @enderror"
+                            name="jumlah" id="jumlah" value="{{ old('jumlah') }}">
+                        @error('jumlah')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -91,10 +101,13 @@
                     </td>
                     <td>
                         <a href="#" class="btn btn-warning">
-                            <i class="fa fa-eye"></i>
+                            <i class="fa fa-pen-to-square"></i>
                         </a>
-                        <form action="" method="POST" class="d-inline mx-3">
-                            <button class="btn btn-danger">
+                        <form action="{{ url('/kelas/'.$item->id.'/delete') }}" method="POST" class="d-inline mx-3">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger"
+                             onclick="return confirm('Are You Sure {{ $item->name }} ?')">
                                 <i class="fa-regular fa-circle-xmark"></i>
                             </button>
                         </form>
@@ -107,7 +120,7 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="d-flex justify-content-start">
-                <a href="/jurusan/print" class="btn btn-success btn-sm ml-3" target="_blank">
+                <a href="/kelas/print" class="btn btn-success btn-sm ml-3" target="_blank">
                     <i class="fa-solid fa-print"></i>
                     Print
                 </a>
@@ -115,7 +128,7 @@
         </div>
         <div class="col-sm-6">
             <div class="d-flex justify-content-end">
-                <a href="/jurusan/export" class="btn btn-secondary btn-sm">
+                <a href="/kelas/export" class="btn btn-secondary btn-sm">
                     <i class="fa-solid fa-print"></i>
                     Export Excel
                 </a>
