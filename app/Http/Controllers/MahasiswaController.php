@@ -7,6 +7,7 @@ use App\Models\jurusan;
 use App\Models\Mahasiswa;
 use App\Exports\ExportMahasiswa;
 use App\Models\Ormawa;
+use App\Models\Kelas;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -39,11 +40,12 @@ class MahasiswaController extends Controller
     public function create()
     {
         $jurusans = jurusan::all();
-        $dosens   = Dosen::all();
         $ormawas  = Ormawa::all();
-        $title = 'Create Mahasiswa';
+        $dosens   = dosen::all();
+        $kelas    = Kelas::all();
+        $title    = 'Create Mahasiswa';
 
-        return view('mhs.create', compact('jurusans', 'dosens', 'ormawas', 'title'));
+        return view('mhs.create', compact('jurusans', 'ormawas', 'dosens', 'kelas', 'title'));
     }
 
     /**
@@ -59,6 +61,7 @@ class MahasiswaController extends Controller
             'nama_mhs'   => 'required|max:50',
             'slug'       => 'max:50',
             'jk'         => 'required',
+            'kelas_id'   => 'required',
             'jurusan'    => 'required',
             'no_hp'      => 'required|max:13',
             'alamat'     => 'required',
@@ -82,12 +85,14 @@ class MahasiswaController extends Controller
      */
     public function show($slug)
     {
-        $title = 'Details Mahasiswa';
-        $slug  = Mahasiswa::where('slug', $slug)->first();
+        $title    = 'Details Mahasiswa';
+        $ormawas  = Ormawa::all();
+        $slug     = Mahasiswa::where('slug', $slug)->first();
 
         return view('mhs.details', [
             'title'      => $title,
             'details'    => $slug,
+            'ormawas'    => $ormawas,
         ]);
     }
 
@@ -101,6 +106,8 @@ class MahasiswaController extends Controller
     {
         $jurusans = jurusan::all();
         $dosens   = Dosen::all();
+        $kelas    = Kelas::all();
+        $ormawas  = Ormawa::all();
         $title    = 'Edit Mahasiswa';
         $jenis    = '';
 
@@ -112,7 +119,7 @@ class MahasiswaController extends Controller
             $jenis = 'Laki-laki';
         }
 
-        return view('mhs.edit', compact('mahasiswa', 'title', 'jenis', 'jurusans', 'dosens'));
+        return view('mhs.edit', compact('mahasiswa', 'title', 'jenis', 'jurusans', 'dosens', 'kelas', 'ormawas'));
     }
 
     /**
@@ -129,13 +136,16 @@ class MahasiswaController extends Controller
             'nama_mhs'  => 'required|max:50',
             'slug'      => 'max:50',
             'jk'        => 'required',
+            'kelas_id'  => 'required',
             'jurusan'   => 'required|max:35',
             'no_hp'     => 'required|max:13',
             'alamat'    => 'required|max:50',
-            'dosen_id'  => 'required'
+            'dosen_id'  => 'required',
+            'ormawa_id' => 'required',
         ]);
 
         $mahasiswa->fill($request->post())->save();
+        $mahasiswa->ormawa()->sync($request->ormawa_id);
 
         alert()->success('Success', $mahasiswa->nama_mhs . ' Successfully Has Been Edit');
 

@@ -34,6 +34,20 @@
                                 @enderror
                             </div>
                             <div class="form-group mb-2">
+                                <label for="kelas_id">KELAS</label>
+                                <select class="form-control" name="kelas_id" id="kelas_id">
+                                    <option>-- Pilih Kelas --</option>
+                                    @foreach ($kelas as $kls)
+                                        <option value="{{ $kls->id }}">{{ $kls->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('kelas_id')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                            <div class="form-group mb-2">
                                 <label for="jk">JENIS KELAMIN</label>
                                 <select class="form-control" name="jk" id="jk">
                                     <option>-- Pilih JK --</option>
@@ -91,7 +105,7 @@
                                     id="dosen_id">
                                     <option>-- Pilih Dosen --</option>
                                     @foreach ($dosens as $dosen)
-                                    <option value="{{ $dosen->id }}" @selected(old('dosen_id')==$dosen->id)>
+                                    <option value="{{ $dosen->id }}" @selected(old('dosen_id') == $dosen->id)>
                                         {{ $dosen->nama }}
                                     </option>
                                     @endforeach
@@ -108,7 +122,7 @@
                                  name="ormawa_id[]" id="ormawa_id" multiple="multiple">
                                     <option>-- Pilih Ormawa --</option>
                                     @foreach ($ormawas as $ormawa)
-                                    <option value="{{ $ormawa->id }}" @selected(old('ormawa_id')==$ormawa->id)>
+                                    <option value="{{ $ormawa->id }}" @selected(old('ormawa_id') == $ormawa->id)>
                                         {{ $ormawa->name }}
                                     </option>
                                     @endforeach

@@ -48,10 +48,7 @@ class Mahasiswa extends Model
 
     public function kelas()
     {
-        return $this->belongsTo(Kelas::class);
+        return $this->belongsTo(Kelas::class, 'kelas_id', 'id');
     }
 
-    protected $attributes = array(
-        'kelas_id'  => 1,
-    );
 }
