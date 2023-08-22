@@ -16,7 +16,7 @@
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="name">KELAS</label>
+                        <label for="name">NAMA KELAS</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror"
                             name="name" id="name" value="{{ old('name') }}">
                         @error('name')
@@ -26,7 +26,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="jumlah">JUMLAH</label>
+                        <label for="jumlah">JUMLAH SISWA</label>
                         <input type="number" class="form-control @error('jumlah') is-invalid @enderror"
                             name="jumlah" id="jumlah" value="{{ old('jumlah') }}">
                         @error('jumlah')
@@ -86,14 +86,16 @@
                     <th>NO</th>
                     <th scope="col">NAMA</th>
                     <th scope="col">JUMLAH</th>
+                    <th scope="col">MHS</th>
                     <th scope="col">ACTION</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($kelas as $item)
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
+                    <td class="text-center">{{ $loop->iteration }}</td>
                     <td>{{ $item->name }}</td>
+                    <td>{{ $item->jumlah }}</td>
                     <td>
                      @foreach ($item->mahasiswa as $kls)
                         - {{ $kls->nama_mhs }} <br>
@@ -136,5 +138,8 @@
         </div>
     </div>
 
+    <div class="d-flex justify-content-end mt-3">
+        {{ $kelas->links() }}
+    </div>
 </div>
 @endsection

@@ -11,7 +11,7 @@
                         @csrf
                         <div class="modal-body">
                             <div class="form-group">
-                                <label for="mahasiswa_id">ID MAHASISWA</label>
+                              <label for="mahasiswa_id">ID MAHASISWA</label>
                               <input type="text" class="form-control @error('mahasiswa_id') is-invalid @enderror"
                                  name="mahasiswa_id" id="search" value="{{ old('mahasiswa_id') }}" placeholder="Masukan Nama Mahasiswa" autofocus required>
                                 @error('mahasiswa_id')

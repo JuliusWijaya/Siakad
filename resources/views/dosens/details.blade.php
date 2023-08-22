@@ -5,7 +5,7 @@
         <div class="row mt-5">
             <div class="col-md-6" style="margin: 0 auto;">
                 <div class="card">
-                    <h4 class="card-title mt-2 text-center">{{ $title }}</h4>
+                    <h4 class="card-title mt-2 text-center">Detail Dosen {{ $dosen->nama }}</h4>
                     <div class="card-body">
                         <form>
                             <fieldset disabled>

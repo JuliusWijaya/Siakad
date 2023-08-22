@@ -8,7 +8,6 @@ use App\Http\Controllers\BiodataController;
 use App\Http\Controllers\WaliController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrmawaController;
-use App\Models\Kelas;
 use Database\Factories\DosenFactory;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;

@@ -35,10 +35,10 @@
                             </div>
                             <div class="form-group mb-2">
                                 <label for="kelas_id">KELAS</label>
-                                <select class="form-control" name="kelas_id" id="kelas_id">
-                                    <option>-- Pilih Kelas --</option>
-                                    @foreach ($kelas as $kls)
-                                        <option value="{{ $kls->id }}">{{ $kls->name }}</option>
+                                <select name="kelas_id" id="kelas_id" class="form-control kelas">
+                                    <option value="" class="text-center">-- Pilih Kelas --</option>
+                                    @foreach ($kelas as $item)
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
                                     @endforeach
                                 </select>
                                 @error('kelas_id')
@@ -105,7 +105,7 @@
                                     id="dosen_id">
                                     <option>-- Pilih Dosen --</option>
                                     @foreach ($dosens as $dosen)
-                                    <option value="{{ $dosen->id }}" @selected(old('dosen_id') == $dosen->id)>
+                                    <option value="{{ $dosen->id }}" @selected(old('dosen_id')==$dosen->id)>
                                         {{ $dosen->nama }}
                                     </option>
                                     @endforeach
@@ -119,10 +119,10 @@
                             <div class="form-group ">
                                 <label for="ormawa_id">ORMAWA</label>
                                 <select class="form-control @error('ormawa_id') is-invalid @enderror ormawas"
-                                 name="ormawa_id[]" id="ormawa_id" multiple="multiple">
+                                    name="ormawa_id[]" id="ormawa_id" multiple="multiple">
                                     <option>-- Pilih Ormawa --</option>
                                     @foreach ($ormawas as $ormawa)
-                                    <option value="{{ $ormawa->id }}" @selected(old('ormawa_id') == $ormawa->id)>
+                                    <option value="{{ $ormawa->id }}" @selected(old('ormawa_id')==$ormawa->id)>
                                         {{ $ormawa->name }}
                                     </option>
                                     @endforeach
@@ -149,7 +149,11 @@
 @section('js')
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.kelas').select2();
+    });
+
     $(document).ready(function () {
         $('.ormawas').select2();
     });
