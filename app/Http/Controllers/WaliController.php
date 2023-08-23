@@ -23,7 +23,7 @@ class WaliController extends Controller
 
         return view('walis.index', [
             'title'      => $title,
-            'walis'      => Wali::latest()->filter(request(['search']))->get()
+            'walis'      => Wali::with('mahasiswa')->latest()->filter(request(['search']))->get()
         ]);
     }
 

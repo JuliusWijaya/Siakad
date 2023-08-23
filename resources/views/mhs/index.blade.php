@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-10 pt-5" style="margin: 0 auto;">
+    <div class="row justify-content-center">
+        <div class="col-9 mt-5">
             @if(session()-> has('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 Hai <strong>{{ auth()->user()->name }}</strong> {{ session('success') }}.
@@ -35,8 +35,8 @@
             @if($mahasiswa->count())
             <div class="card">
                 <div class="card-header mt-3">
-                    <h3 class="card-title text-center">Form Mahasiswa </h3>
-                    <div class="card-tools">
+                    <h3 class="card-title">Form Mahasiswa </h3>
+                    {{-- <div class="card-tools">
                         <div class="input-group input-group-sm" style="width: 250px;">
                             <form action="/mahasiswa" method="GET" class="d-inline">
                                 <div class="input-group mb-3">
@@ -50,17 +50,16 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
-                <div class="card-body table-responsive p-0  ">
-                    <table class="table table-bordered table-hover text-nowrap">
+                <div class="card-body table-responsive p-3">
+                    <table id="example" class="table table-bordered table-hover text-nowrap">
                         <thead>
                             <tr class="text-center">
                                 <th>NO</th>
                                 <th>NIM</th>
                                 <th>NAMA</th>
-                                <th>JURUSAN</th>
                                 <th>ORMAWA</th>
                                 <th>ACTION</th>
                             </tr>
@@ -68,13 +67,12 @@
                         <tbody>
                             @foreach($mahasiswa as $mhs)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <td class="text-center">{{ $loop->iteration }}</td>
                                 <td>{{ $mhs->nim }}</td>
                                 <td>{{ $mhs->nama_mhs }}</td>
-                                <td>{{ $mhs->jurusan }}</td>
                                 <td>
                                     @foreach ($mhs->ormawa as $item)
-                                        {{ $item->name }} <br>
+                                      - {{ $item->name }} <br>
                                     @endforeach
                                 </td>
                                 <td class="text-center">
@@ -95,4 +93,10 @@
         Mahasiswa</p>
     @endif
 </div>
+@endsection
+
+@section('js')
+<script>
+    new DataTable('#example');
+</script>
 @endsection

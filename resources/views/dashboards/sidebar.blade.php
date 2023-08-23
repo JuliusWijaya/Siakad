@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="/dashboard" class="brand-link">
+    <a href="/dashboard" class="brand-link text-decoration-none">
         <img src="/img/1.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-5" style="opacity: .8">
         <span class="brand-text font-weight-light">Politeknik LP3I</span>
     </a>
@@ -12,7 +12,7 @@
                 <img src="/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="/dashboard" class="d-block">{{ auth()->user()->name }}</a>
+                <a href="/dashboard" class="d-block text-decoration-none">{{ auth()->user()->name }}</a>
             </div>
         </div>
 

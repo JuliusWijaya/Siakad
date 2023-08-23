@@ -24,7 +24,7 @@ class MahasiswaController extends Controller
     {
 
         $title     = 'Dashboard Mahasiswa';
-        $mahasiswa = Mahasiswa::latest()->filters(request(['keyword']))->get();
+        $mahasiswa = Mahasiswa::with('ormawa')->latest()->filters(request(['keyword']))->get();
 
         return view('mhs.index', [
             'title'      => $title,
@@ -86,13 +86,12 @@ class MahasiswaController extends Controller
     public function show($slug)
     {
         $title    = 'Details Mahasiswa';
-        $ormawas  = Ormawa::all();
         $slug     = Mahasiswa::where('slug', $slug)->first();
+        $slug->load('ormawa');
 
         return view('mhs.details', [
             'title'      => $title,
             'details'    => $slug,
-            'ormawas'    => $ormawas,
         ]);
     }
 

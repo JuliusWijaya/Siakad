@@ -22,7 +22,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <a href="/ormawa" class="btn btn-secondary">Back</a>
+                            <a href="/ormawa" class="btn btn-secondary me-3">Back</a>
                             <button type="submit" class="btn btn-primary">Save</button>
                         </div>
                     </form>

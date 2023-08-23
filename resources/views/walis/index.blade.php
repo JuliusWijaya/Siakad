@@ -2,8 +2,9 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-10 col-md-10 pt-5" style="margin: 0 auto;">
+    <div class="row justify-content-center">
+        <div class="col-lg-9 col-md-10">
+            <h3 class="text-center mt-3">Form Wali</h3>
             @if(session()->has('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 Hai <strong>{{ auth()->user()->name }}</strong> {{ session('success')}}
@@ -13,7 +14,7 @@
             </div>
             @endif
 
-            <div class="row">
+            <div class="row mt-5">
                 <div class="col-md-6 justify-content-start">
                     <a href="{{ route('wali.create') }}" class="btn btn-primary btn-sm mb-3">
                         <i class="fa-solid fa-user-plus"></i>
@@ -33,8 +34,8 @@
             </div>
 
             @if ($walis->count())
-            <div class="card">
-                <div class="card-header mt-3">
+            <div class="card p-2 mt-3">
+                <div class="card-header">
                     <h3 class="card-title text-center">Form Wali</h3>
                     <div class="card-tools">
                         <div class="input-group input-group-sm" style="width: 250px;">

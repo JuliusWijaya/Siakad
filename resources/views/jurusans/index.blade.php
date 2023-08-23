@@ -45,99 +45,98 @@
 </div>
 <!-- End Modal -->
 
-<div class="col-sm-7" style="margin: 0 auto;">
-    <div class="row mt-3">  
+<div class="row justify-content-center mt-3">
+    <div class="col-lg-7">
         @if (session()->has('success'))
-            {{ session('success') }}
+        {{ session('success') }}
         @endif
 
         <div class="col-md-12">
             <h2 class="text-center pb-2">Form Jurusan</h2>
         </div>
 
-        <div class="col-md-4">
-            <!-- Form Pencarian -->
-            <form method="GET" action="/jurusan">
-                @csrf
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control bi bi-search" value="{{ Request('search') }}" name="search"
-                        placeholder="Masukan Pencarian">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="submit">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </button>
-                    </div>
+        <div class="row my-4">
+            <div class="col-lg-7">
+                <div class="text-start">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <strong>Add</strong>
+                    </button>
                 </div>
-            </form>
-            <!-- Form Pencarian -->
-        </div>
+            </div>
 
-        <div class="text-end">
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                <i class="fa-solid fa-graduation-cap"></i>
-                <strong>Add</strong>
-            </button>
-            {{-- <a href="/biodata/add" class="btn btn-primary">Add</a>  --}}
+            <div class="col-lg-5">
+                <!-- Form Pencarian -->
+                <form method="GET" action="/jurusan">
+                    @csrf
+                    <div class="input-group">
+                        <input type="text" class="form-control bi bi-search" value="{{ Request('search') }}" name="search"
+                            placeholder="Masukan Pencarian">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <!-- Form Pencarian -->
+            </div>
         </div>
 
         @if($jurusans->count())
-                <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr class="text-center">
-                            <th>NO</th>
-                            <th scope="col">ID JURUSAN</th>
-                            <th scope="col">NAMA JURUSAN</th>
-                            <th scope="col">ACTION</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse($jurusans as $index => $data)
-                        <tr>
-                            <td class="text-center">{{ $index + $jurusans->firstItem() }}</td>
-                            <td>{{ $data->id_jurusan }}</td>
-                            <td>{{ $data->nama_jurusan }}</td>
-                            <td class=" text-center">
-                                <a href="/jurusan/{{ $data->slug }}/details" class="btn btn-info btn-sm">
-                                    <i class="fa-solid fa-eye"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        @empty
-                        <tr>
-                            <td colspan="5" class="text-center">
-                                <div class="alert alert-danger" role="alert">
-                                    Data Tidak Ada!
-                                </div>
-                            </td>
-                        </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="d-flex justify-content-start">
-                        <a href="/jurusan/print" class="btn btn-success btn-sm ml-3" target="_blank">
-                            <i class="fa-solid fa-print"></i>
-                            Print
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr class="text-center">
+                    <th>NO</th>
+                    <th scope="col">ID JURUSAN</th>
+                    <th scope="col">NAMA JURUSAN</th>
+                    <th scope="col">ACTION</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($jurusans as $index => $data)
+                <tr>
+                    <td class="text-center">{{ $index + $jurusans->firstItem() }}</td>
+                    <td>{{ $data->id_jurusan }}</td>
+                    <td>{{ $data->nama_jurusan }}</td>
+                    <td class=" text-center">
+                        <a href="/jurusan/{{ $data->slug }}/details" class="btn btn-info btn-sm">
+                            <i class="fa-solid fa-eye"></i>
                         </a>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="d-flex justify-content-end">
-                        <a href="/jurusan/export" class="btn btn-secondary btn-sm">
-                            <i class="fa-solid fa-print"></i>
-                            Export Excel
-                        </a>
-                    </div>     
-                </div>
+                    </td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="5" class="text-center">
+                        <div class="alert alert-danger" role="alert">
+                            Data Tidak Ada!
+                        </div>
+                    </td>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-lg-6">
+                <a href="/print/mhs" class="btn btn-success btn-sm mb-3 ml-3" target="_blank">
+                    <i class="fa-solid fa-print"></i>
+                   Print
+                </a>
             </div>
-        @else
-            <p class="alert alert-danger text-center text-dark mt-5 col-md-5 text-white" style="margin: 0 auto">
-                Not Found Jurusan
-            </p>
-        @endif
+            <div class="col-lg-6 text-end">
+                <a href="/export/mhs" class="btn btn-secondary btn-sm mb-3 ml-3">
+                    <i class="fa-solid fa-print"></i>
+                    Export Excel
+                </a>
+            </div>
+        </div>
+    </div>
+    @else
+    <p class="alert alert-danger text-center text-dark mt-5 col-md-5 text-white" style="margin: 0 auto">
+        Not Found Jurusan
+    </p>
+    @endif
 </div>
 @endsection
 

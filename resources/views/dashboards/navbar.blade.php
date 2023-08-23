@@ -17,14 +17,14 @@
                 <img src="/img/avatar5.png" class="img-circle " alt="User Image">
             </div>
         </div>
-        <li class="nav-item dropdown mt-1">
+        <li class="nav-item dropdown mt-1 me-3">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <strong>
                     {{ auth()->user()->name }}
                 </strong>
             </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <a href="/dashboard" class="text-decoration-none text-dark fs-4 dropdown-item">
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right ">
+                <a href="/dashboard" class="text-decoration-none text-dark dropdown-item">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     Dashboard
                 </a>
