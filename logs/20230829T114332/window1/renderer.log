@@ -1,0 +1,6 @@
+2023-08-29 11:43:51.025 [error] Error: Aborted onWillSaveTextDocument-event after 1750ms
+    at vscode-file://vscode-app/usr/share/code/resources/app/out/vs/workbench/workbench.desktop.main.js:1848:12434
+2023-08-29 11:43:56.727 [info] [perf] Render performance baseline is 636ms
+2023-08-29 12:14:00.295 [info] UNRESPONSIVE extension host: received responsive event and cancelling profiling session
+2023-08-29 12:14:07.800 [info] UNRESPONSIVE extension host: starting to profile NOW
+2023-08-29 12:14:10.472 [warning] UNRESPONSIVE extension host: 'vscode.git' took 85.53569156381218% of 26.889ms, saved PROFILE here: 'file:///tmp/exthost-9ed8d9.cpuprofile'
