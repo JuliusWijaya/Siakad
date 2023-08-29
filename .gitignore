@@ -3,6 +3,18 @@
 /public/storage
 /storage/*.key
 /vendor
+/User
+/Service Worker
+/Local Storage
+/Code Cache
+/CachedProfilesData
+/CachedData
+/Cache
+/CacheExtensionVSIXs
+/Crashpad
+/WebStorage
+/Backups
+/blob_storage
 .env
 .env.backup
 .phpunit.result.cache
