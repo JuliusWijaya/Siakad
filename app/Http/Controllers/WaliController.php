@@ -82,6 +82,7 @@ class WaliController extends Controller
      */
     public function edit(Wali $wali)
     {
+        dd($wali);
         $title     = 'Edit Wali';
         $mahasiswa = Mahasiswa::all();
 

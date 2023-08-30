@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
+use Clockwork\Request\Request as RequestRequest;
+use GuzzleHttp\Psr7\Request as Psr7Request;
 use Illuminate\Http\Request;
 
 class KelasController extends Controller
@@ -40,10 +42,28 @@ class KelasController extends Controller
 
     public function edit(Kelas $kelas)
     {
+        dd($kelas);
         return view('kelas.edit', [
             'title'     => 'Edit Kelas',
             'kelas'     => $kelas
         ]);
+    }
+
+    public function update(Request $request, Kelas $kelas)
+    {
+        $request->validate([
+            'name'   => 'required|max:30',
+            'jumlah' => 'required|max:80',
+        ]);
+
+        $kelas = Kelas::where('id', $kelas->id);
+        $kelas->update([
+            'name'       => $request->name,
+            'jumlah'     => $request->jumlah,
+        ]);
+
+        alert()->success('Success', 'Class Successfully Update');
+        return redirect('/kelas');
     }
 
     public function destroy(Kelas $kelas)

@@ -11,7 +11,7 @@ use App\Http\Controllers\OrmawaController;
 use Database\Factories\DosenFactory;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
-
+use Maatwebsite\Excel\Row;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,7 +63,6 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('kelas', KelasController::class);
         Route::delete('/kelas/{kelas}/delete', [KelasController::class, 'destroy']);
-        Route::get('/kelas/{kelas}/edit', [KelasController::class, 'edit']);
 
         Route::resource('wali', WaliController::class);
         Route::get('/wali/{wali:slug}/edit', [WaliController::class, 'edit']);

@@ -1,3 +1,0 @@
-2023-08-29 12:13:12.401 [error] browser #15: https://marketplace.visualstudio.com/_apis/public/gallery/extensionquery - error POST Canceled
-2023-08-29 12:25:39.780 [error] electron #50: https://mobile.events.data.microsoft.com/OneCollector/1.0?cors=true&content-type=application/x-json-stream - error POST net::ERR_TIMED_OUT
-2023-08-29 12:25:39.796 [error] electron #51: https://mobile.events.data.microsoft.com/OneCollector/1.0?cors=true&content-type=application/x-json-stream - error POST net::ERR_TIMED_OUT

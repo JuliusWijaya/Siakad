@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-lg-6" style="margin: 0 auto;">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
             <div class="card mt-5">
                 <h5 class="card-title text-center mb-0 mt-3">Add Ormawa</h5>
                 <div class="card-body">
