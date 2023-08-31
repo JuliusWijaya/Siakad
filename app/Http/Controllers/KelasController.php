@@ -40,23 +40,24 @@ class KelasController extends Controller
         return redirect('/kelas');
     }
 
-    public function edit(Kelas $kelas)
+    public function edit($id)
     {
-        dd($kelas);
+        $kelas = Kelas::findOrFail($id);
+
         return view('kelas.edit', [
             'title'     => 'Edit Kelas',
             'kelas'     => $kelas
         ]);
     }
 
-    public function update(Request $request, Kelas $kelas)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'name'   => 'required|max:30',
             'jumlah' => 'required|max:80',
         ]);
 
-        $kelas = Kelas::where('id', $kelas->id);
+        $kelas = Kelas::where('id', $id);
         $kelas->update([
             'name'       => $request->name,
             'jumlah'     => $request->jumlah,

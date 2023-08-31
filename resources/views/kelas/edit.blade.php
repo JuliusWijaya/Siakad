@@ -6,7 +6,7 @@
         <div class="card mt-5">
             <h5 class="card-title text-center mb-0 mt-3">Edit Kelas {{ $kelas->name }}</h5>
             <div class="card-body">
-                <form method="POST" action="">
+                <form method="POST" action="{{ url('/kelas/'.$kelas->id) }}">
                     @csrf
                     @method('PUT')
                     <div class="modal-body">
@@ -33,7 +33,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                         <a href="/kelas" class="btn btn-secondary me-3">Back</a>
                     </div>
                 </form>

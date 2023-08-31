@@ -62,6 +62,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/mahasiswa/{mahasiswa:slug}/edit', [MahasiswaController::class, 'edit']);
 
         Route::resource('kelas', KelasController::class);
+        Route::get('/kelas/{id}/edit', [KelasController::class, 'edit']);
+        Route::put('/kelas/{id}', [KelasController::class, 'update']);
         Route::delete('/kelas/{kelas}/delete', [KelasController::class, 'destroy']);
 
         Route::resource('wali', WaliController::class);

@@ -59,10 +59,12 @@
             <div class="col-lg-7">
                 <div class="text-start">
                     <!-- Button trigger modal -->
+                    @if (auth()->user()->position != 0)
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                         <i class="fa-solid fa-graduation-cap"></i>
                         <strong>Add</strong>
                     </button>
+                    @endif
                 </div>
             </div>
 
@@ -71,8 +73,8 @@
                 <form method="GET" action="/jurusan">
                     @csrf
                     <div class="input-group">
-                        <input type="text" class="form-control bi bi-search" value="{{ Request('search') }}" name="search"
-                            placeholder="Masukan Pencarian">
+                        <input type="text" class="form-control bi bi-search" value="{{ Request('search') }}"
+                            name="search" placeholder="Masukan Pencarian">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="submit">
                                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -91,7 +93,9 @@
                     <th>NO</th>
                     <th scope="col">ID JURUSAN</th>
                     <th scope="col">NAMA JURUSAN</th>
+                    @if (auth()->user()->position != 0)
                     <th scope="col">ACTION</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -100,11 +104,13 @@
                     <td class="text-center">{{ $index + $jurusans->firstItem() }}</td>
                     <td>{{ $data->id_jurusan }}</td>
                     <td>{{ $data->nama_jurusan }}</td>
-                    <td class=" text-center">
-                        <a href="/jurusan/{{ $data->slug }}/details" class="btn btn-info btn-sm">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                    </td>
+                    @if (auth()->user()->position != 0)
+                        <td class=" text-center">
+                            <a href="/jurusan/{{ $data->slug }}/details" class="btn btn-info btn-sm">
+                                <i class="fa-solid fa-eye"></i>
+                            </a>
+                        </td>
+                    @endif
                 </tr>
                 @empty
                 <tr>
@@ -121,10 +127,10 @@
             <div class="col-lg-6">
                 <a href="/print/mhs" class="btn btn-success btn-sm mb-3 ml-3" target="_blank">
                     <i class="fa-solid fa-print"></i>
-                   Print
+                    Print
                 </a>
             </div>
-            <div class="col-lg-6 text-end">
+            <div class="col-lg-6 d-flex justify-content-end">
                 <a href="/export/mhs" class="btn btn-secondary btn-sm mb-3 ml-3">
                     <i class="fa-solid fa-print"></i>
                     Export Excel
@@ -139,4 +145,3 @@
     @endif
 </div>
 @endsection
-

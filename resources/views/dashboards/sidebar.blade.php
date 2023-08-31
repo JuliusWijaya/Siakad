@@ -39,18 +39,18 @@
                 </li>
                 @if(auth()->user()->position == 1)
                 <li class="nav-item">
-                    <a href="/mahasiswa" class="nav-link {{ Request::is('mahasiswa*') ? 'active' : '' }}">
-                        <i class="fa-solid fa-users"></i>
-                        <p>
-                            Mahasiswa
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a href="/kelas" class="nav-link {{ Request::is('kelas*') ? 'active' : '' }}">
                         <i class="fa-solid fa-user-graduate"></i>
                         <p>
                             Kelas
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/mahasiswa" class="nav-link {{ Request::is('mahasiswa*') ? 'active' : '' }}">
+                        <i class="fa-solid fa-users"></i>
+                        <p>
+                            Mahasiswa
                         </p>
                     </a>
                 </li>

@@ -49,7 +49,7 @@
     <div class="row justify-content-center mt-3">
         <div class="col-lg-8">
             @if (session()->has('success'))
-                {{ session('success') }}
+            {{ session('success') }}
             @endif
 
             <div class="col-md-12">
@@ -105,10 +105,10 @@
                             @endforeach
                         </td>
                         <td class="text-center">
-                            <a href="{{ route('kelas.edit', $item->id) }}" class="btn btn-info">
+                            <a href="{{ url('/kelas/'.$item->id.'/edit') }}" class="btn btn-info">
                                 <i class="fa fa-pen-to-square"></i>
                             </a>
-                            <form action="{{ url('/kelas/'.$item->id.'/delete') }}" method="POST" class="d-inline mx-3">
+                            <form action="{{ url('/kelas/'.$item->id.'/delete') }}" method="POST" class="d-inline mx-2">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger"

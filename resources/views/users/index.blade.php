@@ -16,13 +16,13 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-5">
                 <!-- Form Pencarian -->
                 <form method="GET" action="/user">
                     @csrf
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control bi bi-search" value="{{ Request('search') }}" name="search"
-                            placeholder="Masukan Pencarian">
+                        <input type="text" class="form-control bi bi-search" value="{{ Request('search') }}"
+                            name="search" placeholder="Masukan Pencarian">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="submit">
                                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -30,10 +30,9 @@
                         </div>
                     </div>
                 </form>
-                <!-- Form Pencarian -->
             </div>
-            <div class="col-lg-8">
-                <div class="text-end">
+            <div class="col-lg-7 d-flex justify-content-end">
+                <div>
                     <a href="{{ route('user.create') }}" class="btn btn-primary">
                         <i class="fa-solid fa-user-plus"></i>
                         Add
