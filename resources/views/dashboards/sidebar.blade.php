@@ -87,6 +87,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="/post" class="nav-link {{ Request::is('post*') ? 'active' : '' }}">
+                        <i class="fa-solid fa-file-export"></i>
+                        <p>
+                            Post
+                        </p>
+                    </a>
+                </li>
                 @endif
                 <li class="nav-header">SETTINGS</li>
                 <li class="nav-item">

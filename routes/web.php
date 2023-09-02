@@ -78,6 +78,9 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/user/{users:name}/details', [UsersController::class, 'show']);
         Route::resource('/ormawa', OrmawaController::class);
+
+        Route::resource('post', PostController::class);
+        Route::get('/posts/checkSlug', [PostController::class, 'createSlug']);
     });
 
     Route::get('/print/mhs', [PrintController::class, 'printPdf']);
