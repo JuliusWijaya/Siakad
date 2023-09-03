@@ -10,7 +10,7 @@
                     <i class="fa-solid fa-plus"></i> Create Post
                 </a>
             </div>
-            <table class="table">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>NO</th>
@@ -25,6 +25,16 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $post->judul }}</td>
                         <td>{{ $post->penulis->name }}</td>
+                        <td>
+                            <a href="#" class="btn btn-info mx-2"><i class="fa fa-pen-to-square"></i></a>
+                            <form action="{{ route('post.destroy', $post->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Serius Mau Di Hapus Post {{ $post->judul }}')">
+                                    <i class="fa fa-circle-xmark"></i>
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

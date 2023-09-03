@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PagesController extends Controller
 {
     public function home()
     {
+        $posts = Post::get(['id', 'judul', 'deskripsi', 'user_id']);
+
         return view('pages.index', [
             'name'  => 'Laravel',
-            'title' => 'Home'
+            'title' => 'Home',
+            'posts' => $posts,
         ]);
     }
 
@@ -23,5 +27,4 @@ class PagesController extends Controller
             'name'  => $name
         ]);
     }
-
 }

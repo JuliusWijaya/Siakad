@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class PostController extends Controller
@@ -47,13 +48,13 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'judul'     => 'required|max:120',
-            'slug'      => 'required',
+            'judul'     => 'required|max:150',
+            'slug'      => 'required|unique:posts',
             'deskripsi' => 'required',
-            'user_id'   => 'required',
         ]);
 
-        $validateData['deskripsi'] = Str::of(request('deskripsi'))->limit(30);
+        $validateData['deskripsi'] = Str::limit(strip_tags($request->deskripsi), 120);
+        $validateData['user_id'] = Auth::user()->id;
 
         Post::create($validateData);
         alert()->success('Success', 'New Post Successfully Added');
@@ -66,9 +67,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $slug = SlugService::createSlug(Post::class, 'slug', $request->judul);
+
+        return response()->json(['slug' => $slug]);
     }
 
     /**
@@ -100,15 +103,18 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        Post::destroy($post->id);
+
+        alert()->success('Success', 'Post Successfully Delete');
+        return redirect('/post');
     }
 
-    public function createSlug(Request $request)
-    {
-        $slug = SlugService::createSlug(Post::class, 'slug', $request->judul);
+    // public function createSlug(Request $request)
+    // {
+    //     $slug = SlugService::createSlug(Post::class, 'slug', $request->judul);
 
-        return response()->json(['slug' => $slug]);
-    }
+    //     return response()->json($slug);
+    // }
 }

@@ -80,7 +80,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('/ormawa', OrmawaController::class);
 
         Route::resource('post', PostController::class);
-        Route::get('/posts/checkSlug', [PostController::class, 'createSlug']);
+        Route::get('/posts/checkslug', [PostController::class, 'show'])->name('checkSlug');
     });
 
     Route::get('/print/mhs', [PrintController::class, 'printPdf']);

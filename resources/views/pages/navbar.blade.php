@@ -15,14 +15,14 @@
                     <a class="nav-link {{ Request::is('about') ? 'active' : '' }}" href="{{ url('/about') }}">About</a>
                 </li>
             </ul>
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav">
                 @guest
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/login') }}">
-                        <i class="fa-solid fa-arrow-right-to-bracket"></i>
-                        Login
-                    </a>
-                </li>  
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/login') }}">
+                            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                            Login
+                        </a>
+                    </li>  
                 @endguest
             </ul>
         </div>
