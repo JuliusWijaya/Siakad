@@ -53,7 +53,7 @@ class PostController extends Controller
             'deskripsi' => 'required',
         ]);
 
-        $validateData['deskripsi'] = Str::limit(strip_tags($request->deskripsi), 120);
+        $validateData['deskripsi'] = Str::limit(strip_tags($request->deskripsi), 250);
         $validateData['user_id'] = Auth::user()->id;
 
         Post::create($validateData);
@@ -80,9 +80,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        $post = Post::where('slug', $post->slug)->first();
+
+        return view('posts.edit', [
+            'post'   => $post,
+            'title'  => 'Edit Post',
+        ]);
     }
 
     /**
@@ -92,9 +97,25 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $rules = [
+            'judul'     => 'required|max:150',
+            'deskripsi' => 'required'
+        ];
+
+        if ($request->slug != $post->slug) {
+            $rules['slug'] = 'required|unique:posts';
+        }
+
+        $validateData = $request->validate($rules);
+        $validateData['deskripsi'] = Str::limit(strip_tags($validateData['deskripsi']), 250);
+        $validateData['user_id'] = Auth::user()->id;
+        Post::where('id', $post->id)
+            ->update($validateData);
+
+        alert()->success('Success', 'New Post Successfully Added');
+        return redirect('/post');
     }
 
     /**

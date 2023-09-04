@@ -52,7 +52,9 @@
         </div>
     </div>
 </div>
+@endsection
 
+@section('js')
 <script>
     const title = document.getElementById('judul');
     const slug = document.getElementById('oke');
@@ -63,20 +65,6 @@
             .then(response => response.json)
             .then(data => slug.value = data.slug)
     });
-</script>
-@endsection
-
-@section('js')
-<script>
-    // const title = document.getElementById('judul');
-    // const slug = document.getElementById('oke');
-    // var path = "{{ route('checkSlug') }}";
-
-    // title.addEventListener('change', function () {
-    //     fetch(path.title = +title.value)
-    //         .then(response => response.json)
-    //         .then(data => slug.value = data.slug)
-    // });
 
     // var path = "{{ route('checkSlug') }}";
 

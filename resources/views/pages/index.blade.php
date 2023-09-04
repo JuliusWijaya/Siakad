@@ -8,10 +8,10 @@
             <hr>
             <div class="card">
                 @foreach ($posts as $item)
-                <div class="card-body">
+                <div class="card-body d-flex flex-wrap">
                   <h6 class="card-subtitle mb-2 text-muted">{{ $item->judul }}</h6>
-                  <p class="card-text">
-                    {{ $item->deskripsi }} <br>
+                  <p class="">
+                    {{ $item->deskripsi }}
                   </p>
                   <p>{{ $item->penulis->name }}</p>
                 </div>
