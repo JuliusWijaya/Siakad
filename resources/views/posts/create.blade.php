@@ -20,7 +20,7 @@
                     <div class="mb-3">
                         <label for="judul" class="form-label mt-2">Judul</label>
                         <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul"
-                            name="judul" value="{{ old('judul') }}" placeholder="Judul Post">
+                            name="judul" value="{{ old('judul') }}" placeholder="Judul Post" required>
                         @error('judul')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -29,7 +29,7 @@
                     </div>
                     <div class="mb-3">
                         <input type="text" class="form-control @error('slug') is-invalid @enderror" id="oke"
-                            name="slug" value="{{ old('slug') }}">
+                            name="slug" value="{{ old('slug') }}" required>
                         @error('slug')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -61,33 +61,31 @@
     var path = "{{ route('checkSlug') }}";
 
     title.addEventListener('change', function () {
-        fetch(path.title = +title.value)
+        fetch('/posts/checkslug/'+?=title.value)
             .then(response => response.json)
             .then(data => slug.value = data.slug)
     });
 
-    // var path = "{{ route('checkSlug') }}";
+    $('#judul').change({
+        source: function(request, response) {
+            $.ajax({
+                url: path,
+                type: 'GET',
+                dataType: 'json',
+                data: {
+                    search: request.term
+                },
+                success: function(data){
+                    response(data);
+                }
+            });
+        },
 
-    // $('#judul').change({
-    //     source: function(request, response) {
-    //         $.ajax({
-    //             url: path,
-    //             type: 'GET',
-    //             dataType: 'json',
-    //             data: {
-    //                 search: request.term
-    //             },
-    //             success: function(data){
-    //                 response(data);
-    //             }
-    //         });
-    //     },
-
-    //     get:function(event, ui){
-    //         $('#slug').val(ui.item.label);
-    //         console.log(ui.item);
-    //     }
-    // });
+        get:function(event, ui){
+            $('#slug').val(ui.item.label);
+            console.log(ui.item);
+        }
+    });
 
     document.addEventListener('trix-file-accept', function (e) {
         e.preventDefault();

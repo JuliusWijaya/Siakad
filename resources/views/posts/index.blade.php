@@ -10,6 +10,7 @@
                     <i class="fa-solid fa-plus"></i> Create Post
                 </a>
             </div>
+    @if ($posts->count())
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -38,7 +39,14 @@
                     </tr>
                     @endforeach
                 </tbody>
-            </table>
+            </table>                
+            @else
+            <div class="col-lg-4 mx-auto">
+                <div class="alert alert-danger text-center mt-5">
+                    Not Found Postingan
+                </div>
+            </div>
+            @endif
         </div>
     </div>
 </div>

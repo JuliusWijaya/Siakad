@@ -105,7 +105,7 @@
                             @endforeach
                         </td>
                         <td class="text-center">
-                            <a href="{{ url('/kelas/'.$item->id.'/edit') }}" class="btn btn-info">
+                            <a href="{{ url('/kelas/'.$item->id.'/edit') }}" class="btn btn-warning">
                                 <i class="fa fa-pen-to-square"></i>
                             </a>
                             <form action="{{ url('/kelas/'.$item->id.'/delete') }}" method="POST" class="d-inline mx-2">

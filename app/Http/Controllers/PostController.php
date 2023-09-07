@@ -19,10 +19,11 @@ class PostController extends Controller
     public function index()
     {
         $title = 'Dashboard Post';
+        $post = Post::where('user_id', Auth::user()->id)->get();
 
         return view('posts.index', [
             'title' => $title,
-            'posts' => Post::latest()->get(),
+            'posts' => $post,
         ]);
     }
 
@@ -69,6 +70,7 @@ class PostController extends Controller
      */
     public function show(Request $request)
     {
+        dd($request->judul);
         $slug = SlugService::createSlug(Post::class, 'slug', $request->judul);
 
         return response()->json(['slug' => $slug]);

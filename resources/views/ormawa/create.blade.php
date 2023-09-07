@@ -12,8 +12,9 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="name">NAME</label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                                name="name" value="{{ old('name') }}" placeholder="Masukan Nama Ormawa" required autofocus>
+                                <input type="text" class="form-control @error('name') is-invalid @enderror mb-5"
+                                    id="name" name="name" value="{{ old('name') }}" placeholder="Masukan Nama Ormawa"
+                                    required autofocus>
                                 @error('name')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -32,3 +33,4 @@
     </div>
 </div>
 @endsection
+

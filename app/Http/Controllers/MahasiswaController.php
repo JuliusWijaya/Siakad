@@ -130,18 +130,21 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, Mahasiswa $mahasiswa)
     {
-        $request->validate([
+        $rules = [
             'nim'       => 'required|max:9',
             'nama_mhs'  => 'required|max:50',
-            'slug'      => 'max:50',
+            'slug'      => 'required|max:50',
             'jk'        => 'required',
             'kelas_id'  => 'required',
             'jurusan'   => 'required|max:35',
             'no_hp'     => 'required|max:13',
             'alamat'    => 'required|max:50',
             'dosen_id'  => 'required',
-            'ormawa_id' => 'required',
-        ]);
+        ];
+
+        if ($mahasiswa->ormawa_id != $request->ormawa_id) {
+            $rules['ormawa_id'] = 'required';
+        }
 
         $mahasiswa->fill($request->post())->save();
         $mahasiswa->ormawa()->sync($request->ormawa_id);
