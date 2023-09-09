@@ -30,7 +30,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <input type="text" class="form-control @error('slug') is-invalid @enderror" id="oke"
+                            <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug"
                                 name="slug" value="{{ old('slug', $post->slug) }}">
                             @error('slug')
                             <div class="invalid-feedback">
@@ -59,6 +59,16 @@
 
 @section('js')
 <script>
+    const title = document.getElementById('judul');
+    const slug  = document.getElementById('slug');
+
+    title.addEventListener('change', function(){
+        fetch('/post/create/checkslug?judul='+title.value)
+        .then(response => response.json())
+        .then(data => slug.value = data.slug)
+    });
+
+
     document.addEventListener('trix-file-accept', function (e) {
         e.preventDefault();
     });

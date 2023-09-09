@@ -3,8 +3,9 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-lg-8 pt-3">
-            <h3 class="text-center">Form Dosen</h3>
+        <div class="col-lg-9 pt-3">
+            <h3 class="text-center mb-4">Form Dosen</h3>
+            
             @if(session()->has('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 Hai <strong>{{ auth()->user()->name }}</strong> {{ session('success')}}
@@ -14,7 +15,7 @@
             </div>
             @endif
 
-            <div class="row">
+            <div class="row mb-3">
                 <div class="col-md-6 d-flex justify-content-start">
                     <a href="{{ route('dosen.create') }}" class="btn btn-primary btn-sm mb-3">
                         <i class="fa-solid fa-user-plus"></i>

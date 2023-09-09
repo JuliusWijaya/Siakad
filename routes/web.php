@@ -67,12 +67,14 @@ Route::middleware('auth')->group(function () {
         Route::delete('/kelas/{kelas}/delete', [KelasController::class, 'destroy']);
 
         Route::resource('wali', WaliController::class);
+        Route::get('/wali/create/checkSlug', [WaliController::class, 'show']);
         Route::get('/wali/{wali:slug}/edit', [WaliController::class, 'edit']);
         Route::get('autocomplete', [WaliController::class, 'autocomplete'])->name('searchmhs');
 
         Route::resource('dosen', DosenController::class);
         Route::get('/dosen/{dosen:slug}/details', [DosenController::class, 'show']);
         Route::get('/dosen/{dosen:slug}/edit', [DosenController::class, 'edit']);
+        Route::get('/dosen/create/checkSlug', [DosenController::class, 'checkSlug']);
 
         Route::resource('user', UsersController::class);
 
@@ -81,7 +83,7 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('post', PostController::class);
         Route::get('/post/{post:slug}/edit', [PostController::class, 'edit']);
-        Route::get('/posts/checkslug', [PostController::class, 'show'])->name('checkSlug');
+        Route::get('/post/create/checkslug', [PostController::class, 'show']);
     });
 
     Route::get('/print/mhs', [PrintController::class, 'printPdf']);

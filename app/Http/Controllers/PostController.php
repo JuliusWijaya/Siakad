@@ -19,7 +19,7 @@ class PostController extends Controller
     public function index()
     {
         $title = 'Dashboard Post';
-        $post = Post::where('user_id', Auth::user()->id)->get();
+        $post = Post::where('user_id', Auth::user()->id)->with('penulis')->get();
 
         return view('posts.index', [
             'title' => $title,
@@ -70,7 +70,6 @@ class PostController extends Controller
      */
     public function show(Request $request)
     {
-        dd($request->judul);
         $slug = SlugService::createSlug(Post::class, 'slug', $request->judul);
 
         return response()->json(['slug' => $slug]);
@@ -133,11 +132,4 @@ class PostController extends Controller
         alert()->success('Success', 'Post Successfully Delete');
         return redirect('/post');
     }
-
-    // public function createSlug(Request $request)
-    // {
-    //     $slug = SlugService::createSlug(Post::class, 'slug', $request->judul);
-
-    //     return response()->json($slug);
-    // }
 }

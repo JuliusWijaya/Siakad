@@ -7,6 +7,7 @@ use App\Models\Dosen;
 use App\Exports\ExportDosen;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Str;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class DosenController extends Controller
 {
@@ -50,7 +51,7 @@ class DosenController extends Controller
         $request->validate([
             'nid'        => 'required|max:9|unique:dosens',
             'nama'       => 'required|max:50',
-            'slug'       => 'max:50',
+            'slug'       => 'required|unique:dosens',
             'tgl_lahir'  => 'required',
             'alamat'     => 'required'
         ]);
@@ -58,6 +59,7 @@ class DosenController extends Controller
         Dosen::create([
             'nid'       => $request->nid,
             'nama'      => $request->nama,
+            'slug'      => $request->slug,
             'tgl_lahir' => $request->tgl_lahir,
             'alamat'    => $request->alamat
         ]);
@@ -150,5 +152,12 @@ class DosenController extends Controller
 
             $item->save();
         });
+    }
+
+    public function checkSlug(Request $request)
+    {
+        $slug = SlugService::createSlug(Dosen::class, 'slug', $request->nama);
+
+        return response()->json(['slug' => $slug]);
     }
 }

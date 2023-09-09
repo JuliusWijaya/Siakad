@@ -38,7 +38,6 @@
         body {
             font-family: 'Poppins', sans-serif;
         }
-
     </style>
 </head>
 
@@ -77,7 +76,7 @@
     <script src="/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="/js/pages/dashboard.js"></script>
-
+    
     @yield('js')
 </body>
 

@@ -27,7 +27,7 @@
                         <td>{{ $post->judul }}</td>
                         <td>{{ $post->penulis->name }}</td>
                         <td>
-                            <a href="/post/{{ $post->slug }}/edit" class="btn btn-info mx-2"><i class="fa fa-pen-to-square"></i></a>
+                            <a href="/post/{{ $post->slug }}/edit" class="btn btn-warning mx-2"><i class="fa fa-pen-to-square"></i></a>
                             <form action="{{ route('post.destroy', $post->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')

@@ -9,6 +9,7 @@ use App\Models\Mahasiswa;
 use App\Exports\ExportWali;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Str;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class WaliController extends Controller
 {
@@ -53,7 +54,7 @@ class WaliController extends Controller
         $validatedData = $request->validate([
             'mahasiswa_id' => 'required|unique:walis',
             'nama_wali'    => 'required|max:50',
-            'slug'         => 'max:50',
+            'slug'         => 'required|unique:walis',
             'umur'         => 'required',
             'pekerjaan'    => 'required'
         ]);
@@ -69,9 +70,11 @@ class WaliController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $slug = SlugService::createSlug(Wali::class, 'slug', $request->nama_wali);
+
+        return response()->json(['slug' => $slug]);
     }
 
     /**

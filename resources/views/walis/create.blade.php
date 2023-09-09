@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-lg-6" style="margin: 0 auto;">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
             <div class="card mt-5">
                 <h5 class="card-title text-center mb-0 mt-2">Add Wali</h5>
                 <div class="card-body">
@@ -25,6 +25,15 @@
                                 <input type="text" class="form-control @error('nama_wali') is-invalid @enderror" id="nama_wali"
                                     name="nama_wali" value="{{ old('nama_wali') }}" placeholder="Masukan Nama Lengkap" required>
                                 @error('nama_wali')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug"
+                                    name="slug" value="{{ old('slug') }}" placeholder="Slug Otomatis Terisi" required>
+                                @error('slug')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -87,6 +96,15 @@
            console.log(ui.item); 
            return false;
         }
+    });
+
+    const nama = document.getElementById('nama_wali');
+    const slug = document.getElementById('slug');
+
+    nama.addEventListener('change', function(){
+        fetch('/wali/create/checkSlug?nama_wali=' + nama.value)
+        .then(response => response.json())
+        .then(data => slug.value = data.slug)
     });
 </script>
 @endsection

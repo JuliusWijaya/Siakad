@@ -20,7 +20,7 @@
                     <div class="mb-3">
                         <label for="judul" class="form-label mt-2">Judul</label>
                         <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul"
-                            name="judul" value="{{ old('judul') }}" placeholder="Judul Post" required>
+                            name="judul" value="{{ old('judul') }}" placeholder="Judul Post" required autofocus>
                         @error('judul')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -28,8 +28,8 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <input type="text" class="form-control @error('slug') is-invalid @enderror" id="oke"
-                            name="slug" value="{{ old('slug') }}" required>
+                        <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug"
+                            name="slug" value="{{ old('slug') }}" required readonly>
                         @error('slug')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -56,40 +56,17 @@
 
 @section('js')
 <script>
-    const title = document.getElementById('judul');
-    const slug = document.getElementById('oke');
-    var path = "{{ route('checkSlug') }}";
-
+    const title = document.querySelector('#judul');
+    const slug = document.querySelector('#slug');
+    
     title.addEventListener('change', function () {
-        fetch('/posts/checkslug/'+?=title.value)
-            .then(response => response.json)
+        fetch('/post/create/checkslug?judul=' + title.value)
+            .then(response => response.json())
             .then(data => slug.value = data.slug)
-    });
-
-    $('#judul').change({
-        source: function(request, response) {
-            $.ajax({
-                url: path,
-                type: 'GET',
-                dataType: 'json',
-                data: {
-                    search: request.term
-                },
-                success: function(data){
-                    response(data);
-                }
-            });
-        },
-
-        get:function(event, ui){
-            $('#slug').val(ui.item.label);
-            console.log(ui.item);
-        }
     });
 
     document.addEventListener('trix-file-accept', function (e) {
         e.preventDefault();
     });
-
 </script>
 @endsection
