@@ -39,9 +39,9 @@
                     <div class="mb-3">
                         <label class="form-label">Deskripsi</label>
                         @error('deskripsi')
-                            <p class="text-danger" style="font-size: 13px">
-                                {{ $message }}
-                            </p>
+                        <p class="text-danger" style="font-size: 13px">
+                            {{ $message }}
+                        </p>
                         @enderror
                         <input id="deskripsi" type="hidden" name="deskripsi" value="{{ old('deskripsi') }}">
                         <trix-editor input="deskripsi"></trix-editor>
@@ -56,13 +56,35 @@
 
 @section('js')
 <script>
-    const title = document.querySelector('#judul');
-    const slug = document.querySelector('#slug');
+    // Proses Ajax Fetch API
+    // const title = document.querySelector('#judul');
+    // const slug = document.querySelector('#slug');
+
+    // title.addEventListener('change', function () {
+    //     fetch('/post/create/checkslug?judul=' + title.value)
+    //         .then(response => response.json())
+    //         .then(data => slug.value = data.slug)
+    // });
     
-    title.addEventListener('change', function () {
-        fetch('/post/create/checkslug?judul=' + title.value)
-            .then(response => response.json())
-            .then(data => slug.value = data.slug)
+
+    // Proses Ajax jQuery Fetch API
+    $(document).ready(function () {
+        $('#judul').on('change', function () { 
+            var title = $('#judul').val();
+            var path = "/post/create/checkslug?judul=" + title;
+
+            $.ajax({
+                url: path,
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) {
+                   $('#slug').val(response.slug);
+                },
+                error: function (error) {
+                    console.log(error);
+                },
+            });
+        });
     });
 
     document.addEventListener('trix-file-accept', function (e) {

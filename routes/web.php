@@ -83,7 +83,7 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('post', PostController::class);
         Route::get('/post/{post:slug}/edit', [PostController::class, 'edit']);
-        Route::get('/post/create/checkslug', [PostController::class, 'show']);
+        Route::get('/post/create/checkslug', [PostController::class, 'show'])->name('checkSlug');
     });
 
     Route::get('/print/mhs', [PrintController::class, 'printPdf']);
