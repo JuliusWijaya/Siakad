@@ -22,12 +22,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="nama_wali">NAMA</label>
-                                <input type="text" class="form-control @error('nama_wali') is-invalid @enderror" id="nama_wali"
-                                    name="nama_wali" value="{{ old('nama_wali') }}" placeholder="Masukan Nama Lengkap" required>
+                                <input type="text" class="form-control @error('nama_wali') is-invalid @enderror" id="nama_wali" name="nama_wali" value="{{ old('nama_wali') }}" 
+                                placeholder="Masukan Nama Lengkap" required>
                                 @error('nama_wali')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
                                 @enderror
                             </div>
                             <div class="form-group">
@@ -98,13 +98,32 @@
         }
     });
 
-    const nama = document.getElementById('nama_wali');
-    const slug = document.getElementById('slug');
+    $(document).ready(function(){
+        $('#nama_wali').on('change', function() {
+            const nama = $('#nama_wali').val();
+            let path = "/wali/create/checkSlug?nama_wali=" + nama;
 
-    nama.addEventListener('change', function(){
-        fetch('/wali/create/checkSlug?nama_wali=' + nama.value)
-        .then(response => response.json())
-        .then(data => slug.value = data.slug)
+            $.ajax({
+                url: path,
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    $('#slug').val(response.slug);
+                },
+                error: function(error){
+                    console.log(error)
+                }
+            })
+        });
+
     });
+
+
+
+    // nama.addEventListener('change', function(){
+    //     fetch('/wali/create/checkSlug?nama_wali=' + nama.value)
+    //     .then(response => response.json())
+    //     .then(data => slug.value = data.slug)
+    // });
 </script>
 @endsection

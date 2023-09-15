@@ -9,8 +9,8 @@ btnShowPassword.addEventListener("click", (e) => {
     e.preventDefault();
     if (password.getAttribute("type") == "password") {
         password.setAttribute("type", "text");
-        btnShowPasswordIcon.classList.toggle("fa fa-eye");
         btnShowPasswordIcon.classList.toggle("fa fa-eye-slash");
+        btnShowPasswordIcon.classList.toggle("fa fa-eye");
     } else {
         password.setAttribute("type", "password");
         btnShowPassword.classList.toggle("fa fa-eye-slash");

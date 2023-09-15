@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+  
     <div class="col-left">
         @if($errors->any())
             @foreach($errors->all() as $err)
@@ -9,8 +10,9 @@
             @endforeach
         @endif
     </div>
+
     <div class="col-right">
-      <img src="./Assets/img/wave.svg" alt="Bg Wave" class="background-up" />
+      <img src="/Assets/img/wave.svg" alt="Bg Wave" class="background-up" />
       <div class="content-right">
         <div class="content-header">
           <h1>Welcome Back</h1>
@@ -29,7 +31,7 @@
               <div class="password-group">
                 <input type="password" name="password" class="form-input" id="password" placeholder="*******" />
                 <button type="button" id="btnShowPassword">
-                  <i class="fa fa-eye-slash"></i>
+                  <i class="fa fa-eye"></i>
                 </button>
               </div>
             </div>
@@ -43,7 +45,7 @@
         <div class="line">or</div>
 
         <a href="#" id="btnGoogle">
-          <img src="./Assets/img/119930_google_512x512.png" alt="Google Logo" />
+          <img src="/Assets/img/119930_google_512x512.png" alt="Google Logo" />
           Sign in with Google
         </a>
 

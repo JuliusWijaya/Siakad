@@ -12,11 +12,13 @@
           <h1>Register</h1>
           <h3>Pleas Register Now</h3>
         </div>
+        
         @if($errors->any())
             @foreach($errors->all() as $err)
                 <p style="color: red; font-size: 1.3rem; text-align: center;" >{{ $err }}</p>
             @endforeach       
         @endif
+
         <form action="{{ route('register.action') }}" method="POST">
            @csrf 
           <div class="content-body">
@@ -33,7 +35,7 @@
               <div class="password-group">
                 <input type="password" name="password" class="form-input" id="password" placeholder="*******" />
                 <button type="button" id="btnShowPassword">
-                  <i class="fa fa-eye-slash"></i>
+                  <i class="fa fa-eye"></i>
                 </button>
               </div>
             </div>
@@ -42,7 +44,7 @@
               <div class="password-group">
                 <input type="password" name="password_confirm" class="form-input" id="password_confirm" placeholder="*******" />
                 <button type="button" id="btnPassword">
-                  <i class="fa fa-eye-slash"></i>
+                  <i class="fa fa-eye"></i>
                 </button>
               </div>
             </div>
