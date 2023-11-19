@@ -47,18 +47,13 @@
 
 <div class="container">
     <div class="row justify-content-center mt-3">
-        <div class="col-lg-8">
-            @if (session()->has('success'))
-            {{ session('success') }}
-            @endif
-
+        <div class="col-lg-9">
             <div class="col-md-12">
-                <h2 class="text-center pb-2">Form Kelas</h2>
+                <h4 class="text-start pb-2">Data Kelas</h4>
             </div>
 
             <div class="row my-4">
                 <div class="col-lg-4">
-                    <!-- Form Pencarian -->
                     <form method="GET" action="/kelas">
                         @csrf
                         <div class="input-group">
@@ -71,12 +66,11 @@
                             </div>
                         </div>
                     </form>
-                    <!-- Form Pencarian -->
                 </div>
 
                 <div class="col-lg-8 d-flex justify-content-end">
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
                         <i class="fa-solid fa-graduation-cap"></i>
                         <strong>Add</strong>
                     </button>
@@ -96,7 +90,7 @@
                 <tbody>
                     @foreach ($kelas as $item)
                     <tr>
-                        <td class="text-center">{{ $loop->iteration }}</td>
+                        <td class="text-center">{{ $rank++ }}</td>
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->jumlah }}</td>
                         <td>
@@ -108,6 +102,7 @@
                             <a href="{{ url('/kelas/'.$item->id.'/edit') }}" class="btn btn-warning">
                                 <i class="fa fa-pen-to-square"></i>
                             </a>
+                            @if ($item->mahasiswa_count === 0)
                             <form action="{{ url('/kelas/'.$item->id.'/delete') }}" method="POST" class="d-inline mx-2">
                                 @csrf
                                 @method('DELETE')
@@ -116,6 +111,7 @@
                                     <i class="fa-regular fa-circle-xmark"></i>
                                 </button>
                             </form>
+                            @endif
                         </td>
                     </tr>
                     @endforeach

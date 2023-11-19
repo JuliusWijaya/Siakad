@@ -6,10 +6,10 @@ use App\Models\Dosen;
 use App\Models\jurusan;
 use App\Models\Mahasiswa;
 use App\Exports\ExportMahasiswa;
+use App\Http\Requests\MahasiswaRequest;
 use App\Models\Ormawa;
 use App\Models\Kelas;
 use Maatwebsite\Excel\Facades\Excel;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 
@@ -22,7 +22,6 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-
         $title     = 'Dashboard Mahasiswa';
         $mahasiswa = Mahasiswa::with('ormawa')->latest()->filters(request(['keyword']))->get();
 
@@ -54,26 +53,12 @@ class MahasiswaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MahasiswaRequest $request)
     {
-        $validatedData = $request->validate([
-            'nim'        => 'required|unique:mahasiswas',
-            'nama_mhs'   => 'required|max:50',
-            'slug'       => 'max:50',
-            'jk'         => 'required',
-            'kelas_id'   => 'required',
-            'jurusan'    => 'required',
-            'no_hp'      => 'required|max:13',
-            'alamat'     => 'required',
-            'dosen_id'   => 'required',
-            'ormawa_id'  => 'required',
-        ]);
-
+        $validatedData = $request->validated();
         $mhs = Mahasiswa::create($validatedData);
         $mhs->ormawa()->sync($validatedData['ormawa_id']);
-
         alert()->success('Success', 'New Students Successfully Added');
-
         return redirect('/mahasiswa');
     }
 
@@ -128,29 +113,12 @@ class MahasiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Mahasiswa $mahasiswa)
+    public function update(MahasiswaRequest $request, Mahasiswa $mahasiswa)
     {
-        $rules = [
-            'nim'       => 'required|max:9',
-            'nama_mhs'  => 'required|max:50',
-            'slug'      => 'required|max:50',
-            'jk'        => 'required',
-            'kelas_id'  => 'required',
-            'jurusan'   => 'required|max:35',
-            'no_hp'     => 'required|max:13',
-            'alamat'    => 'required|max:50',
-            'dosen_id'  => 'required',
-        ];
-
-        if ($mahasiswa->ormawa_id != $request->ormawa_id) {
-            $rules['ormawa_id'] = 'required';
-        }
-
-        $mahasiswa->fill($request->post())->save();
-        $mahasiswa->ormawa()->sync($request->ormawa_id);
-
+        $validatedData = $request->validated();
+        $mahasiswa->fill($validatedData)->save();
+        (isset($request->ormawa_id)) ? $mahasiswa->ormawa()->sync($request->ormawa_id) : false;
         alert()->success('Success', $mahasiswa->nama_mhs . ' Successfully Has Been Edit');
-
         return redirect('/mahasiswa');
     }
 

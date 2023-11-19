@@ -54,7 +54,6 @@ class PostController extends Controller
             'deskripsi' => 'required',
         ]);
 
-        $validateData['deskripsi'] = Str::limit(strip_tags($request->deskripsi), 250);
         $validateData['user_id'] = Auth::user()->id;
 
         Post::create($validateData);
@@ -110,7 +109,6 @@ class PostController extends Controller
         }
 
         $validateData = $request->validate($rules);
-        $validateData['deskripsi'] = Str::limit(strip_tags($validateData['deskripsi']), 250);
         $validateData['user_id'] = Auth::user()->id;
         Post::where('id', $post->id)
             ->update($validateData);

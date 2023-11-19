@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(5)->create();
         Dosen::factory(5)->create();
+        OrmawaSeeder::class;
 
         User::create([
             'name'       => 'Super Admin',
@@ -42,20 +43,5 @@ class DatabaseSeeder extends Seeder
             'nama_jurusan'  => 'Manajemen Keuangan Perbankan',
             'slug'          => 'manajemen-keuangan-perbankan',
         ]);
-
-        $ormawa = [
-            ['name' => 'BEM'],
-            ['name' => 'HMKP'],
-            ['name' => 'HMP'],
-            ['name' => 'LSC'],
-            ['name' => 'LMA'],
-            ['name' => 'LCC'],
-            ['name' => 'SEAL'],
-            ['name' => 'LIAC']
-        ];
-
-        foreach ($ormawa as $orm) {
-            Ormawa::create($orm);
-        }
     }
 }

@@ -52,7 +52,7 @@
         @endif
 
         <div class="col-md-12">
-            <h2 class="text-center pb-2">Form Jurusan</h2>
+            <h2 class="text-start pb-2">Data Jurusan</h2>
         </div>
 
         <div class="row my-4">

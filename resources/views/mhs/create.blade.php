@@ -8,6 +8,7 @@
         <div class="col-lg-6" style="margin: 0 auto;">
             <div class="card mt-5">
                 <h5 class="card-title text-center mt-2 mb-0">Add Mahasiswa</h5>
+              
                 <div class="card-body">
                     <form method="POST" action="/mahasiswa">
                         @csrf
@@ -36,9 +37,9 @@
                             <div class="form-group mb-2">
                                 <label for="kelas_id">KELAS</label>
                                 <select name="kelas_id" id="kelas_id" class="form-control kelas">
-                                    <option value="" class="text-center">-- Pilih Kelas --</option>
+                                    <option>-- Pilih Kelas --</option>
                                     @foreach($kelas as $item)
-                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        <option value="{{ $item->id }}" @selected(old('kelas_id') == $item->id)>{{ $item->name }}</option>
                                     @endforeach
                                 </select>
                                 @error('kelas_id')
@@ -51,8 +52,8 @@
                                 <label for="jk">JENIS KELAMIN</label>
                                 <select class="form-control" name="jk" id="jk">
                                     <option>-- Pilih JK --</option>
-                                    <option value="Laki-laki">Laki-laki</option>
-                                    <option value="Perempuan">Perempuan</option>
+                                    <option value="Laki-laki" @selected(old('jk') == 'Laki-laki')>Laki-laki</option>
+                                    <option value="Perempuan" @selected(old('jk') == 'Perempuan')>Perempuan</option>
                                 </select>
                                 @error('jk')
                                     <div class="invalid-feedback">
@@ -105,18 +106,18 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="dosen_id">DOSEN</label>
+                                <label for="dosen_id" class="form-label">DOSEN</label>
                                 <select class="form-control @error('dosen_id') is-invalid @enderror" name="dosen_id"
-                                    id="dosen_id">
+                                    id="dosen_id" aria-describedby="validationServer04Feedback">
                                     <option>-- Pilih Dosen --</option>
                                     @foreach($dosens as $dosen)
-                                        <option value="{{ $dosen->id }}" @selected(old('dosen_id')==$dosen->id)>
+                                        <option value="{{ $dosen->id }}" @selected(old('dosen_id') == $dosen->id)>
                                             {{ $dosen->nama }}
                                         </option>
                                     @endforeach
                                 </select>
                                 @error('dosen_id')
-                                    <div class="invalid-feedback">
+                                    <div class="invalid-feedback" id="validationServer04Feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror

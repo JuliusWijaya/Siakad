@@ -17,10 +17,10 @@ class DosenFactory extends Factory
     public function definition()
     {
         return [
-            'nid'       => $this->faker->randomNumber(6, true),
+            'nid'       => $this->faker->randomNumber(9, true),
             'nama'      => $this->faker->name(),
             'slug'      => $this->faker->slug(),
-            'tgl_lahir' => $this->faker->date('d_m_Y'),
+            'tgl_lahir' => $this->faker->date('d-m-Y'),
             'alamat'    => $this->faker->address()
         ];
     }

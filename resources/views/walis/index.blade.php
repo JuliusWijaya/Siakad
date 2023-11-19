@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-lg-9 col-md-10">
+        <div class="col-md-10 col-lg-10">
             <h3 class="text-center mt-3">Form Wali</h3>
             @if(session()->has('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">

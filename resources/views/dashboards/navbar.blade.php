@@ -12,16 +12,16 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-        <div class="user-panel mt-2 p-0">
+        <div class="user-panel mt-1">
             <div class="image">
                 <img src="/img/avatar5.png" class="img-circle " alt="User Image">
             </div>
         </div>
-        <li class="nav-item dropdown mt-1 me-3">
+        <li class="nav-item dropdown mt-0">
             <a class="nav-link" data-toggle="dropdown" href="#">
-                <strong>
+                <p class="fw-semibold">
                     {{ auth()->user()->name }}
-                </strong>
+                </p>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right ">
                 <a href="/dashboard" class="text-decoration-none text-dark dropdown-item">

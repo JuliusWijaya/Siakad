@@ -11,11 +11,13 @@ class KelasController extends Controller
 {
     public function index()
     {
-        $kelas = Kelas::with('mahasiswa')->latest()->paginate(5);
+        $kelas = Kelas::withCount('mahasiswa')->latest()->paginate(5);
+        $rank = $kelas->firstItem();
 
         return view('kelas.index', [
             'title'  => 'Dashboard Kelas',
             'kelas'  => $kelas,
+            'rank'   => $rank,
         ]);
     }
 

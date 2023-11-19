@@ -8,10 +8,19 @@
         <div class="col-md-6" style="margin: 50px auto;">
             <div class="card">
                 <h3 class="card-title text-center mt-2">Edit {{ $mahasiswa->nama_mhs }}</h3>
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $item)
+                                <li>{{ $item }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="card-body">
                     <form method="POST" action="{{ route('mahasiswa.update', $mahasiswa->id) }}" class="d-inline">
-                        @method('PATCH')
                         @csrf
+                        @method('patch')
                         <div class="form-group mb-0">
                             <label for="nim">NIM</label>
                             <input type="text" class="form-control @error('nim') is-invalid @enderror" id="nim"
@@ -66,10 +75,10 @@
                             <select class="form-control" name="jurusan" id="jurusan">
                                 <option>-- Pilih Jurusan --</option>
                                 @foreach ($jurusans as $jurusan)
-                                <option value="{{ $jurusan->id_jurusan }}" 
-                                  @selected(old('jurusan', $mahasiswa->jurusan) == $jurusan->id_jurusan)>
-                                    {{ $jurusan->id_jurusan }}
-                                </option>
+                                    <option value="{{ $jurusan->id_jurusan }}" 
+                                        @selected(old('jurusan', $mahasiswa->jurusan) == $jurusan->id_jurusan)>
+                                        {{ $jurusan->id_jurusan }}
+                                    </option>
                                 @endforeach
                             </select>
                             @error('jurusan')
@@ -106,13 +115,13 @@
                             <select class="form-control @error('dosen_id') is-invalid @enderror" name="dosen_id" id="dosen_id">
                                 <option>-- Pilih Dosen --</option>
                                 @foreach ($dosens as $dosen)
-                                @if (old('dosen_id', $mahasiswa->dosen_id) == $dosen->id)
-                                <option value="{{ $dosen->id }}" selected>
-                                    {{ $dosen->nama }}
-                                </option>
-                                @else
-                                <option value="{{ $dosen->id }}">{{ $dosen->nama }}</option>
-                                @endif
+                                    @if (old('dosen_id', $mahasiswa->dosen_id) == $dosen->id)
+                                    <option value="{{ $dosen->id }}" selected>
+                                        {{ $dosen->nama }}
+                                    </option>
+                                    @else
+                                    <option value="{{ $dosen->id }}">{{ $dosen->nama }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                             @error('dosen_id')

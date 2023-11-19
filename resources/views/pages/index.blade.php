@@ -9,11 +9,12 @@
             @foreach ($posts as $item)
             <div class="card mb-3">
                 <div class="card-body d-flex flex-wrap">
-                    <h6 class="card-subtitle mb-2 text-muted">{{ $item->judul }}</h6>
-                    <p class="">
-                        {{ $item->deskripsi }}
+                    <h6 class="card-subtitle mb-2 text-muted">{!! $item->judul !!}</h6>
+                    <p class="d-block">
+                        {!! $item->deskripsi !!}
                     </p>
-                    <p>{{ $item->penulis->name }}</p>
+                    <br>
+                    <p>{!! $item->penulis->name !!}</p>
                 </div>
             </div>
             @endforeach
