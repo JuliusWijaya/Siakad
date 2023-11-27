@@ -67,16 +67,17 @@
                             <i class="fa-solid fa-pen-to-square"></i>
                           </span> 
                         </a>
-      
-                        <form action="/mahasiswa/{{$details->id}}" method="POST" class="d-inline ml-2">
-                          @method('DELETE')
-                          @csrf
-                          <button class="badge badge-danger border-0"
-                              onclick="return confirm('Serius Mahasiswa {{ $details->nama_mhs }} Akan Di Hapus ?')">
-                              <i class="fa-regular fa-circle-xmark">
-                              </i>
-                          </button>
-                      </form>
+                        @if (!$details->ormawa->count())
+                            <form action="/mahasiswa/{{$details->id}}" method="POST" class="d-inline ml-2">
+                            @method('DELETE')
+                            @csrf
+                            <button class="badge badge-danger border-0"
+                                onclick="return confirm('Serius Mahasiswa {{ $details->nama_mhs }} Akan Di Hapus ?')">
+                                <i class="fa-regular fa-circle-xmark">
+                                </i>
+                            </button>
+                            </form>
+                        @endif
                     </div>
                 </div>
               </div>

@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Mahasiswa;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -34,10 +33,10 @@ class MahasiswaRequest extends FormRequest
         return [
             'nim'        => ['required', $ruleNim, Rule::unique('mahasiswas', 'nim')->ignore($this->mahasiswa, "id")],
             'nama_mhs'   => 'required|max:50',
-            'slug'       => ['required', $ruleNim, Rule::unique('mahasiswas', 'slug')->ignore($this->mahasiswa, "id")],
+            'slug'       => [$ruleNim, Rule::unique('mahasiswas', 'slug')->ignore($this->mahasiswa, "id")],
             'jk'         => 'required',
             'kelas_id'   => 'required',
-            'jurusan'    => 'required',
+            'jurusan_id' => 'required',
             'no_hp'      => 'required|max:13',
             'alamat'     => 'required',
             'dosen_id'   => 'required',

@@ -75,9 +75,9 @@
                             <select class="form-control" name="jurusan" id="jurusan">
                                 <option>-- Pilih Jurusan --</option>
                                 @foreach ($jurusans as $jurusan)
-                                    <option value="{{ $jurusan->id_jurusan }}" 
-                                        @selected(old('jurusan', $mahasiswa->jurusan) == $jurusan->id_jurusan)>
-                                        {{ $jurusan->id_jurusan }}
+                                    <option value="{{ $jurusan->id }}" 
+                                        @selected(old('jurusan', $mahasiswa->jurusan_id) == $jurusan->id)>
+                                        {{ $jurusan->jurusan }}
                                     </option>
                                 @endforeach
                             </select>

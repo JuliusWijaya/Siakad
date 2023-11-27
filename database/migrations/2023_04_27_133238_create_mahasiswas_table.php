@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('nama_mhs', 100);
             $table->string('slug', 100)->nullable();
             $table->char('jk', 15);
-            $table->string('jurusan', 50);
             $table->char('no_hp', 13);
             $table->string('alamat', 100);
+            $table->foreignId('jurusan_id');
             $table->foreignId('dosen_id');
             $table->timestamps();
         });

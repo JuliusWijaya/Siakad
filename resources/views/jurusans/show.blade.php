@@ -11,7 +11,7 @@
                         <div class="form-group">
                             <label for="disabledTextInput"><b>ID JURUSAN :</b> </label>
                             <input type="text" id="disabledInput" class="form-control"
-                                value="{{ $details->id_jurusan }}">
+                                value="{{ $details->jurusan }}">
                         </div>
                         <div class="form-group">
                             <label for="disabledTextInput"><b>NAMA JURUSAN :</b></label>
@@ -32,7 +32,7 @@
                             <i class="fa-solid fa-pen-to-square"></i>
                         </span>
                     </a>
-
+                    @if (!$details->mahasiswa->count())
                     <form action="/jurusan/{{ $details->id }}/delete" method="POST" class="d-inline ml-2">
                         @method('DELETE')
                         @csrf
@@ -42,6 +42,7 @@
                             <i class="fa-regular fa-circle-xmark"></i>
                         </button>
                     </form>
+                    @endif
                 </div>
             </div>
         </div>

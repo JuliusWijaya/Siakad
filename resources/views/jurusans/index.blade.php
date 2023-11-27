@@ -15,10 +15,10 @@
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="id_jurusan">ID JURUSAN</label>
-                        <input type="text" class="form-control @error('id_jurusan') is-invalid @enderror"
-                            name="id_jurusan" id="id_jurusan" value="{{ old('id_jurusan') }}">
-                        @error('id_jurusan')
+                        <label for="jurusan">ID JURUSAN</label>
+                        <input type="text" class="form-control @error('jurusan') is-invalid @enderror"
+                            name="jurusan" id="jurusan" value="{{ old('jurusan') }}">
+                        @error('jurusan')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
@@ -102,7 +102,7 @@
                 @forelse($jurusans as $index => $data)
                 <tr>
                     <td class="text-center">{{ $index + $jurusans->firstItem() }}</td>
-                    <td>{{ $data->id_jurusan }}</td>
+                    <td>{{ $data->jurusan }}</td>
                     <td>{{ $data->nama_jurusan }}</td>
                     @if (auth()->user()->position != 0)
                         <td class=" text-center">

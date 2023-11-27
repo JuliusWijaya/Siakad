@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\PagesController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\BiodataController;
-use App\Http\Controllers\WaliController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\OrmawaController;
-use Database\Factories\DosenFactory;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
-use Maatwebsite\Excel\Row;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\WaliController;
+use App\Http\Controllers\KelasController;
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\OrmawaController;
+use App\Http\Controllers\JurusanController;
+use App\Http\Controllers\DashboardController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -39,32 +39,37 @@ Route::post('register', [UserController::class, 'register_action'])->name('regis
 Route::get('login', [UserController::class, 'login'])->name('login')->middleware('guest');
 Route::post('login', [UserController::class, 'login_action'])->name('login.action')->middleware('throttle:login');
 
-Route::get('/password', [UserController::class, 'password'])->name('password');
-Route::post('password', [UserController::class, 'password_action'])->name('password.action');
-Route::post('logout', [UserController::class, 'logout'])->name('logout');
-
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
-
     return redirect('/dashboard');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->middleware(['auth', 'verified']);
 
 Route::middleware('auth')->group(function () {
+    Route::get('/password', [UserController::class, 'password'])->name('password');
+    Route::post('password', [UserController::class, 'password_action'])->name('password.action');
+    Route::post('logout', [UserController::class, 'logout'])->name('logout');
     Route::middleware(['auth', 'only_admin'])->group(function () {
-        Route::resource('mahasiswa', MahasiswaController::class);
-        Route::get('/mahasiswa/{slug}/details', [MahasiswaController::class, 'show']);
-        Route::get('/mahasiswa/{mahasiswa:slug}/edit', [MahasiswaController::class, 'edit']);
+        Route::resources([
+            'mahasiswa' => MahasiswaController::class,
+            'kelas'     => KelasController::class,
+        ]);
 
-        Route::resource('kelas', KelasController::class);
-        Route::get('/kelas/{id}/edit', [KelasController::class, 'edit']);
-        Route::put('/kelas/{id}', [KelasController::class, 'update']);
-        Route::delete('/kelas/{kelas}/delete', [KelasController::class, 'destroy']);
+        Route::controller(MahasiswaController::class)->group(function () {
+            Route::get('/mahasiswa/{slug}/details', 'show');
+            Route::get('/mahasiswa/{mahasiswa:slug}/edit', 'edit');
+        });
+
+        Route::controller(KelasController::class)->group(function () {
+            Route::get('/kelas/edit/{id}', 'edit');
+            Route::put('/kelas/update', 'update')->name('kelas.update');
+            Route::delete('/kelas/delete/{kelas}', 'destroy')->name('kelas.destroy');
+        });
 
         Route::resource('wali', WaliController::class);
         Route::get('/wali/create/checkSlug', [WaliController::class, 'show']);
@@ -89,7 +94,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/print/mhs', [PrintController::class, 'printPdf']);
     Route::get('/export/mhs', [MahasiswaController::class, 'exportExcel']);
     Route::get('/jurusan/print', [PrintController::class, 'downloadPdf']);
-    Route::get('/jurusan/export', [BiodataController::class, 'export']);
+    Route::get('/jurusan/export', [JurusanController::class, 'export']);
     Route::get('/print/wali', [PrintController::class, 'printWali']);
     Route::get('/export/wali', [WaliController::class, 'export']);
     Route::get('/print/dosen', [PrintController::class, 'printDosen']);
@@ -97,11 +102,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/users/print', [PrintController::class, 'printUser']);
     Route::get('/users/export', [UsersController::class, 'exportExcel']);
 
-    Route::get('/jurusan', [BiodataController::class, 'index']);
-    Route::get('/jurusan/add', [BiodataController::class, 'create']);
-    Route::post('/jurusan', [BiodataController::class, 'store']);
-    Route::delete('/jurusan/{jurusan}/delete', [BiodataController::class, 'destroy']);
-    Route::get('/jurusan/{jurusan:slug}/edit', [BiodataController::class, 'edit']);
-    Route::put('/jurusan/{jurusan}', [BiodataController::class, 'update']);
-    Route::get('/jurusan/{jurusan:slug}/details', [BiodataController::class, 'show']);
+    Route::get('/jurusan', [JurusanController::class, 'index']);
+    Route::get('/jurusan/add', [JurusanController::class, 'create']);
+    Route::post('/jurusan', [JurusanController::class, 'store']);
+    Route::delete('/jurusan/{jurusan}/delete', [JurusanController::class, 'destroy']);
+    Route::get('/jurusan/{jurusan:slug}/edit', [JurusanController::class, 'edit']);
+    Route::put('/jurusan/{jurusan}', [JurusanController::class, 'update']);
+    Route::get('/jurusan/{jurusan:slug}/details', [JurusanController::class, 'show']);
 });

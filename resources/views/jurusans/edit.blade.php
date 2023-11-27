@@ -10,10 +10,10 @@
                 @method('put')
                 @csrf
                 <div class="form-group">
-                    <label for="id_jurusan">ID JURUSAN</label>
-                    <input type="text" class="form-control @error('id_jurusan') is-invalid @enderror" name="id_jurusan" id="id_jurusan"
-                        value="{{$jurusan->id_jurusan}}">
-                    @error('id_jurusan')
+                    <label for="jurusan">ID JURUSAN</label>
+                    <input type="text" class="form-control @error('jurusan') is-invalid @enderror" name="jurusan" id="jurusan"
+                        value="{{$jurusan->jurusan}}">
+                    @error('jurusan')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>

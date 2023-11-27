@@ -6,7 +6,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add Kelas</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -19,16 +19,6 @@
                         <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
                             id="name" value="{{ old('name') }}">
                         @error('name')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="jumlah">JUMLAH SISWA</label>
-                        <input type="number" class="form-control @error('jumlah') is-invalid @enderror" name="jumlah"
-                            id="jumlah" value="{{ old('jumlah') }}">
-                        @error('jumlah')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
@@ -92,18 +82,19 @@
                     <tr>
                         <td class="text-center">{{ $rank++ }}</td>
                         <td>{{ $item->name }}</td>
-                        <td>{{ $item->jumlah }}</td>
+                        <td>{{ $item->mahasiswa->count() }}</td>
                         <td>
                             @foreach ($item->mahasiswa as $kls)
                             - {{ $kls->nama_mhs }} <br>
                             @endforeach
                         </td>
                         <td class="text-center">
-                            <a href="{{ url('/kelas/'.$item->id.'/edit') }}" class="btn btn-warning">
+                            <button class="btn btn-warning myBtn" data-id="{{ $item->id }}" 
+                                data-toggle="modal" data-target="#editKelas">
                                 <i class="fa fa-pen-to-square"></i>
-                            </a>
+                            </button>
                             @if ($item->mahasiswa_count === 0)
-                            <form action="{{ url('/kelas/'.$item->id.'/delete') }}" method="POST" class="d-inline mx-2">
+                            <form action="{{ route('kelas.destroy', $item->id) }}" method="POST" class="d-inline mx-2">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger"
@@ -142,4 +133,78 @@
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="editKelas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Kelas</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+         
+            <form method="POST" action="{{ route('kelas.update') }}">
+                @csrf
+                @method('put')
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">NAMA KELAS</label>
+                        <input 
+                         type="hidden" 
+                         name="kelas_id" 
+                         id="id_kelas"
+                        >
+                        <input 
+                         type="text" 
+                         class="form-control @error('name') is-invalid @enderror" 
+                         name="name"
+                         id="edit_name" 
+                         value="{{ old('name') }}"
+                        >
+                        @error('name')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" name="simpan" id="simpan">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- End Modal -->
+@endsection
+
+@section('js')
+<script>
+    $(document).ready(function () {
+        $(document).on('click','.myBtn',function (event) {
+            event.preventDefault();
+            var id   = $(this).data('id');
+            var path = `/kelas/edit/${id}`;
+            // jQuery.noConflict(); 
+            // $('#editKelas').modal('show');
+            // console.log(path);
+
+           $.ajax({
+                type: "GET",
+                url: path,
+                success: function (response) {
+                    // console.log(response);
+                    $('#edit_name').val(response.data.name);
+                    $('#id_kelas').val(response.data.id);
+                },
+                error: function(error){
+                    console.log(error);
+                }
+           });
+        });
+    });
+</script>
 @endsection

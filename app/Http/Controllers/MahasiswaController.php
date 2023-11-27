@@ -131,9 +131,7 @@ class MahasiswaController extends Controller
     public function destroy(Mahasiswa $mahasiswa)
     {
         Mahasiswa::destroy($mahasiswa->id);
-
         alert()->success('Success', $mahasiswa->nama_mhs . ' Has Been Delete');
-
         return redirect('/mahasiswa');
     }
 

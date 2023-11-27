@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Models\jurusan;
+use App\Models\Jurusan;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use App\Exports\ExportJurusan;
 use Maatwebsite\Excel\Facades\Excel;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
-
-class BiodataController extends Controller
+class JurusanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +17,7 @@ class BiodataController extends Controller
      */
     public function index()
     {
-        $jurusans = jurusan::latest()->search(request(['search']))->paginate(5);
+        $jurusans = Jurusan::with('mahasiswa')->latest()->search(request(['search']))->paginate(5);
 
         return view('jurusans.index', [
             'jurusans' => $jurusans,
@@ -47,13 +45,13 @@ class BiodataController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_jurusan'    => 'required|unique:jurusans',
+            'jurusan'    => 'required|unique:jurusans',
             'nama_jurusan'  => 'required|max:50',
             'slug'          => 'max:50',
         ]);
 
-        jurusan::create([
-            'id_jurusan'    => $request->id_jurusan,
+        Jurusan::create([
+            'jurusan'       => $request->jurusan,
             'nama_jurusan'  => $request->nama_jurusan,
             'slug'          => Str::slug($request->nama_jurusan, '-'),
         ]);
@@ -69,7 +67,7 @@ class BiodataController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(jurusan $jurusan)
+    public function show(Jurusan $jurusan)
     {
         return view('jurusans.show', [
             'details' => $jurusan,
@@ -83,7 +81,7 @@ class BiodataController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(jurusan $jurusan)
+    public function edit(Jurusan $jurusan)
     {
         $title = 'Edit Jurusan';
         return view('jurusans.edit', compact('jurusan', 'title'));
@@ -96,16 +94,16 @@ class BiodataController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, jurusan $jurusan)
+    public function update(Request $request, Jurusan $jurusan)
     {
         $request->validate([
-            'id_jurusan'    => 'required|max:18',
+            'jurusan'       => 'required|max:18',
             'nama_jurusan'  => 'required|max:50',
         ]);
 
         jurusan::where('id', $jurusan->id)
             ->update([
-                'id_jurusan'    => $request->id_jurusan,
+                'jurusan'       => $request->jurusan,
                 'nama_jurusan'  => $request->nama_jurusan,
                 'slug'          => Str::slug($request->nama_jurusan, '-'),
             ]);
@@ -121,12 +119,10 @@ class BiodataController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(jurusan $jurusan)
+    public function destroy(Jurusan $jurusan)
     {
-        jurusan::destroy($jurusan->id);
-
+        Jurusan::destroy($jurusan->id);
         alert()->success('Success', 'Jurusan ' . $jurusan->nama_jurusan . ' Has Been Delete');
-
         return redirect('/jurusan');
     }
 

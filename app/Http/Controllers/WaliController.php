@@ -35,10 +35,7 @@ class WaliController extends Controller
      */
     public function create()
     {
-        $mhs = Mahasiswa::with('mahasiswa')->get();
-
         return view('walis.create', [
-            'mahasiswa' => $mhs,
             'title'     => 'Create Wali'
         ]);
     }
