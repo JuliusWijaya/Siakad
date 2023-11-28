@@ -19,7 +19,6 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                =
                 <li class="nav-item menu-open">
                     <a href="/dashboard" class="nav-link {{ Request::is('dashboard') ? 'active' : '' }} ">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -39,7 +38,7 @@
                 </li>
                 @if(auth()->user()->position == 1)
                 <li class="nav-item">
-                    <a href="/kelas" class="nav-link {{ Request::is('kelas*') ? 'active' : '' }}">
+                    <a href="/classes" class="nav-link {{ Request::is('classes*') ? 'active' : '' }}">
                         <i class="fa-solid fa-user-graduate"></i>
                         <p>
                             Kelas
@@ -47,7 +46,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/mahasiswa" class="nav-link {{ Request::is('mahasiswa*') ? 'active' : '' }}">
+                    <a href="/students" class="nav-link {{ Request::is('students*') ? 'active' : '' }}">
                         <i class="fa-solid fa-users"></i>
                         <p>
                             Mahasiswa
@@ -70,7 +69,7 @@
                         </p>
                     </a>
                 </li>
-             
+
                 <li class="nav-item">
                     <a href="/dosen" class="nav-link {{ Request::is('dosen*') ? 'active' : '' }}">
                         <i class="fa-solid fa-user-tie"></i>

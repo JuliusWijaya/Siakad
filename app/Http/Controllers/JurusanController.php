@@ -57,7 +57,6 @@ class JurusanController extends Controller
         ]);
 
         alert()->success('Success', 'New Major Successfully Added');
-
         return redirect('/jurusan');
     }
 
@@ -109,7 +108,6 @@ class JurusanController extends Controller
             ]);
 
         alert()->success('Success', $jurusan->nama_jurusan . ' Successfully Has Been Edit');
-
         return redirect('/jurusan');
     }
 

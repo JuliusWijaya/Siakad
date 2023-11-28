@@ -6,7 +6,7 @@
         <div class="col-lg-10">
             <h3 class="text-center mb-3">Form Post</h3>
             <div>
-                <a href="{{ route('post.create') }}" class="btn btn-primary mb-3">
+                <a href="{{ route('post.create') }}" class="btn btn-primary btn-sm mb-3">
                     <i class="fa-solid fa-plus"></i> Create Post
                 </a>
             </div>

@@ -29,7 +29,7 @@
 
                     <div class="mb-2">
                         <label for="jurusan" class="form-label">JURUSAN :</label>
-                        <input type="text" class="form-control" id="jurusan" value="{{ $details->jurusan }}" readonly>
+                        <input type="text" class="form-control" id="jurusan" value="{{ $details->jurusan->nama_jurusan }}" readonly>
                     </div>
 
                     <div class="mb-2">
@@ -56,19 +56,19 @@
                     </ol>
                    
                     <div>
-                        <a href="/mahasiswa">
+                        <a href="/students">
                           <span class="badge badge-secondary">
                             <i class="fa-solid fa-arrow-left"></i>  
                           </span> 
                         </a>
       
-                        <a href="/mahasiswa/{{ $details->slug }}/edit" class="ml-2">
+                        <a href="/student/{{ $details->slug }}/edit" class="ml-2">
                           <span class="badge badge-warning">
                             <i class="fa-solid fa-pen-to-square"></i>
                           </span> 
                         </a>
                         @if (!$details->ormawa->count())
-                            <form action="/mahasiswa/{{$details->id}}" method="POST" class="d-inline ml-2">
+                            <form action="{{ route('students.destroy', $details->id) }}" method="POST" class="d-inline ml-2">
                             @method('DELETE')
                             @csrf
                             <button class="badge badge-danger border-0"

@@ -3,8 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10 col-lg-10">
-            <h3 class="text-center mt-3">Form Wali</h3>
+        <div class="col-12 col-md-10 col-lg-12 p-5">
             @if(session()->has('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 Hai <strong>{{ auth()->user()->name }}</strong> {{ session('success')}}
@@ -34,7 +33,7 @@
             </div>
 
             @if ($walis->count())
-            <div class="card p-2 mt-3">
+            <div class="card p-3 mt-3">
                 <div class="card-header">
                     <h3 class="card-title text-center">Form Wali</h3>
                     <div class="card-tools">
@@ -75,7 +74,7 @@
                                 <td>{{ $wali->umur }}</td>
                                 <td>{{ $wali->pekerjaan }}</td>
                                 <td>{{ (isset($wali->mahasiswa->nama_mhs)) ? $wali->mahasiswa->nama_mhs : 'Not Found' }}</td>
-                                <td>{{ (isset($wali->mahasiswa->jurusan_id)) ? $wali->mahasiswa->jurusan_id : 'Not Found' }}</td>
+                                <td>{{ (isset($wali->mahasiswa->jurusan->nama_jurusan)) ? $wali->mahasiswa->jurusan->nama_jurusan : 'Not Found' }}</td>
                                 <td>
                                     <a href="/wali/{{$wali->slug}}/edit" class="btn btn-warning">
                                         <i class="fa-solid fa-pen-to-square"></i>

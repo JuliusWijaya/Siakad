@@ -11,7 +11,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="POST" action="{{ route('kelas.store') }}">
+            <form method="POST" action="{{ route('classes.store') }}">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
@@ -94,7 +94,7 @@
                                 <i class="fa fa-pen-to-square"></i>
                             </button>
                             @if ($item->mahasiswa_count === 0)
-                            <form action="{{ route('kelas.destroy', $item->id) }}" method="POST" class="d-inline mx-2">
+                            <form action="{{ route('classes.destroy', $item->id) }}" method="POST" class="d-inline mx-2">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger"
@@ -145,7 +145,7 @@
                 </button>
             </div>
          
-            <form method="POST" action="{{ route('kelas.update') }}">
+            <form method="POST" action="{{ route('classes.update') }}">
                 @csrf
                 @method('put')
                 <div class="modal-body">
@@ -187,7 +187,7 @@
         $(document).on('click','.myBtn',function (event) {
             event.preventDefault();
             var id   = $(this).data('id');
-            var path = `/kelas/edit/${id}`;
+            var path = `/class/edit/${id}`;
             // jQuery.noConflict(); 
             // $('#editKelas').modal('show');
             // console.log(path);

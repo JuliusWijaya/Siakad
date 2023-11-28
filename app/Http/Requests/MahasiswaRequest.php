@@ -24,19 +24,19 @@ class MahasiswaRequest extends FormRequest
      */
     public function rules()
     {
-        if (request()->routeIs('mahasiswa.store')) {
-            $ruleNim = 'unique:mahasiswas';
-        } elseif (request()->routeIs('mahasiswa.update')) {
-            $ruleNim = 'sometimes';
+        if (request()->routeIs('students.store')) {
+            $jurusan_id = 'required';
+        } elseif (request()->routeIs('students.update')) {
+            $jurusan_id = 'sometimes';
         }
 
         return [
-            'nim'        => ['required', $ruleNim, Rule::unique('mahasiswas', 'nim')->ignore($this->mahasiswa, "id")],
+            'nim'        => ['required', Rule::unique('mahasiswas', 'nim')->ignore($this->student, "id")],
             'nama_mhs'   => 'required|max:50',
-            'slug'       => [$ruleNim, Rule::unique('mahasiswas', 'slug')->ignore($this->mahasiswa, "id")],
+            'slug'       => [Rule::unique('mahasiswas', 'slug')->ignore($this->student, "id")],
             'jk'         => 'required',
             'kelas_id'   => 'required',
-            'jurusan_id' => 'required',
+            'jurusan_id' => $jurusan_id,
             'no_hp'      => 'required|max:13',
             'alamat'     => 'required',
             'dosen_id'   => 'required',
@@ -62,11 +62,4 @@ class MahasiswaRequest extends FormRequest
             'max'         => 'Maksimal :attribute harus :max karakter',
         ];
     }
-
-    // protected function prepareForValidation()
-    // {
-    //     if ($this->slug != null) {
-    //         $this->request->remove('slug');
-    //     }
-    // }
 }

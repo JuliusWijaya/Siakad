@@ -9,7 +9,7 @@
             <div class="card mt-5">
                 <h5 class="card-title text-center mt-3 mb-0">Add Mahasiswa</h5>
                 <div class="card-body">
-                    <form method="POST" action="/mahasiswa">
+                    <form method="POST" action="{{ route('students.store') }}">
                         @csrf
                         <div class="form-row">
                             <div class="form-group col-md-6">
@@ -70,11 +70,11 @@
                                     @foreach($jurusans as $jurusan)
                                         @if (old('jurusan_id') == $jurusan->id)
                                         <option value="{{ $jurusan->id }}" selected>
-                                            {{ $jurusan->jurusan }}
+                                            {{ $jurusan->nama_jurusan }}
                                         </option>
                                         @else
                                         <option value="{{ $jurusan->id }}">
-                                            {{ $jurusan->jurusan }}
+                                            {{ $jurusan->nama_jurusan }}
                                         </option>
                                         @endif
                                     @endforeach
@@ -172,7 +172,7 @@
 
                         <div class="modal-footer mb-0">
                             <button class="btn btn-primary me-2" type="submit">Save</button>
-                            <a href="/mahasiswa" class="btn btn-secondary">Close</a>
+                            <a href="/students" class="btn btn-secondary">Close</a>
                         </div>
                     </form>
                 </div>

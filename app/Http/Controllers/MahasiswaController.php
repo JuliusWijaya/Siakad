@@ -38,10 +38,10 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        $jurusans = jurusan::all();
-        $ormawas  = Ormawa::all();
-        $dosens   = dosen::all();
-        $kelas    = Kelas::all();
+        $jurusans = jurusan::select('id', 'nama_jurusan')->orderBy('jurusan', 'asc')->get();
+        $ormawas  = Ormawa::select('id', 'name')->orderBy('name', 'asc')->get();
+        $dosens   = dosen::select('id', 'nama')->orderBy('nama', 'asc')->get();
+        $kelas    = Kelas::select('id', 'name')->orderBy('name', 'asc')->get();
         $title    = 'Create Mahasiswa';
 
         return view('mhs.create', compact('jurusans', 'ormawas', 'dosens', 'kelas', 'title'));
@@ -59,7 +59,7 @@ class MahasiswaController extends Controller
         $mhs = Mahasiswa::create($validatedData);
         $mhs->ormawa()->sync($validatedData['ormawa_id']);
         alert()->success('Success', 'New Students Successfully Added');
-        return redirect('/mahasiswa');
+        return redirect('/students');
     }
 
     /**
@@ -86,24 +86,25 @@ class MahasiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Mahasiswa $mahasiswa)
+    public function edit(Mahasiswa $student)
     {
-        $jurusans = jurusan::all();
-        $dosens   = Dosen::all();
-        $kelas    = Kelas::all();
-        $ormawas  = Ormawa::all();
+        $student = Mahasiswa::where('slug', $student->slug)->first();
+        $jurusans = jurusan::select('id', 'nama_jurusan')->orderBy('jurusan', 'asc')->get();
+        $dosens   = dosen::select('id', 'nama')->orderBy('nama', 'asc')->get();
+        $kelas    = Kelas::select('id', 'name')->orderBy('name', 'asc')->get();
+        $ormawas  = Ormawa::select('id', 'name')->orderBy('name', 'asc')->get();
         $title    = 'Edit Mahasiswa';
         $jenis    = '';
 
-        if ($mahasiswa->jk == 'Laki-laki') {
+        if ($student->jk == 'Laki-laki') {
             $jenis = 'Perempuan';
         }
 
-        if ($mahasiswa->jk == 'Perempuan') {
+        if ($student->jk == 'Perempuan') {
             $jenis = 'Laki-laki';
         }
 
-        return view('mhs.edit', compact('mahasiswa', 'title', 'jenis', 'jurusans', 'dosens', 'kelas', 'ormawas'));
+        return view('mhs.edit', compact('student', 'title', 'jenis', 'jurusans', 'dosens', 'kelas', 'ormawas'));
     }
 
     /**
@@ -113,13 +114,13 @@ class MahasiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(MahasiswaRequest $request, Mahasiswa $mahasiswa)
+    public function update(MahasiswaRequest $request, Mahasiswa $student)
     {
         $validatedData = $request->validated();
-        $mahasiswa->fill($validatedData)->save();
-        (isset($request->ormawa_id)) ? $mahasiswa->ormawa()->sync($request->ormawa_id) : false;
-        alert()->success('Success', $mahasiswa->nama_mhs . ' Successfully Has Been Edit');
-        return redirect('/mahasiswa');
+        $student->fill($validatedData)->save();
+        (isset($request->ormawa_id)) ? $student->ormawa()->sync($request->ormawa_id) : false;
+        alert()->success('Success', $student->nama_mhs . ' Successfully Has Been Edit');
+        return redirect('/students');
     }
 
     /**
@@ -128,11 +129,11 @@ class MahasiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Mahasiswa $mahasiswa)
+    public function destroy(Mahasiswa $student)
     {
-        Mahasiswa::destroy($mahasiswa->id);
-        alert()->success('Success', $mahasiswa->nama_mhs . ' Has Been Delete');
-        return redirect('/mahasiswa');
+        Mahasiswa::destroy($student->id);
+        alert()->success('Success', $student->nama_mhs . ' Has Been Delete');
+        return redirect('/students');
     }
 
     public function exportExcel()

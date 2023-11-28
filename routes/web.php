@@ -56,19 +56,18 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [UserController::class, 'logout'])->name('logout');
     Route::middleware(['auth', 'only_admin'])->group(function () {
         Route::resources([
-            'mahasiswa' => MahasiswaController::class,
-            'kelas'     => KelasController::class,
+            'students'  => MahasiswaController::class,
+            'classes'   => KelasController::class,
         ]);
 
         Route::controller(MahasiswaController::class)->group(function () {
-            Route::get('/mahasiswa/{slug}/details', 'show');
-            Route::get('/mahasiswa/{mahasiswa:slug}/edit', 'edit');
+            Route::get('/student/{slug}/details', 'show');
+            Route::get('/student/{student:slug}/edit', 'edit');
         });
 
         Route::controller(KelasController::class)->group(function () {
-            Route::get('/kelas/edit/{id}', 'edit');
-            Route::put('/kelas/update', 'update')->name('kelas.update');
-            Route::delete('/kelas/delete/{kelas}', 'destroy')->name('kelas.destroy');
+            Route::get('/class/edit/{id}', 'edit');
+            Route::put('/kelas/update', 'update')->name('classes.update');
         });
 
         Route::resource('wali', WaliController::class);

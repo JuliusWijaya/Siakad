@@ -49,7 +49,7 @@ class DosenController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nid'        => 'required|max:9|unique:dosens',
+            'nid'        => 'required|max:9|unique:dosens|numeric',
             'nama'       => 'required|max:50',
             'slug'       => 'required|unique:dosens',
             'tgl_lahir'  => 'required',
@@ -106,7 +106,7 @@ class DosenController extends Controller
     public function update(Request $request, Dosen $dosen)
     {
         $request->validate([
-            'nid'       => 'required|max:10',
+            'nid'       => 'required|max:9|numeric',
             'nama'      => 'required|max:50',
             'slug'      => 'max:50',
             'tgl_lahir' => 'required',
@@ -149,7 +149,6 @@ class DosenController extends Controller
 
         collect($dosen)->map(function ($item) {
             $item->slug = Str::slug($item->nama, '-');
-
             $item->save();
         });
     }

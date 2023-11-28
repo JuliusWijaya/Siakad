@@ -52,7 +52,7 @@ class KelasController extends Controller
 
         Kelas::create($validatedData);
         alert()->success('Success', 'New Class Successfully Added');
-        return redirect('/kelas');
+        return redirect('/classes');
     }
 
     /**
@@ -98,7 +98,7 @@ class KelasController extends Controller
         if ($idKelas) {
             $idKelas->fill($validatedData)->save();
             alert()->success('Success', 'Class Successfully Update');
-            return redirect('/kelas');
+            return redirect('/classes');
         }
     }
 
@@ -108,9 +108,10 @@ class KelasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Kelas $kelas)
+    public function destroy(Kelas $class)
     {
-        Kelas::destroy($kelas->id);
-        return redirect('/kelas');
+        $class->delete();
+        alert()->success('Success', 'Class Successfully Deleted');
+        return redirect()->back();
     }
 }

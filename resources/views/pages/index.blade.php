@@ -8,9 +8,11 @@
             <hr>
             @foreach ($posts as $item)
             <div class="card mb-3">
-                <div class="card-body d-flex flex-wrap">
-                    <h6 class="card-subtitle mb-2 text-muted">{!! $item->judul !!}</h6>
-                    <p class="d-block">
+                <div class="card-body">
+                    <h6 class="card-subtitle text-muted">
+                        {!! $item->judul !!} 
+                    </h6>
+                    <p>
                         {!! $item->deskripsi !!}
                     </p>
                     <br>
