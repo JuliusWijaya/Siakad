@@ -48,13 +48,14 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     return redirect('/dashboard');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
-Route::get('/dashboard', [DashboardController::class, 'dashboard'])->middleware(['auth', 'verified']);
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/password', [UserController::class, 'password'])->name('password');
     Route::post('password', [UserController::class, 'password_action'])->name('password.action');
     Route::post('logout', [UserController::class, 'logout'])->name('logout');
+
     Route::middleware(['auth', 'only_admin'])->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'dashboard']);
         Route::resources([
             'students'  => MahasiswaController::class,
             'classes'   => KelasController::class,

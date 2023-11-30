@@ -7,47 +7,72 @@
     trix-toolbar [data-trix-button-group="file-tools"] {
         display: none;
     }
-
 </style>
 
-<div class="row justify-content-center">
-    <div class="col-lg-6">
-        <div class="card justify-content-center mt-5 mb-5">
-            <h5 class="card-title text-center mt-3">Add New Post</h5>
-            <div class="card-body">
-                <form action="{{ route('post.store') }}" method="POST">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="judul" class="form-label mt-2">Judul</label>
-                        <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul"
-                            name="judul" value="{{ old('judul') }}" placeholder="Judul Post" required autofocus>
-                        @error('judul')
-                        <div class="invalid-feedback">
-                            {{ $message }}
+<div class="container">
+    <div class="row justify-content-center pl-5">
+        <div class="col-12 col-lg-10">
+            <div class="card justify-content-center mt-5 mb-5">
+                <h5 class="card-title text-center mt-3">Add New Post</h5>
+                <div class="card-body">
+                    <form action="{{ route('post.store') }}" method="POST">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="judul" class="form-label mt-2">Judul</label>
+                            <input 
+                              type="text" 
+                              class="form-control @error('judul') is-invalid @enderror" 
+                              id="judul"
+                              name="judul" 
+                              value="{{ old('judul') }}" 
+                              placeholder="Judul Post" 
+                              required 
+                              autofocus
+                            >
+                            @error('judul')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug"
-                            name="slug" value="{{ old('slug') }}" required readonly>
-                        @error('slug')
-                        <div class="invalid-feedback">
-                            {{ $message }}
+                        <div class="mb-3">
+                            <input 
+                             type="text" 
+                             class="form-control @error('slug') is-invalid @enderror" 
+                             id="slug"
+                             name="slug" 
+                             value="{{ old('slug') }}" 
+                             placeholder="Slug automated in fill" 
+                             required 
+                             readonly
+                            >
+                            @error('slug')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Deskripsi</label>
-                        @error('deskripsi')
-                        <p class="text-danger" style="font-size: 13px">
-                            {{ $message }}
-                        </p>
-                        @enderror
-                        <input id="deskripsi" type="hidden" name="deskripsi" value="{{ old('deskripsi') }}">
-                        <trix-editor input="deskripsi"></trix-editor>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </form>
+                        <div class="mb-3">
+                            <label class="form-label">Deskripsi</label>
+                            @error('deskripsi')
+                            <p class="text-danger" style="font-size: 13px">
+                                {{ $message }}
+                            </p>
+                            @enderror
+                            <input 
+                             id="deskripsi" 
+                             type="hidden" 
+                             name="deskripsi" 
+                             value="{{ old('deskripsi') }}"
+                            >
+                            <trix-editor input="deskripsi"></trix-editor>
+                        </div>
+                        <div>
+                            <a href="/post" class="btn btn-secondary mr-3">Back</a>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -56,7 +81,7 @@
 
 @section('js')
 <script>
-    // Proses Ajax Fetch API
+    // Proses JavaScript Fetch API
     // const title = document.querySelector('#judul');
     // const slug = document.querySelector('#slug');
 

@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-12 col-md-10 col-lg-12 p-5">
+        <div class="col-12 col-md-10 col-lg-12 p-5 ml-5">
             @if(session()->has('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 Hai <strong>{{ auth()->user()->name }}</strong> {{ session('success')}}
@@ -69,12 +69,12 @@
                         <tbody>
                             @foreach($walis as $wali)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $rank++ }}</td>
                                 <td>{{ $wali->nama_wali }}</td>
                                 <td>{{ $wali->umur }}</td>
                                 <td>{{ $wali->pekerjaan }}</td>
                                 <td>{{ (isset($wali->mahasiswa->nama_mhs)) ? $wali->mahasiswa->nama_mhs : 'Not Found' }}</td>
-                                <td>{{ (isset($wali->mahasiswa->jurusan->nama_jurusan)) ? $wali->mahasiswa->jurusan->nama_jurusan : 'Not Found' }}</td>
+                                <td>{{ (isset($wali->mahasiswa->jurusan->jurusan)) ? $wali->mahasiswa->jurusan->jurusan : 'Not Found' }}</td>
                                 <td>
                                     <a href="/wali/{{$wali->slug}}/edit" class="btn btn-warning">
                                         <i class="fa-solid fa-pen-to-square"></i>
@@ -93,6 +93,7 @@
                         </tbody>
                     </table>
                 </div>
+                {{ $walis->links() }}
             </div>
         </div>
     </div>

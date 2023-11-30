@@ -53,6 +53,6 @@ class Mahasiswa extends Model
 
     public function jurusan()
     {
-        return $this->belongsTo(Jurusan::class);
+        return $this->belongsTo(Jurusan::class, 'jurusan_id', 'id');
     }
 }

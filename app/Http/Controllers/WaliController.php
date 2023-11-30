@@ -21,10 +21,13 @@ class WaliController extends Controller
     public function index()
     {
         $title = 'Dashboard Wali';
+        $walis = Wali::with('mahasiswa.jurusan')->latest()->filter(request(['search']))->paginate(5);
+        $rank = $walis->firstItem();
 
         return view('walis.index', [
             'title'      => $title,
-            'walis'      => Wali::with('mahasiswa')->latest()->filter(request(['search']))->get()
+            'walis'      => $walis,
+            'rank'       => $rank,
         ]);
     }
 
