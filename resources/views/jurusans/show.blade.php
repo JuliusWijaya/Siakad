@@ -34,8 +34,8 @@
                     </a>
                     @if (!$details->mahasiswa->count())
                     <form action="/jurusan/{{ $details->id }}/delete" method="POST" class="d-inline ml-2">
-                        @method('DELETE')
                         @csrf
+                        @method('DELETE')
                         <button 
                             onclick="return confirm('Serius jurusan {{ $details->id_jurusan }} akan dihapus ?')" 
                             class="badge badge-danger border-0">

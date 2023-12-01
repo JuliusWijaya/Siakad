@@ -10,7 +10,7 @@ class PagesController extends Controller
 {
     public function home()
     {
-        $posts = Post::with('penulis')->latest()->get(['id', 'judul', 'deskripsi', 'user_id']);
+        $posts = Post::with('penulis')->latest()->limit(3)->get(['id', 'judul', 'deskripsi', 'user_id']);
 
         return view('pages.index', [
             'name'  => 'Laravel',

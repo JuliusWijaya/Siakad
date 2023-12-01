@@ -19,10 +19,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            User::factory(5)->create(),
-            Dosen::factory(5)->create(),
             OrmawaSeeder::class,
         ]);
+        User::factory(5)->create();
+        Dosen::factory(5)->create();
 
         User::create([
             'name'       => 'Super Admin',

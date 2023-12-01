@@ -27,65 +27,63 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-header">PAGES</li>
-                <li class="nav-item">
-                    <a href="/jurusan" class="nav-link {{ Request::is('jurusan*') ? 'active' : '' }}">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                        <p>
-                            Jurusan
-                        </p>
-                    </a>
-                </li>
-                @if(auth()->user()->position == 1)
-                <li class="nav-item">
-                    <a href="/classes" class="nav-link {{ Request::is('classes*') ? 'active' : '' }}">
-                        <i class="fa-solid fa-user-graduate"></i>
-                        <p>
-                            Kelas
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/students" class="nav-link {{ Request::is('students*') ? 'active' : '' }}">
-                        <i class="fa-solid fa-users"></i>
-                        <p>
-                            Mahasiswa
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/ormawa" class="nav-link {{ Request::is('ormawa*') ? 'active' : '' }}">
-                        <i class="fa-solid fa-certificate"></i>
-                        <p>
-                            Ormawa
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/wali" class="nav-link {{ Request::is('wali*') ? 'active' : '' }}">
-                        <i class="fa-solid fa-user"></i>
-                        <p>
-                            Wali
-                        </p>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="/dosen" class="nav-link {{ Request::is('dosen*') ? 'active' : '' }}">
-                        <i class="fa-solid fa-user-tie"></i>
-                        <p>
-                            Dosen
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/user" class="nav-link {{ Request::is('user*') ? 'active' : '' }}">
-                        <i class="fa-solid fa-user-gear"></i>
-                        <p>
-                            User
-                        </p>
-                    </a>
-                </li>
+                @if(auth()->user()->position === 1)
+                    <li class="nav-header">PAGES</li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fa fa-tags" aria-hidden="true"></i>
+                            <p>
+                                Data Master
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="/dosen" class="nav-link {{ Request::is('dosen*') ? 'active' : '' }}">
+                                    <i class="fa-solid fa-user-tie"></i>
+                                    <p>Dosen</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/jurusan" class="nav-link {{ Request::is('jurusan*') ? 'active' : '' }}">
+                                    <i class="fa-solid fa-graduation-cap"></i>
+                                    <p>Jurusan</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/classes" class="nav-link {{ Request::is('classes*') ? 'active' : '' }}">
+                                    <i class="fa-solid fa-user-graduate"></i>
+                                    <p>Kelas</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/students" class="nav-link {{ Request::is('students*') ? 'active' : '' }}">
+                                    <i class="fa-solid fa-users"></i>
+                                    <p>Mahasiswa</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/ormawa" class="nav-link {{ Request::is('ormawa*') ? 'active' : '' }}">
+                                    <i class="fa fa-certificate" aria-hidden="true"></i>
+                                    <p>Ormawa</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/wali" class="nav-link {{ Request::is('wali*') ? 'active' : '' }}">
+                                    <i class="fa fa-user-circle" aria-hidden="true"></i>
+                                    <p>Wali</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/user" class="nav-link {{ Request::is('user*') ? 'active' : '' }}">
+                                    <i class="fa-solid fa-user"></i>
+                                    <p>User</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+             
+                @else
                 <li class="nav-item">
                     <a href="/post" class="nav-link {{ Request::is('post*') ? 'active' : '' }}">
                         <i class="fa-solid fa-file-export"></i>

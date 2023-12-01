@@ -8,7 +8,7 @@
             <hr>
             @foreach ($posts as $item)
             <div class="card mb-3">
-                <div class="card-body">
+                <div class="card-body" style="font-size: 10pt;">
                     <h6 class="card-subtitle text-muted">
                         {!! $item->judul !!} 
                     </h6>

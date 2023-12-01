@@ -41,14 +41,16 @@
                         <a href="/dosen/{{ $dosen->slug }}/edit" class="badge badge-warning">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </a>
-                        <form action="/dosen/{{ $dosen->id }}" method="POST" class="d-inline ml-2">
-                            @method('delete')
+                        @if (!$dosen->mahasiswa->count())
+                        <form action="{{ route('dosen.destroy', $dosen->id) }}" method="POST" class="d-inline ml-2">
                             @csrf
+                            @method('delete')
                             <button class="badge badge-danger border-0"
                                 onclick="return confirm('Apakah Dosen {{ $dosen->nama }} Akan Dihapus ?')">
                                 <i class="fa-regular fa-circle-xmark"></i>
                             </button>
                         </form>
+                        @endif
                     </div>
                 </div>
             </div>

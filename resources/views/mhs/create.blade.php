@@ -18,7 +18,7 @@
                                   type="number" 
                                   name="nim" 
                                   id="nim" 
-                                  class="form-control" 
+                                  class="form-control @error('nim') is-invalid @enderror" 
                                   value="{{ old('nim') }}"
                                   placeholder="Masukan Nim"
                                 >
@@ -34,7 +34,7 @@
                                  type="text" 
                                  name="nama_mhs" 
                                  id="nama_mhs" 
-                                 class="form-control"
+                                 class="form-control @error('nama_mhs') is-invalid @enderror"
                                  value="{{ old('nama_mhs') }}" 
                                  placeholder="Masukan Nama Lengkap"
                                 >
@@ -48,7 +48,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="kelas_id">KELAS</label>
-                                <select name="kelas_id" id="kelas_id" class="form-control kelas">
+                                <select name="kelas_id" id="kelas_id" class="form-control kelas @error('kelas_id') is-invalid @enderror">
                                     <option>-- Pilih Kelas --</option>
                                     @foreach($kelas as $item)
                                     <option value="{{ $item->id }}" @selected(old('kelas_id') == $item->id)>
@@ -65,7 +65,7 @@
 
                             <div class="form-group col-md-6">
                                 <label for="jurusan_id">JURUSAN</label>
-                                <select class="form-control" name="jurusan_id" id="jurusan_id">
+                                <select class="form-control @error('jurusan_id') is-invalid @enderror" name="jurusan_id" id="jurusan_id">
                                     <option>-- Pilih Jurusan --</option>
                                     @foreach($jurusans as $jurusan)
                                         @if (old('jurusan_id') == $jurusan->id)
@@ -89,7 +89,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="jk">JENIS KELAMIN</label>
-                                <select class="form-control" name="jk" id="jk">
+                                <select name="jk" id="jk" class="form-control @error('jk') is-invalid @enderror"> 
                                     <option>-- Pilih JK --</option>
                                     <option value="Laki-laki" @selected(old('jk')=='Laki-laki' )>Laki-laki</option>
                                     <option value="Perempuan" @selected(old('jk')=='Perempuan' )>Perempuan</option>

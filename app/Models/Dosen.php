@@ -33,6 +33,6 @@ class Dosen extends Model
 
     public function mahasiswa()
     {
-        return $this->hasMany(Mahasiswa::class);
+        return $this->hasMany(Mahasiswa::class, 'dosen_id', 'id');
     }
 }

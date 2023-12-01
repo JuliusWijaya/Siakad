@@ -54,8 +54,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('password', [UserController::class, 'password_action'])->name('password.action');
     Route::post('logout', [UserController::class, 'logout'])->name('logout');
 
+    Route::get('/dashboard', [DashboardController::class, 'dashboard']);
     Route::middleware(['auth', 'only_admin'])->group(function () {
-        Route::get('/dashboard', [DashboardController::class, 'dashboard']);
         Route::resources([
             'students'  => MahasiswaController::class,
             'classes'   => KelasController::class,
@@ -68,7 +68,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::controller(KelasController::class)->group(function () {
             Route::get('/class/edit/{id}', 'edit');
-            Route::put('/kelas/update', 'update')->name('classes.update');
+            Route::put('/class/update', 'update')->name('classes.update');
         });
 
         Route::resource('wali', WaliController::class);
@@ -85,11 +85,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::get('/user/{users:name}/details', [UsersController::class, 'show']);
         Route::resource('/ormawa', OrmawaController::class);
-
-        Route::resource('post', PostController::class);
-        Route::get('/post/{post:slug}/edit', [PostController::class, 'edit']);
-        Route::get('/post/create/checkslug', [PostController::class, 'show'])->name('checkSlug');
     });
+
+    Route::resource('post', PostController::class);
+    Route::get('/post/{post:slug}/edit', [PostController::class, 'edit']);
+    Route::get('/post/create/checkslug', [PostController::class, 'show'])->name('checkSlug');
 
     Route::get('/print/mhs', [PrintController::class, 'printPdf']);
     Route::get('/export/mhs', [MahasiswaController::class, 'exportExcel']);

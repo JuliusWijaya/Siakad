@@ -21,8 +21,6 @@ return new class extends Migration
             $table->char('jk', 15);
             $table->char('no_hp', 13);
             $table->string('alamat', 100);
-            $table->foreignId('jurusan_id');
-            $table->foreignId('dosen_id');
             $table->timestamps();
         });
     }

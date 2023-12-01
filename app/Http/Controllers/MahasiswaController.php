@@ -57,7 +57,9 @@ class MahasiswaController extends Controller
     {
         $validatedData = $request->validated();
         $mhs = Mahasiswa::create($validatedData);
-        $mhs->ormawa()->sync($validatedData['ormawa_id']);
+        if (isset($request->ormawa_id)) {
+            $mhs->ormawa()->sync($validatedData['ormawa_id']);
+        }
         alert()->success('Success', 'New Students Successfully Added');
         return redirect('/students');
     }
