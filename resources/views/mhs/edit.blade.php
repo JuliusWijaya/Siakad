@@ -178,7 +178,7 @@
                             @enderror
                         </div>
                         <button type="submit" class="btn btn-primary mt-2">Update</button>
-                        <a href="/student/{{ $student->slug }}/details" class="btn btn-secondary mt-2 ml-2">Back</a>
+                        <a href="/admin/student/{{ $student->slug }}/details" class="btn btn-secondary mt-2 ml-2">Back</a>
                     </form>
                 </div>
             </div>

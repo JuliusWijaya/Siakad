@@ -3,87 +3,129 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Exports\ExportUser;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Auth\Events\Registered;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class UserController extends Controller
 {
-    public function register()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
-        return view('user.register', ['data' => 'Register']);
+        $users = User::latest()->user(request(['search']))->get();
+        $title = 'Dashboard User';
+        return view('users.index', [
+            'users'  => $users,
+            'title'  => $title,
+        ]);
     }
 
-    public function register_action(Request $request)
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $title = 'Add User';
+        return view('users.create', [
+            'title' => $title,
+        ]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
         $request->validate([
-            'name'             => 'required',
-            'email'            => 'required|email:dns',
-            'password'         => 'required',
-            'password_confirm' => 'required|same:password'
+            'name'      => 'required|min:5|max:20',
+            'email'     => 'required|email:dns',
+            'password'  => 'required|min:6|max:20'
         ]);
 
-        $user =  User::create([
+        User::create([
             'name'      => $request->name,
             'email'     => $request->email,
             'password'  => Hash::make($request->password)
         ]);
 
-        event(new Registered($user));
-
-        Auth::login($user);
-
-        return redirect('/email/verify');
+        alert()->success('Success', 'New User Successfully Added');
+        return redirect('/admin/user');
     }
 
-    public function login()
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(User $user)
     {
-        return view('user.login', ['data' => 'Login']);
+        $title  = 'Detail User';
+        return view('users.details', compact('user', 'title'));
     }
 
-    public function login_action(Request $request)
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(User $user)
     {
-        $credentials = $request->validate([
-            'email'     => 'required',
-            'password'  => 'required'
-        ]);
-
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
-        }
-
-        return back()->withErrors([
-            'password' => 'Wrong Username or Password'
-        ]);
+        $title = 'Edit User';
+        return view('users.edit', compact('user', 'title'));
     }
 
-    public function password()
-    {
-        return view('user.password', ['data' => 'Change Password']);
-    }
-
-    public function password_action(Request $request)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, User $user)
     {
         $request->validate([
-            'old_password'  => 'required|current_password',
-            'new_password'  => 'required|confirmed'
+            'name'  => 'required|min:5|max:20',
+            'email' => 'required|email:dns'
         ]);
 
-        $user = User::find(Auth::id());
-        $user->password = Hash::make($request->new_password);
-        $user->save();
-        $request->session()->regenerate();
+        User::where('id', $user->id)
+            ->update([
+                'name'  => $request->name,
+                'email' => $request->email
+            ]);
 
-        return redirect('/dashboard')->with('status', 'Success Password Changed!');
+        alert()->success('Success', $user->name . ' Successfully Has Been Edit');
+        return redirect('/admin/user');
     }
 
-    public function logout(Request $request)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(User $user)
     {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return redirect('/');
+        $user->delete();
+        alert()->success('Success', $user->name . ' Has Been Delete');
+        return redirect('/admin/user');
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new ExportUser, 'user.xlsx');
     }
 }

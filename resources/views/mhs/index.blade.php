@@ -78,7 +78,7 @@
                                             @endforeach
                                         </td>
                                         <td class="text-center">
-                                            <a href="/student/{{ $mhs->slug }}/details" class="btn btn-info btn-sm">
+                                            <a href="/admin/student/{{ $mhs->slug }}/details" class="btn btn-info btn-sm">
                                                 <i class="fa-solid fa-eye"></i>
                                             </a>
                                         </td>

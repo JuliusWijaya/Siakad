@@ -95,7 +95,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <a href="/wali" class="btn btn-secondary me-2">Back</a>
+                            <a href="/admin/wali" class="btn btn-secondary me-2">Back</a>
                             <button type="submit" class="btn btn-primary">Save</button>
                         </div>
                     </form>

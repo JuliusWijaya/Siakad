@@ -14,7 +14,7 @@
     <ul class="navbar-nav ml-auto">
         <div class="user-panel mt-1">
             <div class="image">
-                <img src="/img/avatar5.png" class="img-circle " alt="User Image">
+                <img src="/dist/img/avatar5.png" class="img-circle " alt="User Image">
             </div>
         </div>
         <li class="nav-item dropdown mt-0">

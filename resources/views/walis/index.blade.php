@@ -38,7 +38,7 @@
                     <h3 class="card-title text-center">Form Wali</h3>
                     <div class="card-tools">
                         <div class="input-group input-group-sm" style="width: 250px;">
-                            <form action="/wali" method="GET" class="d-inline">
+                            <form action="/admin/wali" method="GET" class="d-inline">
                                 <div class="input-group mb-3">
                                     <input type="text" name="search" class="form-control"
                                         value="{{request('search')}}" placeholder="Search Name">
@@ -76,7 +76,7 @@
                                 <td>{{ (isset($wali->mahasiswa->nama_mhs)) ? $wali->mahasiswa->nama_mhs : 'Not Found' }}</td>
                                 <td>{{ (isset($wali->mahasiswa->jurusan->jurusan)) ? $wali->mahasiswa->jurusan->jurusan : 'Not Found' }}</td>
                                 <td>
-                                    <a href="/wali/{{$wali->slug}}/edit" class="btn btn-warning">
+                                    <a href="/admin/wali/{{$wali->slug}}/edit" class="btn btn-warning">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
                                     <form action="/wali/{{$wali->id}}" method="POST" class="d-inline">

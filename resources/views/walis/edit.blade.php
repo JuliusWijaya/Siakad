@@ -62,7 +62,7 @@
                         </div>
 
                         <div class="mt-3">
-                            <a href="/wali" class="btn btn-secondary">Back</a>
+                            <a href="/admin/wali" class="btn btn-secondary">Back</a>
                             <button class="btn btn-primary ml-3">Update</button>
                         </div>
                     </form>

@@ -33,12 +33,12 @@
                                 </div>
                             </fieldset>
                         </form>
-                        <a href="/dosen">
+                        <a href="/admin/dosen">
                             <span class="badge badge-primary mr-2">
                                 <i class="fa-solid fa-arrow-left"></i>
                             </span>
                         </a>
-                        <a href="/dosen/{{ $dosen->slug }}/edit" class="badge badge-warning">
+                        <a href="/admin/dosen/{{ $dosen->slug }}/edit" class="badge badge-warning">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </a>
                         @if (!$dosen->mahasiswa->count())

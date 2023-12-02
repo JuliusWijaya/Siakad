@@ -17,7 +17,7 @@
             </div>
     
             <div class="row">
-                <div class="col-lg-5">
+                <div class="col-lg-4">
                     <!-- Form Pencarian -->
                     <form method="GET" action="/user">
                         @csrf
@@ -32,9 +32,9 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-lg-7 d-flex justify-content-end">
+                <div class="col-lg-8 d-flex justify-content-end">
                     <div>
-                        <a href="{{ route('user.create') }}" class="btn btn-primary">
+                        <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm">
                             <i class="fa-solid fa-user-plus"></i>
                             Add
                         </a>
@@ -59,7 +59,7 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td class=" text-center">
-                            <a href="/user/{{ $user->name }}/details" class="btn btn-info btn-sm">
+                            <a href="/admin/user/{{ $user->name }}/details" class="btn btn-info btn-sm">
                                 <i class="fa-solid fa-eye"></i>
                             </a>
                         </td>

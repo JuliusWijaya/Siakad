@@ -103,7 +103,7 @@
                         <td>{{ $data->nama_jurusan }}</td>
                         @if (auth()->user()->position != 0)
                             <td class=" text-center">
-                                <a href="/jurusan/{{ $data->slug }}/details" class="btn btn-info btn-sm">
+                                <a href="/admin/jurusan/{{ $data->slug }}/details" class="btn btn-info btn-sm">
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
                             </td>

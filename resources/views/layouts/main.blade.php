@@ -21,9 +21,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <!-- Theme style -->
-    <link rel="stylesheet" href="/css/adminlte.min.css">
+    <link rel="stylesheet" href="/dist/css/adminlte.min.css">
     <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="/css/OverlayScrollbars.min.css">
+    <link rel="stylesheet" href="/dist/css/OverlayScrollbars.min.css">
     {{-- Auto Complete --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
     <title>@yield('title', $title)</title>
@@ -38,7 +38,7 @@
     @include('sweetalert::alert')
     <div class="wrapper">
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="/img/1.png" alt="LP3I LOGO" height="125" width="150">
+            <img class="animation__shake" src="/dist/img/1.png" alt="LP3I LOGO" height="125" width="150">
         </div>
         @include('dashboards.navbar')
         @include('dashboards.sidebar')
@@ -48,15 +48,15 @@
     {{-- CDN SweetAlert --}}
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>    
     <!-- jQuery -->
-    <script src="/plugins/jquery/jquery.min.js"></script>
+    <script src="/dist/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/dist/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="/js/adminlte.js"></script>
+    <script src="/dist/js/adminlte.js"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="/js/demo.js"></script>
+    <script src="/dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="/js/pages/dashboard.js"></script>
+    <script src="/dist/js/pages/dashboard.js"></script>
     {{-- Auto Complete --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>

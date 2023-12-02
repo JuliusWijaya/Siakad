@@ -12,7 +12,7 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="name">NAME</label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror mb-5"
+                                <input type="text" class="form-control @error('name') is-invalid @enderror"
                                     id="name" name="name" value="{{ old('name') }}" placeholder="Masukan Nama Ormawa"
                                     required autofocus>
                                 @error('name')
@@ -23,7 +23,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <a href="/ormawa" class="btn btn-secondary me-3">Back</a>
+                            <a href="/admin/ormawa" class="btn btn-secondary me-3">Back</a>
                             <button type="submit" class="btn btn-primary">Save</button>
                         </div>
                     </form>

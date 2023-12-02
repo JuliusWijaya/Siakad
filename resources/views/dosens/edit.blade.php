@@ -52,7 +52,7 @@
                         </div>
                     
                         <button class="btn btn-primary mt-2">Update</button>
-                        <a href="/dosen" class="btn btn-secondary mt-2 ml-2">Back</a>
+                        <a href="/admin/dosen/{{ $dosen->slug }}/details" class="btn btn-secondary mt-2 ml-2">Back</a>
                     </form>
                 </div>
             </div>

@@ -10,6 +10,7 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\OrmawaController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AuthenticationController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 
@@ -25,19 +26,14 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 */
 
 
-
-// Route::get('/', function () {
-//     return view('home', ['title' => 'Home']);
-// })->name('home');
-
 Route::get('/', [PagesController::class, 'home']);
 Route::get('/about', [PagesController::class, 'about']);
 
-Route::get('register', [UserController::class, 'register'])->name('register')->middleware('guest');
-Route::post('register', [UserController::class, 'register_action'])->name('register.action');
+Route::get('register', [AuthenticationController::class, 'register'])->name('register')->middleware('guest');
+Route::post('register', [AuthenticationController::class, 'register_action'])->name('register.action');
 
-Route::get('login', [UserController::class, 'login'])->name('login')->middleware('guest');
-Route::post('login', [UserController::class, 'login_action'])->name('login.action')->middleware('throttle:login');
+Route::get('login', [AuthenticationController::class, 'login'])->name('login')->middleware('guest');
+Route::post('login', [AuthenticationController::class, 'login_action'])->name('login.action')->middleware('throttle:login');
 
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
@@ -50,12 +46,12 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/password', [UserController::class, 'password'])->name('password');
-    Route::post('password', [UserController::class, 'password_action'])->name('password.action');
-    Route::post('logout', [UserController::class, 'logout'])->name('logout');
+    Route::get('/password', [AuthenticationController::class, 'password'])->name('password');
+    Route::post('password', [AuthenticationController::class, 'password_action'])->name('password.action');
+    Route::post('logout', [AuthenticationController::class, 'logout'])->name('logout');
 
     Route::get('/dashboard', [DashboardController::class, 'dashboard']);
-    Route::middleware(['auth', 'only_admin'])->group(function () {
+    Route::prefix('admin')->middleware(['auth', 'only_admin'])->group(function () {
         Route::resources([
             'students'  => MahasiswaController::class,
             'classes'   => KelasController::class,
@@ -81,10 +77,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/dosen/{dosen:slug}/edit', [DosenController::class, 'edit']);
         Route::get('/dosen/create/checkSlug', [DosenController::class, 'checkSlug']);
 
-        Route::resource('user', UsersController::class);
+        Route::resource('user', UserController::class);
+        Route::get('/user/{user:name}/details', [UserController::class, 'show']);
 
-        Route::get('/user/{users:name}/details', [UsersController::class, 'show']);
         Route::resource('/ormawa', OrmawaController::class);
+
+        Route::get('/jurusan', [JurusanController::class, 'index']);
+        Route::get('/jurusan/add', [JurusanController::class, 'create']);
+        Route::post('/jurusan', [JurusanController::class, 'store']);
+        Route::delete('/jurusan/{jurusan}/delete', [JurusanController::class, 'destroy']);
+        Route::get('/jurusan/{jurusan:slug}/edit', [JurusanController::class, 'edit']);
+        Route::put('/jurusan/{jurusan}', [JurusanController::class, 'update']);
+        Route::get('/jurusan/{jurusan:slug}/details', [JurusanController::class, 'show']);
     });
 
     Route::resource('post', PostController::class);
@@ -101,12 +105,4 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/export/dosen', [DosenController::class, 'exportExcel']);
     Route::get('/users/print', [PrintController::class, 'printUser']);
     Route::get('/users/export', [UsersController::class, 'exportExcel']);
-
-    Route::get('/jurusan', [JurusanController::class, 'index']);
-    Route::get('/jurusan/add', [JurusanController::class, 'create']);
-    Route::post('/jurusan', [JurusanController::class, 'store']);
-    Route::delete('/jurusan/{jurusan}/delete', [JurusanController::class, 'destroy']);
-    Route::get('/jurusan/{jurusan:slug}/edit', [JurusanController::class, 'edit']);
-    Route::put('/jurusan/{jurusan}', [JurusanController::class, 'update']);
-    Route::get('/jurusan/{jurusan:slug}/details', [JurusanController::class, 'show']);
 });

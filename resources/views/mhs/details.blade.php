@@ -56,13 +56,13 @@
                     </ol>
                    
                     <div>
-                        <a href="/students">
+                        <a href="/admin/students">
                           <span class="badge badge-secondary">
                             <i class="fa-solid fa-arrow-left"></i>  
                           </span> 
                         </a>
       
-                        <a href="/student/{{ $details->slug }}/edit" class="ml-2">
+                        <a href="/admin/student/{{ $details->slug }}/edit" class="ml-2">
                           <span class="badge badge-warning">
                             <i class="fa-solid fa-pen-to-square"></i>
                           </span> 
