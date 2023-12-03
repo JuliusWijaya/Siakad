@@ -15,6 +15,7 @@ class KelasController extends Controller
     public function index()
     {
         $kelas = Kelas::withCount('mahasiswa')->latest()->paginate(5);
+        $kelas->load('mahasiswa');
         $rank = $kelas->firstItem();
 
         return view('kelas.index', [
@@ -52,7 +53,7 @@ class KelasController extends Controller
 
         Kelas::create($validatedData);
         alert()->success('Success', 'New Class Successfully Added');
-        return redirect('/classes');
+        return back();
     }
 
     /**
@@ -98,7 +99,7 @@ class KelasController extends Controller
         if ($idKelas) {
             $idKelas->fill($validatedData)->save();
             alert()->success('Success', 'Class Successfully Update');
-            return redirect('/classes');
+            return redirect('/admin/classes');
         }
     }
 
@@ -110,6 +111,12 @@ class KelasController extends Controller
      */
     public function destroy(Kelas $class)
     {
+        // Cek apakah kelas sudah memiliki data relasi
+        if ($class->mahasiswa()->count()) {
+            alert()->error('Failed', 'Failed deleted class ' . $class->name);
+            return back();
+        }
+        // Menghapus kelas yang belum memiliki data relasi
         $class->delete();
         alert()->success('Success', 'Class Successfully Deleted');
         return redirect()->back();

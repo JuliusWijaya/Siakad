@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-9">
-            @if (session('success'))
+            @if (session()->has('success'))
             <div class="alert alert-success alert-dismissible fade show col-lg-12 text-center" role="alert">
                 <strong>Hai {{ auth()->user()->name }}</strong> {{ session('success') }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -16,14 +16,13 @@
                 <h2 class="text-center py-3">Form User</h2>
             </div>
     
-            <div class="row">
-                <div class="col-lg-4">
+            <div class="row mb-4">
+                <div class="col-md-5 d-flex justify-content-start">
                     <!-- Form Pencarian -->
-                    <form method="GET" action="/user">
-                        @csrf
+                    <form method="GET" action="/admin/user">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control bi bi-search" value="{{ Request('search') }}"
-                                name="search" placeholder="Masukan Pencarian">
+                            <input type="text" class="form-control bi bi-search" value="{{ request('search') }}"
+                            name="search" placeholder="Masukan Pencarian">
                             <div class="input-group-append">
                                 <button class="btn btn-outline-secondary" type="submit">
                                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -32,13 +31,15 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-lg-8 d-flex justify-content-end">
-                    <div>
-                        <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm">
-                            <i class="fa-solid fa-user-plus"></i>
-                            Add
-                        </a>
-                    </div>
+                <div class="col-md-7 d-flex justify-content-end">
+                    <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm mr-2">
+                        <i class="fa-solid fa-user-plus"></i>
+                        Add
+                    </a>
+                    <a href="/admin/user/deleted" class="btn btn-danger btn-sm">
+                        <i class="fa-solid fa-trash"></i>
+                        Deleted
+                    </a>
                 </div>
             </div>
     
@@ -96,7 +97,7 @@
         </div>
         @else
         <p class="alert alert-danger text-center text-dark mt-5 col-md-5 text-white" style="margin: 0 auto">
-            Not Found Jurusan
+            Data Not Found!
         </p>
         @endif
     </div>

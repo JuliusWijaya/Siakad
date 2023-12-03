@@ -27,12 +27,11 @@ class PrintController extends Controller
         return $pdf->stream('jurusan.pdf');
     }
 
-    public function printPdf()
+    public function printPdf($slug)
     {
-        $mhs = Mahasiswa::latest()->limit(5)->get();
+        $mhs = Mahasiswa::where('slug', $slug)->first();
         $data = [
             'data'   => 'Mahasiswa PDF',
-            'title'  => 'Mahasiswa LP3I',
             'mhs'    => $mhs
         ];
 

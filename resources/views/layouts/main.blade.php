@@ -38,7 +38,7 @@
     @include('sweetalert::alert')
     <div class="wrapper">
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="/dist/img/1.png" alt="LP3I LOGO" height="125" width="150">
+            <img class="animation__shake" src="{{ asset('/dist/img/logo.png') }}" alt="LP3I LOGO" height="125" width="150">
         </div>
         @include('dashboards.navbar')
         @include('dashboards.sidebar')

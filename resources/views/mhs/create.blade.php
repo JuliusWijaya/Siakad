@@ -172,7 +172,7 @@
 
                         <div class="modal-footer mb-0">
                             <button class="btn btn-primary me-2" type="submit">Save</button>
-                            <a href="/students" class="btn btn-secondary">Close</a>
+                            <a href="/admin/students" class="btn btn-secondary">Close</a>
                         </div>
                     </form>
                 </div>

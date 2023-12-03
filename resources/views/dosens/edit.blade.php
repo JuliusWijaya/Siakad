@@ -12,8 +12,15 @@
                         @csrf
                         <div class="form-group mb-0">
                             <label for="nid">ID MHS</label>
-                            <input type="text" class="form-control  @error('nid') is-invalid @enderror"
-                                id="nid" name="nid" value="{{ old('nid',  $dosen->nid) }}">
+                            <input 
+                             type="text" 
+                             class="form-control  @error('nid') is-invalid @enderror"
+                             id="nid" 
+                             name="nid" 
+                             value="{{ old('nid', $dosen->nid) }}"
+                             required
+                             autofocus
+                            >
                             @error('nid')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -22,8 +29,14 @@
                         </div>
                         <div class="form-group mb-0">
                             <label for="nama">NAMA</label>
-                            <input type="text" class="form-control  @error('nama') is-invalid @enderror"
-                                id="nama" name="nama" value="{{ old('nama',  $dosen->nama) }}">
+                            <input 
+                             type="text" 
+                             class="form-control  @error('nama') is-invalid @enderror"
+                             id="nama" 
+                             name="nama" 
+                             value="{{ old('nama', $dosen->nama) }}"
+                             required
+                            >
                             @error('nama')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -32,8 +45,13 @@
                         </div>
                         <div class="form-group mb-0">
                             <label for="tgl_lahir">TGL LAHIR</label>
-                            <input type="date" class="form-control  @error('tgl_lahir') is-invalid @enderror" id="tgl_lahir"
-                            name="tgl_lahir" value="{{ old('tgl_lahir', $dosen->tgl_lahir) }}">
+                            <input 
+                             type="date" 
+                             class="form-control  @error('tgl_lahir') is-invalid @enderror" 
+                             id="tgl_lahir"
+                             name="tgl_lahir" 
+                             value="{{ old('tgl_lahir', $dosen->tgl_lahir) }}"
+                            >
                             @error('tgl_lahir')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -42,15 +60,19 @@
                         </div>
                         <div class="form-group mb-0">
                             <label for="alamat">ALAMAT</label>
-                            <input type="text" class="form-control  @error('alamat') is-invalid @enderror" id="alamat"
-                            name="alamat" value="{{ old('alamat',  $dosen->alamat) }}">
+                            <input 
+                             type="text" 
+                             class="form-control  @error('alamat') is-invalid @enderror" 
+                             id="alamat"
+                             name="alamat" 
+                             value="{{ old('alamat', $dosen->alamat) }}"
+                            >
                             @error('alamat')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                             @enderror
                         </div>
-                    
                         <button class="btn btn-primary mt-2">Update</button>
                         <a href="/admin/dosen/{{ $dosen->slug }}/details" class="btn btn-secondary mt-2 ml-2">Back</a>
                     </form>

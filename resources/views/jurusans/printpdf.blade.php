@@ -6,7 +6,7 @@
         <table>
             <tr>
                 <td>
-                    <img src="{{ public_path('/img/1.png') }}" alt="logo lp3i" width="120" height="120">
+                    <img src="{{ public_path('/dist/img/logo.png') }}" alt="logo lp3i" width="120" height="120">
                 </td>
                 <td style="width: 10px"></td>
                 <td>

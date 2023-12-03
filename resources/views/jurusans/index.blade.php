@@ -11,13 +11,20 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="POST" action="/jurusan">
+            <form method="POST" action="{{ route('jurusan.store') }}">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="jurusan">ID JURUSAN</label>
-                        <input type="text" class="form-control @error('jurusan') is-invalid @enderror"
-                            name="jurusan" id="jurusan" value="{{ old('jurusan') }}">
+                        <input 
+                         type="text" 
+                         class="form-control @error('jurusan') is-invalid @enderror"
+                         name="jurusan" 
+                         id="jurusan" 
+                         value="{{ old('jurusan') }}"
+                         required
+                         autofocus
+                        >
                         @error('jurusan')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -26,8 +33,14 @@
                     </div>
                     <div class="form-group">
                         <label for="nama_jurusan">NAMA</label>
-                        <input type="text" class="form-control @error('nama_jurusan') is-invalid @enderror"
-                            name="nama_jurusan" id="nama_jurusan" value="{{ old('nama_jurusan') }}">
+                        <input 
+                         type="text" 
+                         class="form-control @error('nama_jurusan') is-invalid @enderror"
+                         name="nama_jurusan" 
+                         id="nama_jurusan" 
+                         value="{{ old('nama_jurusan') }}"
+                         required
+                        >
                         @error('nama_jurusan')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -54,7 +67,7 @@
     
             <div class="row my-4">
                 <div class="col-lg-7">
-                    <div class="text-start">
+                    <div class="">
                         <!-- Button trigger modal -->
                         @if (auth()->user()->position != 0)
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -67,8 +80,7 @@
     
                 <div class="col-lg-5">
                     <!-- Form Pencarian -->
-                    <form method="GET" action="/jurusan">
-                        @csrf
+                    <form method="GET" action="/admin/jurusan">
                         <div class="input-group">
                             <input type="text" class="form-control bi bi-search" value="{{ Request('search') }}"
                                 name="search" placeholder="Masukan Pencarian">
@@ -98,7 +110,7 @@
                 <tbody>
                     @forelse($jurusans as $index => $data)
                     <tr>
-                        <td class="text-center">{{ $index + $jurusans->firstItem() }}</td>
+                        <td class="text-center">{{ $rank++ }}</td>
                         <td>{{ $data->jurusan }}</td>
                         <td>{{ $data->nama_jurusan }}</td>
                         @if (auth()->user()->position != 0)
@@ -126,12 +138,13 @@
                         <i class="fa-solid fa-print"></i>
                         Print
                     </a>
-                </div>
-                <div class="col-lg-6 d-flex justify-content-end">
                     <a href="/export/mhs" class="btn btn-secondary btn-sm mb-3 ml-3">
                         <i class="fa-solid fa-print"></i>
                         Export Excel
                     </a>
+                </div>
+                <div class="col-lg-6 d-flex justify-content-end">
+                    {{ $jurusans->links() }}
                 </div>
             </div>
         </div>

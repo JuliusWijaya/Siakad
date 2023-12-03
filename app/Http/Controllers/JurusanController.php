@@ -18,10 +18,12 @@ class JurusanController extends Controller
     public function index()
     {
         $jurusans = Jurusan::with('mahasiswa')->latest()->search(request(['search']))->paginate(5);
+        $rank = $jurusans->firstItem();
 
         return view('jurusans.index', [
+            'title'    => 'Dashboard Jurusan',
             'jurusans' => $jurusans,
-            'title'    => 'Dashboard Jurusan'
+            'rank'     => $rank,
         ]);
     }
 
@@ -45,7 +47,7 @@ class JurusanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'jurusan'    => 'required|unique:jurusans',
+            'jurusan'       => 'required|unique:jurusans',
             'nama_jurusan'  => 'required|max:50',
             'slug'          => 'max:50',
         ]);
@@ -57,7 +59,7 @@ class JurusanController extends Controller
         ]);
 
         alert()->success('Success', 'New Major Successfully Added');
-        return redirect('/jurusan');
+        return back();
     }
 
     /**
@@ -108,7 +110,7 @@ class JurusanController extends Controller
             ]);
 
         alert()->success('Success', $jurusan->nama_jurusan . ' Successfully Has Been Edit');
-        return redirect('/jurusan');
+        return back();
     }
 
     /**
@@ -121,7 +123,7 @@ class JurusanController extends Controller
     {
         Jurusan::destroy($jurusan->id);
         alert()->success('Success', 'Jurusan ' . $jurusan->nama_jurusan . ' Has Been Delete');
-        return redirect('/jurusan');
+        return redirect('/admin/jurusan');
     }
 
     public function export()

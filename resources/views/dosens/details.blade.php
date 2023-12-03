@@ -28,7 +28,9 @@
                                 <div class="form-group">
                                     <label for="disabledTextInput"><b>MAHASISWA :</b></label>
                                     @foreach ($dosen->mahasiswa as $item)
-                                    <input type="text" id="disabledInput" class="form-control" value="{{ $item->nama_mhs }}">
+                                      <ul class="list-group">
+                                        <li class="list-group-item">{{ $item->nama_mhs }}</li>
+                                      </ul>
                                     @endforeach
                                 </div>
                             </fieldset>

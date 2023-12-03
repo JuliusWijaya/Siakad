@@ -124,6 +124,23 @@ class UserController extends Controller
         return redirect('/admin/user');
     }
 
+    public function deleted()
+    {
+        $userDeleted = User::onlyTrashed()->get();
+
+        return view('users.deleted', [
+            'userDeleted'   => $userDeleted,
+            'title'         => 'User Deleted',
+        ]);
+    }
+
+    public function restore($id)
+    {
+        $details = User::withTrashed()->where('id', $id)->first();
+        $details->restore();
+        return redirect()->back();
+    }
+
     public function exportExcel()
     {
         return Excel::download(new ExportUser, 'user.xlsx');

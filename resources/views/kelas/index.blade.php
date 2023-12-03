@@ -93,7 +93,6 @@
                                 data-toggle="modal" data-target="#editKelas">
                                 <i class="fa fa-pen-to-square"></i>
                             </button>
-                            @if ($item->mahasiswa_count === 0)
                             <form action="{{ route('classes.destroy', $item->id) }}" method="POST" class="d-inline mx-2">
                                 @csrf
                                 @method('DELETE')
@@ -102,7 +101,6 @@
                                     <i class="fa-regular fa-circle-xmark"></i>
                                 </button>
                             </form>
-                            @endif
                         </td>
                     </tr>
                     @endforeach

@@ -31,16 +31,17 @@ class DatabaseSeeder extends Seeder
             'position'   => 1
         ]);
 
-        Jurusan::create([
-            'jurusan'       => 'MI',
-            'nama_jurusan'  => 'Manajemen Informatika',
-            'slug'          => 'manajemen-informatika',
-        ]);
-
-        Jurusan::create([
-            'jurusan'       => 'MKP',
-            'nama_jurusan'  => 'Manajemen Keuangan Perbankan',
-            'slug'          => 'manajemen-keuangan-perbankan',
+        Jurusan::insert([
+            [
+                'jurusan'       => 'MI',
+                'nama_jurusan'  => 'Manajemen Informatika',
+                'slug'          => 'manajemen-informatika',
+            ],
+            [
+                'jurusan'       => 'MKP',
+                'nama_jurusan'  => 'Manajemen Keuangan Perbankan',
+                'slug'          => 'manajemen-keuangan-perbankan',
+            ],
         ]);
     }
 }

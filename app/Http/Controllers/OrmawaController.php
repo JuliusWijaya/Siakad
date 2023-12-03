@@ -63,10 +63,15 @@ class OrmawaController extends Controller
 
     public function destroy(Ormawa $ormawa)
     {
+        // Cek apakah ormawa memiliki data relasi dengan mahasiswa
+        if ($ormawa->mahasiswa()->count()) {
+            alert()->error('Failed', 'Failed deleted ormawa');
+            return back();
+        }
+
+        // Menghapus ormawa yang tidak memiliki data relasi dengan mahasiswa
         Ormawa::destroy($ormawa->id);
-
         alert()->success('Success', 'Ormawa Successfully Delete');
-
-        return redirect('/ormawa');
+        return back();
     }
 }

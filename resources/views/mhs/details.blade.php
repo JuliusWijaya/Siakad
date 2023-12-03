@@ -78,6 +78,9 @@
                             </button>
                             </form>
                         @endif
+                        <a href="/print/mhs/{{ $details->slug }}" class="badge badge-success ml-2" target="_blank">
+                            <i class="fa fa-file"></i>
+                        </a>
                     </div>
                 </div>
               </div>

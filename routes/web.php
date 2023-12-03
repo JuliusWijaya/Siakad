@@ -77,17 +77,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/dosen/{dosen:slug}/edit', [DosenController::class, 'edit']);
         Route::get('/dosen/create/checkSlug', [DosenController::class, 'checkSlug']);
 
-        Route::resource('user', UserController::class);
+        Route::get('/user/deleted', [UserController::class, 'deleted']);
+        Route::post('/user/{id}', [UserController::class, 'restore'])->name('restore.user');
         Route::get('/user/{user:name}/details', [UserController::class, 'show']);
+        Route::resource('user', UserController::class);
 
         Route::resource('/ormawa', OrmawaController::class);
 
         Route::get('/jurusan', [JurusanController::class, 'index']);
         Route::get('/jurusan/add', [JurusanController::class, 'create']);
-        Route::post('/jurusan', [JurusanController::class, 'store']);
-        Route::delete('/jurusan/{jurusan}/delete', [JurusanController::class, 'destroy']);
+        Route::post('/jurusan', [JurusanController::class, 'store'])->name('jurusan.store');
+        Route::delete('/jurusan/{jurusan}/delete', [JurusanController::class, 'destroy'])->name('jurusan.destroy');
         Route::get('/jurusan/{jurusan:slug}/edit', [JurusanController::class, 'edit']);
-        Route::put('/jurusan/{jurusan}', [JurusanController::class, 'update']);
+        Route::put('/jurusan/{jurusan}', [JurusanController::class, 'update'])->name('jurusan.update');
         Route::get('/jurusan/{jurusan:slug}/details', [JurusanController::class, 'show']);
     });
 
@@ -95,7 +97,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/post/{post:slug}/edit', [PostController::class, 'edit']);
     Route::get('/post/create/checkslug', [PostController::class, 'show'])->name('checkSlug');
 
-    Route::get('/print/mhs', [PrintController::class, 'printPdf']);
+    Route::get('/print/mhs/{slug}', [PrintController::class, 'printPdf']);
     Route::get('/export/mhs', [MahasiswaController::class, 'exportExcel']);
     Route::get('/jurusan/print', [PrintController::class, 'downloadPdf']);
     Route::get('/jurusan/export', [JurusanController::class, 'export']);

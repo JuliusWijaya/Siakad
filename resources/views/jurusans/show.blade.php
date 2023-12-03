@@ -21,19 +21,19 @@
                     </fieldset>
                 </form>
                 <div>
-                    <a href="/jurusan">
+                    <a href="/admin/jurusan">
                         <span class="badge badge-primary">
                             <i class="fa-solid fa-arrow-left"></i>
                         </span>
                     </a>
 
-                    <a href="/jurusan/{{ $details->slug }}/edit" class="ml-2">
+                    <a href="/admin/jurusan/{{ $details->slug }}/edit" class="ml-2">
                         <span class="badge badge-success">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </span>
                     </a>
                     @if (!$details->mahasiswa->count())
-                    <form action="/jurusan/{{ $details->id }}/delete" method="POST" class="d-inline ml-2">
+                    <form action="{{ route('jurusan.destroy', $details->id) }}" method="POST" class="d-inline ml-2">
                         @csrf
                         @method('DELETE')
                         <button 
