@@ -18,7 +18,7 @@ class OnlyAdmin
     public function handle(Request $request, Closure $next)
     {
         if (Auth::user()->position != 1) {
-            return redirect('/dashboard');
+            return abort(404);
         }
 
         return $next($request);

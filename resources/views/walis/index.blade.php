@@ -21,10 +21,28 @@
                     </a> 
                 </div>
                 <div class="col-md-6 d-flex justify-content-end">
-                    <a href="/print/wali" class="btn btn-success btn-sm mb-3" target="_blank">
-                        <i class="fa-solid fa-print"></i>
-                       Print
-                    </a>
+                    <div class="input-group input-group-sm" style="width: 250px;">
+                        <form action="{{ route('print.wali') }}" method="POST" class="d-inline">
+                            @csrf
+                            <div class="input-group mb-3">
+                                <input type="hidden" name="search" id="id_wali">
+                                <select id="val" class="form-control"
+                                    value="{{request('search')}}">
+                                    <option value="">-- Chosee Wali --</option>
+                                    @foreach ($walis as $item)
+                                    <option value="{{ $item->id }}" >{{ $item->nama_wali }}</option>
+                                    @endforeach
+                                </select>
+                                <div class="input-group-append">
+                                    <button class="btn btn-success mb-3">
+                                        <i class="fa-solid fa-print"></i>
+                                       Print
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
                     <a href="/export/wali" class="btn btn-secondary btn-sm mb-3 ml-2">
                         <i class="fa-solid fa-print"></i>
                         Export Excel
@@ -103,4 +121,29 @@
         </div>
     @endif
 </div>
+@endsection
+
+
+@section('js')
+<script>
+    $(document).ready(function () {
+        $("#val").change(function (e) { 
+            e.preventDefault();
+            var id = $(this).val();
+            var path = `/print/wali/${id}`;
+            // console.log(id);
+
+            $.ajax({
+                type: "GET",
+                url: path,
+                data: id,
+                dataType: "json",
+                success: function (data) {
+                    // console.log(data);
+                    $('#id_wali').val(data.datas.id);
+                }
+            });
+        }); 
+    });
+</script>
 @endsection

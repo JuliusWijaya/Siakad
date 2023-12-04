@@ -43,6 +43,10 @@
                         </button>
                     </form>
                     @endif
+                    <a href="/jurusan/print/{{ $details->slug }}" 
+                        class="badge badge-info ml-2" target="_blank">
+                     <i class="fa fa-download"></i>
+                    </a>
                 </div>
             </div>
         </div>

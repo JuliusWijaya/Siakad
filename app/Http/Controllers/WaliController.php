@@ -9,6 +9,7 @@ use App\Models\Mahasiswa;
 use App\Exports\ExportWali;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Str;
+use Barryvdh\DomPDF\Facade\Pdf;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class WaliController extends Controller
@@ -140,6 +141,29 @@ class WaliController extends Controller
     public function export()
     {
         return Excel::download(new ExportWali, 'wali.xlsx');
+    }
+
+    public function getData($id)
+    {
+        $datas = Wali::findOrFail($id);
+        return response()->json(['datas' => $datas, 'status' => 200]);
+    }
+
+    public function exportPdf()
+    {
+        $value = request('search');
+        if ($value) {
+            $wali = Wali::where('id', $value)->first();
+            $data  = [
+                'data'  => 'Wali',
+                'wali'  => $wali
+            ];
+
+            $pdf = PDF::loadView('walis.print', $data);
+            $pdf->setPaper('A4', 'landscape');
+
+            return $pdf->stream('walis.pdf');
+        }
     }
 
     public function autocomplete(Request $request)

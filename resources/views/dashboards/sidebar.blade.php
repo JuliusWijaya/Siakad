@@ -73,9 +73,63 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-header">LAPORAN</li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fa fa-tags" aria-hidden="true"></i>
+                            <p>
+                                Data Master
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="/laporan/dosen" class="nav-link">
+                                    <i class="fa-solid fa-user-tie"></i>
+                                    <p>Laporan Dosen</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/laporan/jurusan" class="nav-link">
+                                    <i class="fa-solid fa-graduation-cap"></i>
+                                    <p>Laporan Jurusan</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/laporan/classes" class="nav-link">
+                                    <i class="fa-solid fa-user-graduate"></i>
+                                    <p>Laporan Kelas</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/laporan/students" class="nav-link">
+                                    <i class="fa-solid fa-users"></i>
+                                    <p>Laporan Mahasiswa</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/laporan/ormawa" class="nav-link">
+                                    <i class="fa fa-certificate" aria-hidden="true"></i>
+                                    <p>Laporan Ormawa</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/laporan/wali" class="nav-link">
+                                    <i class="fa fa-user-circle" aria-hidden="true"></i>
+                                    <p>Laporan Wali</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/laporan/user" class="nav-link">
+                                    <i class="fa-solid fa-user"></i>
+                                    <p>Laporan User</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 @endif
                 <li class="nav-item">
-                    <a href="/post" class="nav-link {{ Request::is('post*') ? 'active' : '' }}">
+                    <a href="/post" class="nav-link">
                         <i class="fa-solid fa-file-export"></i>
                         <p>
                             Post

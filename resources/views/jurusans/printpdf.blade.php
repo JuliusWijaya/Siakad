@@ -6,7 +6,7 @@
         <table>
             <tr>
                 <td>
-                    <img src="{{ public_path('/dist/img/logo.png') }}" alt="logo lp3i" width="120" height="120">
+                    <img src="{{ public_path('/dist/img/logo.png') }}" alt="logo lp3i" width="120">
                 </td>
                 <td style="width: 10px"></td>
                 <td>
@@ -26,13 +26,11 @@
                 </tr>
             </thead>
             <tbody class="border border-info"> 
-                @foreach($jurusans as $datas)
                 <tr>
-                    <td class="border border-info">{{ $loop->iteration }}</td>
-                    <td class="border border-info">{{ $datas->id_jurusan }}</td>
-                    <td class="border border-info">{{ $datas->nama_jurusan }}</td>
+                    <td class="border border-info">{{ $jurusan->id }}</td>
+                    <td class="border border-info">{{ $jurusan->jurusan }}</td>
+                    <td class="border border-info">{{ $jurusan->nama_jurusan }}</td>
                 </tr>
-                @endforeach
             </tbody>
         </table>
     </div>

@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Exports\ExportJurusan;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class JurusanController extends Controller
 {
@@ -126,8 +127,23 @@ class JurusanController extends Controller
         return redirect('/admin/jurusan');
     }
 
-    public function export()
+    public function exportExcel()
     {
         return Excel::download(new ExportJurusan, 'jurusan.xlsx');
+    }
+
+    public function exportPdf($slug)
+    {
+        $jurusan = jurusan::where('slug', $slug)->first();
+        $data = [
+            'data'     => 'Jurusan PDF',
+            'title'    => 'Jurusan Politeknik LP3I',
+            'jurusan'  => $jurusan
+        ];
+
+        $pdf = PDF::loadView('jurusans.printpdf', $data);
+        $pdf->setPaper('A4', 'potrait');
+
+        return $pdf->stream('jurusan.pdf');
     }
 }

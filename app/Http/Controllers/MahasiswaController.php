@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dosen;
+use App\Models\Kelas;
+use App\Models\Ormawa;
 use App\Models\jurusan;
 use App\Models\Mahasiswa;
-use App\Exports\ExportMahasiswa;
-use App\Http\Requests\MahasiswaRequest;
-use App\Models\Ormawa;
-use App\Models\Kelas;
-use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
+use App\Exports\ExportMahasiswa;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Requests\MahasiswaRequest;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class MahasiswaController extends Controller
@@ -141,5 +142,19 @@ class MahasiswaController extends Controller
     public function exportExcel()
     {
         return Excel::download(new ExportMahasiswa, 'mahasiswa.xlsx');
+    }
+
+    public function exportPdf($slug)
+    {
+        $mhs = Mahasiswa::where('slug', $slug)->first();
+        $data = [
+            'data'   => 'Mahasiswa PDF',
+            'mhs'    => $mhs
+        ];
+
+        $pdf = PDF::loadView('mhs.print', $data);
+        $pdf->setPaper('A4', 'landscape');
+
+        return $pdf->stream('mahasiswa.pdf');
     }
 }

@@ -40,7 +40,7 @@
                                 <i class="fa-solid fa-arrow-left"></i>
                             </span>
                         </a>
-                        <a href="/admin/dosen/{{ $dosen->slug }}/edit" class="badge badge-warning">
+                        <a href="/admin/dosen/edit/{{ $dosen->slug }}" class="badge badge-warning">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </a>
                         @if (!$dosen->mahasiswa->count())
@@ -53,6 +53,9 @@
                             </button>
                         </form>
                         @endif
+                        <a href="/print/dosen/{{ $dosen->slug }}" class="badge badge-info ml-2" target="_blank">
+                            <i class="fa fa-download"></i>
+                        </a>
                     </div>
                 </div>
             </div>

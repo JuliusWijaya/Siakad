@@ -51,7 +51,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('logout', [AuthenticationController::class, 'logout'])->name('logout');
 
     Route::get('/dashboard', [DashboardController::class, 'dashboard']);
-    Route::prefix('admin')->middleware(['auth', 'only_admin'])->group(function () {
+    Route::prefix('admin')->middleware('only_admin')->group(function () {
         Route::resources([
             'students'  => MahasiswaController::class,
             'classes'   => KelasController::class,
@@ -72,15 +72,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/wali/{wali:slug}/edit', [WaliController::class, 'edit']);
         Route::get('autocomplete', [WaliController::class, 'autocomplete'])->name('searchmhs');
 
-        Route::resource('dosen', DosenController::class);
         Route::get('/dosen/{dosen:slug}/details', [DosenController::class, 'show']);
-        Route::get('/dosen/{dosen:slug}/edit', [DosenController::class, 'edit']);
+        Route::get('/dosen/edit/{dosen:slug}', [DosenController::class, 'edit']);
+        Route::resource('dosen', DosenController::class);
         Route::get('/dosen/create/checkSlug', [DosenController::class, 'checkSlug']);
 
         Route::get('/user/deleted', [UserController::class, 'deleted']);
+        Route::resource('user', UserController::class);
         Route::post('/user/{id}', [UserController::class, 'restore'])->name('restore.user');
         Route::get('/user/{user:name}/details', [UserController::class, 'show']);
-        Route::resource('user', UserController::class);
 
         Route::resource('/ormawa', OrmawaController::class);
 
@@ -97,13 +97,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/post/{post:slug}/edit', [PostController::class, 'edit']);
     Route::get('/post/create/checkslug', [PostController::class, 'show'])->name('checkSlug');
 
-    Route::get('/print/mhs/{slug}', [PrintController::class, 'printPdf']);
+    Route::get('/print/mhs/{slug}', [MahasiswaController::class, 'exportPdf']);
     Route::get('/export/mhs', [MahasiswaController::class, 'exportExcel']);
-    Route::get('/jurusan/print', [PrintController::class, 'downloadPdf']);
-    Route::get('/jurusan/export', [JurusanController::class, 'export']);
-    Route::get('/print/wali', [PrintController::class, 'printWali']);
+    Route::get('/jurusan/print/{slug}', [JurusanController::class, 'exportPdf']);
+    Route::get('/jurusan/export', [JurusanController::class, 'exportExcel']);
+    Route::get('/print/wali/{id}', [WaliController::class, 'getData']);
+    Route::post('/print/wali', [WaliController::class, 'exportPdf'])->name('print.wali');
     Route::get('/export/wali', [WaliController::class, 'export']);
-    Route::get('/print/dosen', [PrintController::class, 'printDosen']);
+    Route::get('/print/dosen/{slug}', [DosenController::class, 'exportPdf']);
     Route::get('/export/dosen', [DosenController::class, 'exportExcel']);
     Route::get('/users/print', [PrintController::class, 'printUser']);
     Route::get('/users/export', [UsersController::class, 'exportExcel']);

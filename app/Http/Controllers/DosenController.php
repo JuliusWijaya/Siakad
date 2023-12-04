@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Dosen;
 use App\Exports\ExportDosen;
+use App\Models\Wali;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Str;
+use Barryvdh\DomPDF\Facade\Pdf;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class DosenController extends Controller
@@ -140,6 +142,21 @@ class DosenController extends Controller
     public function exportExcel()
     {
         return Excel::download(new ExportDosen, 'dosen.xlsx');
+    }
+
+    public function exportPdf($slug)
+    {
+        $dosen = Dosen::where('slug', $slug)->first();
+        $data  = [
+            'data'  => 'Dosen PDF',
+            'title' => 'Dosen LP3I',
+            'dosen' => $dosen
+        ];
+
+        $pdf = PDF::loadView('dosens.print', $data);
+        $pdf->setPaper('A4', 'landscape');
+
+        return $pdf->stream('dosen.pdf');
     }
 
     // Untuk mengupdate slug sekali action
