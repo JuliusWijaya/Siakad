@@ -134,10 +134,6 @@
             </table>
             <div class="row">
                 <div class="col-lg-6">
-                    <a href="/print/mhs" class="btn btn-success btn-sm mb-3 ml-3" target="_blank">
-                        <i class="fa-solid fa-print"></i>
-                        Print
-                    </a>
                     <a href="/export/mhs" class="btn btn-secondary btn-sm mb-3 ml-3">
                         <i class="fa-solid fa-print"></i>
                         Export Excel

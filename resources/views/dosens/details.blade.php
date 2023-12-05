@@ -10,28 +10,32 @@
                         <form>
                             <fieldset disabled>
                                 <div class="form-group">
-                                    <label for="disabledTextInput"><b>NID :</b> </label>
+                                    <label for="disabledTextInput">NID :</label>
                                     <input type="text" id="disabledInput" class="form-control" value="{{ $dosen->nid }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="disabledTextInput"><b>NAMA :</b></label>
+                                    <label for="disabledTextInput">NAMA :</label>
                                     <input type="text" id="disabledInput" class="form-control" value="{{ $dosen->nama }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="disabledTextInput"><b>TGL LAHIR :</b></label>
+                                    <label for="disabledTextInput">TGL LAHIR :</label>
                                     <input type="text" id="disabledInput" class="form-control" value="{{ $dosen->tgl_lahir }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="disabledTextInput"><b>ALAMAT :</b></label>
+                                    <label for="disabledTextInput">ALAMAT :</label>
                                     <input type="text" id="disabledInput" class="form-control" value="{{ $dosen->alamat }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="disabledTextInput"><b>MAHASISWA :</b></label>
-                                    @foreach ($dosen->mahasiswa as $item)
-                                      <ul class="list-group">
+                                    <label for="disabledTextInput">MAHASISWA :</label>
+                                    @forelse ($dosen->mahasiswa as $item)
+                                    <ul class="list-group">
                                         <li class="list-group-item">{{ $item->nama_mhs }}</li>
-                                      </ul>
-                                    @endforeach
+                                    </ul>
+                                    @empty
+                                    <ul class="list-group">
+                                        <li class="list-group-item">-</li>
+                                    </ul>       
+                                    @endforelse
                                 </div>
                             </fieldset>
                         </form>

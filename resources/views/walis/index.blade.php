@@ -13,40 +13,43 @@
             </div>
             @endif
 
-            <div class="row mt-5">
-                <div class="col-md-6 justify-content-start">
-                    <a href="{{ route('wali.create') }}" class="btn btn-primary btn-sm mb-3">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <a href="{{ route('wali.create') }}" class="btn btn-primary btn-sm">
                         <i class="fa-solid fa-user-plus"></i>
                         Add
-                    </a> 
-                </div>
-                <div class="col-md-6 d-flex justify-content-end">
-                    <div class="input-group input-group-sm" style="width: 250px;">
-                        <form action="{{ route('print.wali') }}" method="POST" class="d-inline">
-                            @csrf
-                            <div class="input-group mb-3">
-                                <input type="hidden" name="search" id="id_wali">
-                                <select id="val" class="form-control"
-                                    value="{{request('search')}}">
-                                    <option value="">-- Chosee Wali --</option>
-                                    @foreach ($walis as $item)
-                                    <option value="{{ $item->id }}" >{{ $item->nama_wali }}</option>
-                                    @endforeach
-                                </select>
-                                <div class="input-group-append">
-                                    <button class="btn btn-success mb-3">
-                                        <i class="fa-solid fa-print"></i>
-                                       Print
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    
-                    <a href="/export/wali" class="btn btn-secondary btn-sm mb-3 ml-2">
-                        <i class="fa-solid fa-print"></i>
-                        Export Excel
                     </a>
+                </div>
+                <div class="input-group input-group-sm" style="width: 300px;">
+                    <div class="row">
+                        <div class="col">
+                            <form action="{{ route('print.wali') }}" method="POST" class="d-inline">
+                                @csrf
+                                <div class="input-group mb-3">
+                                    <input type="hidden" name="search" id="id_wali">
+                                    <select id="val" class="form-control" value="{{request('search')}}">
+                                        <option value="">-- Chosee Wali --</option>
+                                        @foreach ($walis as $item)
+                                        <option value="{{ $item->id }}">{{ $item->nama_wali }}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-success">
+                                            <i class="fa-solid fa-print"></i>
+                                            Print
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col">
+                            <label for="form-control">&nbsp;</label>
+                            <a href="/export/wali" class="btn btn-secondary btn-sm">
+                                <i class="fa-solid fa-print"></i>
+                                Export Excel
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -58,8 +61,8 @@
                         <div class="input-group input-group-sm" style="width: 250px;">
                             <form action="/admin/wali" method="GET" class="d-inline">
                                 <div class="input-group mb-3">
-                                    <input type="text" name="search" class="form-control"
-                                        value="{{request('search')}}" placeholder="Search Name">
+                                    <input type="text" name="search" class="form-control" value="{{request('search')}}"
+                                        placeholder="Search Name">
                                     <div class="input-group-append">
                                         <button class="btn btn-outline-secondary" type="submit">
                                             <i class="fa-solid fa-magnifying-glass"></i>
@@ -91,8 +94,10 @@
                                 <td>{{ $wali->nama_wali }}</td>
                                 <td>{{ $wali->umur }}</td>
                                 <td>{{ $wali->pekerjaan }}</td>
-                                <td>{{ (isset($wali->mahasiswa->nama_mhs)) ? $wali->mahasiswa->nama_mhs : 'Not Found' }}</td>
-                                <td>{{ (isset($wali->mahasiswa->jurusan->jurusan)) ? $wali->mahasiswa->jurusan->jurusan : 'Not Found' }}</td>
+                                <td>{{ (isset($wali->mahasiswa->nama_mhs)) ? $wali->mahasiswa->nama_mhs : 'Not Found' }}
+                                </td>
+                                <td>{{ (isset($wali->mahasiswa->jurusan->jurusan)) ? $wali->mahasiswa->jurusan->jurusan : 'Not Found' }}
+                                </td>
                                 <td>
                                     <a href="/admin/wali/{{$wali->slug}}/edit" class="btn btn-warning">
                                         <i class="fa-solid fa-pen-to-square"></i>
@@ -116,9 +121,9 @@
         </div>
     </div>
     @else
-        <div class="alert alert-danger text-center text-dark mt-5 col-sm-3 text-white" style="margin: 0 auto">
-            Not Found Wali
-        </div>
+    <div class="alert alert-danger text-center text-dark mt-5 col-sm-3 text-white" style="margin: 0 auto">
+        Not Found Wali
+    </div>
     @endif
 </div>
 @endsection
@@ -127,7 +132,7 @@
 @section('js')
 <script>
     $(document).ready(function () {
-        $("#val").change(function (e) { 
+        $("#val").change(function (e) {
             e.preventDefault();
             var id = $(this).val();
             var path = `/print/wali/${id}`;
@@ -143,7 +148,8 @@
                     $('#id_wali').val(data.datas.id);
                 }
             });
-        }); 
+        });
     });
+
 </script>
 @endsection

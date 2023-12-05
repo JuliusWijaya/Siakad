@@ -35,11 +35,11 @@
                 <td class="border border-info">{{ $dosen->nama }}</td>
                 <td class="border border-info">{{ $dosen->tgl_lahir }}</td>
                 <td class="border border-info">{{ $dosen->alamat }}</td>
-                @foreach ($dosen->mahasiswa as $item)
-                <td class="border border-info">
-                    {{ (isset($item->nama_mhs)) ? $item->nama_mhs : 'Belum Ada Mahasiswa' }}
-                </td>
-                @endforeach
+                @forelse ($dosen->mahasiswa as $item)
+                <td class="border border-info">{{ $item->nama_mhs }}</td>
+                @empty
+                <td class="border border-info">-</td>
+                @endforelse
             </tr>
         </tbody>
     </table>

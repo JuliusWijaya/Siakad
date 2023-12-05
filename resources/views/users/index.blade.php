@@ -5,19 +5,19 @@
     <div class="row justify-content-center">
         <div class="col-lg-9">
             @if (session()->has('success'))
-            <div class="alert alert-success alert-dismissible fade show col-lg-12 text-center" role="alert">
-                <strong>Hai {{ auth()->user()->name }}</strong> {{ session('success') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+                <div class="alert alert-success alert-dismissible fade show col-lg-12 text-center" role="alert">
+                    <strong>Hai {{ auth()->user()->name }}</strong> {{ session('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
             @endif
             <div class="col-md-12">
                 <h2 class="text-center py-3">Form User</h2>
             </div>
     
-            <div class="row mb-4">
-                <div class="col-md-5 d-flex justify-content-start">
+            <div class="row mb-4 d-flex justify-content-between">
+                <div>
                     <!-- Form Pencarian -->
                     <form method="GET" action="/admin/user">
                         <div class="input-group mb-3">
@@ -31,15 +31,18 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-md-7 d-flex justify-content-end">
-                    <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm mr-2">
-                        <i class="fa-solid fa-user-plus"></i>
-                        Add
-                    </a>
-                    <a href="/admin/user/deleted" class="btn btn-danger btn-sm">
-                        <i class="fa-solid fa-trash"></i>
-                        Deleted
-                    </a>
+                <div>
+                    <div class="col">
+                        <label class="form-label">&nbsp;</label>
+                        <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm mr-2">
+                            <i class="fa-solid fa-user-plus"></i>
+                            Add
+                        </a>
+                        <a href="/admin/user/deleted" class="btn btn-danger btn-sm">
+                            <i class="fa-solid fa-trash"></i>
+                            Deleted
+                        </a>
+                    </div>
                 </div>
             </div>
     

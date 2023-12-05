@@ -106,27 +106,17 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="row d-flex">
-                <div class="col-lg-6">
-                    <div>
-                        <a href="/kelas/print" class="btn btn-success btn-sm ml-3" target="_blank">
-                            <i class="fa-solid fa-print"></i>
-                            Print
-                        </a>
-                    </div>
+            <div class="d-flex justify-content-between">
+                <div class="col">
+                    <label class="form-label">&nbsp;</label>
+                    <a href="/kelas/export" class="btn btn-secondary btn-sm">
+                        <i class="fa-solid fa-print"></i>
+                        Export Excel
+                    </a>
                 </div>
-                <div class="col-lg-6">
-                    <div class="d-flex justify-content-end">
-                        <a href="/kelas/export" class="btn btn-secondary btn-sm">
-                            <i class="fa-solid fa-print"></i>
-                            Export Excel
-                        </a>
-                    </div>
+                <div class="d-block">
+                    {{ $kelas->links() }}
                 </div>
-            </div>
-
-            <div class="d-flex justify-content-end mt-3">
-                {{ $kelas->links() }}
             </div>
         </div>
     </div>

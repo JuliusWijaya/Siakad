@@ -10,8 +10,8 @@
                     <form method="POST" action="{{ route('dosen.update', $dosen->id) }}" class="d-inline">
                         @method('PUT')
                         @csrf
-                        <div class="form-group mb-0">
-                            <label for="nid">ID MHS</label>
+                        <div class="form-group mb-2">
+                            <label for="nid">NID</label>
                             <input 
                              type="text" 
                              class="form-control  @error('nid') is-invalid @enderror"
@@ -27,7 +27,7 @@
                             </div>
                             @enderror
                         </div>
-                        <div class="form-group mb-0">
+                        <div class="form-group mb-2">
                             <label for="nama">NAMA</label>
                             <input 
                              type="text" 
@@ -43,7 +43,7 @@
                             </div>
                             @enderror
                         </div>
-                        <div class="form-group mb-0">
+                        <div class="form-group mb-2">
                             <label for="tgl_lahir">TGL LAHIR</label>
                             <input 
                              type="date" 
@@ -58,7 +58,7 @@
                             </div>
                             @enderror
                         </div>
-                        <div class="form-group mb-0">
+                        <div class="form-group mb-2">
                             <label for="alamat">ALAMAT</label>
                             <input 
                              type="text" 
@@ -73,15 +73,17 @@
                             </div>
                             @enderror
                         </div>
-                        <button class="btn btn-primary mt-2">Update</button>
-                        <a href="/admin/dosen/{{ $dosen->slug }}/details" class="btn btn-secondary mt-2 ml-2">Back</a>
+                        <button class="btn btn-primary btn-sm mt-2">Update</button>
+                        <a href="/admin/dosen/{{ $dosen->slug }}/details" class="btn btn-secondary btn-sm mt-2 ml-2">Back</a>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@endsection
 
+@section('js')
 <script>
     $(document).ready(function () {
         $('.form-control').datetimepicker({
