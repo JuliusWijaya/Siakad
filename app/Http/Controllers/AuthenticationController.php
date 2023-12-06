@@ -68,15 +68,14 @@ class AuthenticationController extends Controller
     {
         $request->validate([
             'old_password'  => 'required|current_password',
-            'new_password'  => 'required|confirmed'
+            'password'      => 'required|confirmed|different:old_password'
         ]);
 
         $user = User::find(Auth::id());
-        $user->password = Hash::make($request->new_password);
+        $user->password = Hash::make($request->password);
         $user->save();
-        $request->session()->regenerate();
-
-        return redirect('/dashboard')->with('status', 'Success Password Changed!');
+        $request->session()->flush();
+        return redirect('/login')->with('status', 'Success Password Changed!');
     }
 
     public function logout(Request $request)

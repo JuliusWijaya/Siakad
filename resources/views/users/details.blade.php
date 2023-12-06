@@ -39,6 +39,9 @@
                             <i class="fa-regular fa-circle-xmark"></i>
                         </button>
                     </form>
+                    <a href="/print/user/{{ $user->id }}" class="badge badge-warning ml-2" target="_blank">
+                        <i class="fa-solid fa-print"></i>
+                    </a>
                 </div>
             </div>
         </div>

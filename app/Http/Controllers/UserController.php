@@ -7,7 +7,7 @@ use App\Exports\ExportUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
-
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class UserController extends Controller
 {
@@ -18,10 +18,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::latest()->user(request(['search']))->get();
+        $users = User::latest()->user(request(['search']))->paginate(5);
+        $rank = $users->firstItem();
         $title = 'Dashboard User';
         return view('users.index', [
             'users'  => $users,
+            'rank'   => $rank,
             'title'  => $title,
         ]);
     }
@@ -138,7 +140,22 @@ class UserController extends Controller
     {
         $details = User::withTrashed()->where('id', $id)->first();
         $details->restore();
+        alert()->success('Successfully user has been restore');
         return redirect()->back();
+    }
+
+    public function exportPdf($id)
+    {
+        $user = User::where('id', $id)->first();
+
+        $data = [
+            'data'  => str('User ')->append($user->name),
+            'user'  => $user,
+        ];
+
+        $pdf = PDF::loadView('users.print', $data);
+        $pdf->setPaper('A4', 'potrait');
+        return $pdf->stream($data['data'] . '.pdf');
     }
 
     public function exportExcel()

@@ -136,7 +136,7 @@ class JurusanController extends Controller
     {
         $jurusan = jurusan::where('slug', $slug)->first();
         $data = [
-            'data'     => 'Jurusan PDF',
+            'data'     => str('Jurusan ')->append($jurusan->nama_jurusan),
             'title'    => 'Jurusan Politeknik LP3I',
             'jurusan'  => $jurusan
         ];
@@ -144,6 +144,6 @@ class JurusanController extends Controller
         $pdf = PDF::loadView('jurusans.printpdf', $data);
         $pdf->setPaper('A4', 'potrait');
 
-        return $pdf->stream('jurusan.pdf');
+        return $pdf->stream($data['data'] . '.pdf');
     }
 }

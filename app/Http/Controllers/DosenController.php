@@ -148,15 +148,14 @@ class DosenController extends Controller
     {
         $dosen = Dosen::where('slug', $slug)->first();
         $data  = [
-            'data'  => 'Dosen PDF',
+            'data'  => str($dosen->nid)->append('_' . $dosen->nama),
             'title' => 'Dosen LP3I',
             'dosen' => $dosen
         ];
 
         $pdf = PDF::loadView('dosens.print', $data);
         $pdf->setPaper('A4', 'landscape');
-
-        return $pdf->stream('dosen.pdf');
+        return $pdf->stream($data['data'] . '.pdf');
     }
 
     // Untuk mengupdate slug sekali action

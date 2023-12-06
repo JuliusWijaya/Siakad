@@ -10,14 +10,14 @@
                 </td>
                 <td style="width: 10px"></td>
                 <td>
-                    <h3>{{ $title }}</h3>
+                    <h5 class="mb-0">Politeknik LP3I</h5>
                     <p>Jl. Ir. H. Juanda No. KM 2</p>
                 </td>
             </tr>
         </table>
     </div>
 
-    <table class="table mt-2">
+    <table class="table mt-5">
         <thead class="border border-info">
             <tr>
                 <th class="border border-info">NO</th>
@@ -25,15 +25,15 @@
                 <th class="border border-info">EMAIL</th>
             </tr>
         </thead>
-        <tbody class="border border-info">
-            @foreach ($users as $user)
-            <tr>
-                <td class="border border-info">{{ $loop->iteration }}</td>
+        <tbody class="border border-info" id="data">
+            <tr class="border border-info">
+                <td class="border border-info">{{ $i = 1 }}</td>
                 <td class="border border-info">{{ $user->name }}</td>
                 <td class="border border-info">{{ $user->email }}</td>
             </tr>
-            @endforeach
         </tbody>
     </table>
 </div>
 @endsection
+
+

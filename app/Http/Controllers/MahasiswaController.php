@@ -148,13 +148,13 @@ class MahasiswaController extends Controller
     {
         $mhs = Mahasiswa::where('slug', $slug)->first();
         $data = [
-            'data'   => 'Mahasiswa PDF',
+            'data'   => str($mhs->nim)->append('_' . $mhs->nama_mhs . '_' . $mhs->jurusan->nama_jurusan),
             'mhs'    => $mhs
         ];
 
         $pdf = PDF::loadView('mhs.print', $data);
         $pdf->setPaper('A4', 'landscape');
 
-        return $pdf->stream('mahasiswa.pdf');
+        return $pdf->stream($data['data'] . '.pdf');
     }
 }

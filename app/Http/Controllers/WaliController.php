@@ -155,14 +155,13 @@ class WaliController extends Controller
         if ($value) {
             $wali = Wali::where('id', $value)->first();
             $data  = [
-                'data'  => 'Wali',
+                'data'  => str('Wali ')->append($wali->nama_wali),
                 'wali'  => $wali
             ];
 
             $pdf = PDF::loadView('walis.print', $data);
-            $pdf->setPaper('A4', 'landscape');
-
-            return $pdf->stream('walis.pdf');
+            $pdf->setPaper('A4', 'potrait');
+            return $pdf->stream($data['data'] . '.pdf');
         }
     }
 

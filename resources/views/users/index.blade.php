@@ -59,7 +59,7 @@
                 <tbody>
                     @forelse($users as $user)
                     <tr>
-                        <td class="text-center">{{ $loop->iteration }}</td>
+                        <td class="text-center">{{ $rank++ }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td class=" text-center">
@@ -81,20 +81,13 @@
             </table>
             <div class="row">
                 <div class="col-lg-6">
-                    <a href="/users/print" target="_blank">
-                        <button class="btn btn-success btn-sm ml-3">
-                            <i class="fa-solid fa-print"></i>
-                            Print
-                        </button>
+                    <a href="/users/export" class="btn btn-secondary btn-sm ml-3">
+                        <i class="fa-solid fa-print"></i>
+                        Export Excel
                     </a>
                 </div>
                 <div class="col-lg-6 d-flex justify-content-end">
-                    <a href="/users/export">
-                        <button class="btn btn-secondary btn-sm">
-                            <i class="fa-solid fa-print"></i>
-                            Export Excel
-                        </button>
-                    </a>
+                    {{ $users->links() }}
                 </div>
             </div>
         </div>

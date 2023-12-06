@@ -106,6 +106,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/export/wali', [WaliController::class, 'export']);
     Route::get('/print/dosen/{slug}', [DosenController::class, 'exportPdf']);
     Route::get('/export/dosen', [DosenController::class, 'exportExcel']);
-    Route::get('/users/print', [PrintController::class, 'printUser']);
-    Route::get('/users/export', [UsersController::class, 'exportExcel']);
+    Route::get('/print/user/{id}', [UserController::class, 'exportPdf']);
+    Route::get('/users/export', [UserController::class, 'exportExcel']);
 });
