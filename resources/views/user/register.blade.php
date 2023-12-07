@@ -3,7 +3,6 @@
 @section('content')
 <div class="container">
     <div class="col-left">
-       
     </div>
     <div class="col-right">
       <img src="./Assets/img/wave.svg" alt="Bg Wave" class="background-up" />
@@ -12,13 +11,11 @@
           <h1>Register</h1>
           <h3>Pleas Register Now</h3>
         </div>
-        
         @if($errors->any())
-            @foreach($errors->all() as $err)
-                <p style="color: red; font-size: 1.3rem; text-align: center;" >{{ $err }}</p>
+            @foreach($errors->all() as $error)
+                <p class="alert" >{{ $error }}</p>
             @endforeach       
         @endif
-
         <form action="{{ route('register.action') }}" method="POST">
            @csrf 
           <div class="content-body">

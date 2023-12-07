@@ -89,15 +89,22 @@
                             @endforeach
                         </td>
                         <td class="text-center">
-                            <button class="btn btn-warning myBtn" data-id="{{ $item->id }}" 
-                                data-toggle="modal" data-target="#editKelas">
-                                <i class="fa fa-pen-to-square"></i>
+                            <button 
+                             class="btn btn-warning myBtn" 
+                             data-id="{{ $item->id }}" 
+                             data-toggle="modal" 
+                             data-target="#editKelas"
+                            >
+                             <i class="fa fa-pen-to-square"></i>
                             </button>
                             <form action="{{ route('classes.destroy', $item->id) }}" method="POST" class="d-inline mx-2">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger"
-                                    onclick="return confirm('Are You Sure {{ $item->name }} ?')">
+                                <button 
+                                 type="submit" 
+                                 class="btn btn-danger"
+                                 onclick="return confirm('Are You Sure {{ $item->name }} ?')"
+                                >
                                     <i class="fa-regular fa-circle-xmark"></i>
                                 </button>
                             </form>

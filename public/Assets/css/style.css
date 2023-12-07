@@ -219,9 +219,57 @@ a {
     text-decoration: underline;
 }
 
+.alert {
+    background-color: crimson;
+    border-radius: 5px;
+    color: #f7f7f7;
+    text-align: center;
+    padding: 15px;
+    margin: 15px 0;
+    position: absolute;
+    top: 280px;
+    z-index: 15;
+}
+
+.alert-success {
+    background-color: #198754;
+    border-radius: 3pt;
+    color: #f7f7f7;
+    text-align: center;
+    padding: 15px;
+    margin: 15px 0;
+    position: absolute;
+    top: 210px;
+    z-index: 15;
+}
+
 @media (min-width: 768px) {
     .background-up {
         margin-top: -8rem;
+    }
+
+    .alert {
+        background-color: crimson;
+        border-radius: 5px;
+        color: #f7f7f7;
+        text-align: center;
+        padding: 15px;
+        margin: 15px 0;
+        position: absolute;
+        top: 210px;
+        z-index: 15;
+    }
+
+    .alert-success {
+        background-color: #198754;
+        border-radius: 3pt;
+        color: #f7f7f7;
+        text-align: center;
+        padding: 15px;
+        margin: 15px 0;
+        position: absolute;
+        top: 210px;
+        z-index: 15;
     }
 }
 
@@ -274,5 +322,29 @@ a {
 
     .signup {
         margin-bottom: 1.5rem;
+    }
+
+    .alert {
+        background-color: #dc3545;
+        border-radius: 3pt;
+        color: #f7f7f7;
+        text-align: center;
+        padding: 15px;
+        margin: 15px 0;
+        position: absolute;
+        top: 210px;
+        z-index: 15;
+    }
+
+    .alert-success {
+        background-color: #198754;
+        border-radius: 3pt;
+        color: #f7f7f7;
+        text-align: center;
+        padding: 15px;
+        margin: 15px 0;
+        position: absolute;
+        top: 210px;
+        z-index: 15;
     }
 }

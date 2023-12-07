@@ -2,13 +2,7 @@
 
 @section('content')
 <div class="container">
-  
     <div class="col-left">
-        @if($errors->any())
-            @foreach($errors->all() as $err)
-                <p>{{ $err }}</p>
-            @endforeach
-        @endif
     </div>
 
     <div class="col-right">
@@ -18,7 +12,16 @@
           <h1>Welcome Back</h1>
           <h3>Login to your account</h3>
         </div>
-
+        @if($errors->any())
+          @foreach($errors->all() as $err)
+              <p class="alert">{{ $err }}</p>
+          @endforeach
+        @endif
+        @if (Session::has('status'))
+            <div class="alert-success">
+              {{ Session::get('status') }}
+            </div>
+        @endif
         <form action="{{ route('login.action') }}" method="POST">
           @csrf
           <div class="content-body">

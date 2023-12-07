@@ -55,7 +55,7 @@ class AuthenticationController extends Controller
         }
 
         return back()->withErrors([
-            'password' => 'Wrong Username or Password'
+            'password' => 'Wrong Email or Password'
         ]);
     }
 
@@ -75,7 +75,7 @@ class AuthenticationController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
         $request->session()->flush();
-        return redirect('/login')->with('status', 'Success Password Changed!');
+        return redirect('/login')->with('status', 'Successfully password changed pleas re-login!');
     }
 
     public function logout(Request $request)

@@ -18,7 +18,7 @@
                         </p>
                     </a>
                 </li>
-                @if(auth()->user()->position === 1)
+                @if(Auth::user()->position === 1)
                     <li class="nav-header">PAGES</li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
@@ -30,48 +30,48 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="/admin/dosen" class="nav-link {{ Request::is('/admin/dosen*') ? 'active' : '' }}">
+                                <a href="/admin/dosen" class="nav-link {{ Request::is('admin/dosen*') ? 'active' : '' }}">
                                     <i class="fa-solid fa-user-tie"></i>
                                     <p>Dosen</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/admin/jurusan" class="nav-link {{ Request::is('jurusan*') ? 'active' : '' }}">
+                                <a href="/admin/jurusan" class="nav-link {{ Request::is('admin/jurusan*') ? 'active' : '' }}">
                                     <i class="fa-solid fa-graduation-cap"></i>
                                     <p>Jurusan</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/admin/classes" class="nav-link {{ Request::is('classes*') ? 'active' : '' }}">
-                                    <i class="fa-solid fa-user-graduate"></i>
-                                    <p>Kelas</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/admin/students" class="nav-link {{ Request::is('students*') ? 'active' : '' }}">
-                                    <i class="fa-solid fa-users"></i>
-                                    <p>Mahasiswa</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/admin/ormawa" class="nav-link {{ Request::is('ormawa*') ? 'active' : '' }}">
+                                <a href="/admin/ormawa" class="nav-link {{ Request::is('admin/ormawa*') ? 'active' : '' }}">
                                     <i class="fa fa-certificate" aria-hidden="true"></i>
                                     <p>Ormawa</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/admin/wali" class="nav-link {{ Request::is('wali*') ? 'active' : '' }}">
-                                    <i class="fa fa-user-circle" aria-hidden="true"></i>
-                                    <p>Wali</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/admin/user" class="nav-link {{ Request::is('user*') ? 'active' : '' }}">
+                                <a href="/admin/user" class="nav-link {{ Request::is('admin/user*') ? 'active' : '' }}">
                                     <i class="fa-solid fa-user"></i>
                                     <p>User</p>
                                 </a>
                             </li>
                         </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin/classes" class="nav-link {{ Request::is('admin/classes*') ? 'active' : '' }}">
+                            <i class="fa-solid fa-user-graduate"></i>
+                            <p>Kelas</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin/students" class="nav-link {{ Request::is('admin/students*') ? 'active' : '' }}">
+                            <i class="fa-solid fa-users"></i>
+                            <p>Mahasiswa</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin/wali" class="nav-link {{ Request::is('admin/wali*') ? 'active' : '' }}">
+                            <i class="fa fa-user-circle" aria-hidden="true"></i>
+                            <p>Wali</p>
+                        </a>
                     </li>
                     <li class="nav-header">LAPORAN</li>
                     <li class="nav-item">
@@ -96,27 +96,9 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/laporan/classes" class="nav-link">
-                                    <i class="fa-solid fa-user-graduate"></i>
-                                    <p>Laporan Kelas</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/laporan/students" class="nav-link">
-                                    <i class="fa-solid fa-users"></i>
-                                    <p>Laporan Mahasiswa</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
                                 <a href="/laporan/ormawa" class="nav-link">
                                     <i class="fa fa-certificate" aria-hidden="true"></i>
                                     <p>Laporan Ormawa</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/laporan/wali" class="nav-link">
-                                    <i class="fa fa-user-circle" aria-hidden="true"></i>
-                                    <p>Laporan Wali</p>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -128,8 +110,9 @@
                         </ul>
                     </li>
                 @endif
+                <li class="nav-header">POSTS</li>
                 <li class="nav-item">
-                    <a href="/post" class="nav-link">
+                    <a href="/post" class="nav-link  {{ Request::is('post*') ? 'active' : '' }}">
                         <i class="fa-solid fa-file-export"></i>
                         <p>
                             Post
