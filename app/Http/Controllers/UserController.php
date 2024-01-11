@@ -17,9 +17,9 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $users = User::latest()->user(request(['search']))->paginate(5);
-        $rank = $users->firstItem();
+    {   
+        $users = User::user(request(['search']))->latest()->paginate(5);
+        $rank  = $users->firstItem();
         $title = 'Dashboard User';
         return view('users.index', [
             'users'  => $users,
@@ -142,6 +142,13 @@ class UserController extends Controller
         $details->restore();
         alert()->success('Successfully user has been restore');
         return redirect()->back();
+    }
+
+    public function report()
+    {
+        $title  = 'Laporan User';
+        $users  = User::latest()->get();
+        return view('reports.user-pdf', compact('title', 'users'));
     }
 
     public function exportPdf($id)

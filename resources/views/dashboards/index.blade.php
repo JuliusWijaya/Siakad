@@ -3,7 +3,7 @@
 @section('content')
 <div class="content-wrapper">
     <!-- Main content -->
-    <section class="content my-3">
+    <section class="content pt-3">
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
             <div class="row">
@@ -12,7 +12,7 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                                <h3>{{ $post }}</h3>           
+                            <h3>{{ $post }}</h3>           
                             <p>Post</p>
                         </div>
                         <div class="icon">
@@ -29,7 +29,7 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                                <h3>{{ $jurusans->count() }}</h3>           
+                            <h3>{{ $jurusans->count() }}</h3>           
                             <p>Jurusan</p>
                         </div>
                         <div class="icon">
@@ -57,7 +57,6 @@
                     <div class="small-box bg-warning">
                         <div class="inner">
                             <h3>{{ $user->count() }}</h3>
-
                             <p>User Registrations</p>
                         </div>
                         <div class="icon">
@@ -72,7 +71,6 @@
                     <div class="small-box bg-danger">
                         <div class="inner">
                             <h3>{{ $mahasiswa->count() }}</h3>
-
                             <p>Mahasiswa</p>
                         </div>
                         <div class="icon">
@@ -86,5 +84,4 @@
         </div>
     </section>
 </div>
-
 @endsection

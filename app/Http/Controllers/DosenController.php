@@ -66,7 +66,7 @@ class DosenController extends Controller
             'alamat'    => $request->alamat
         ]);
 
-        return redirect('/dosen')->with('success', 'Dosen Baru Berhasil Ditambahkan');
+        return redirect('/admin/dosen')->with('success', 'Dosen Baru Berhasil Ditambahkan');
     }
 
     /**
@@ -123,7 +123,7 @@ class DosenController extends Controller
                 'alamat'    => $request->alamat
             ]);
 
-        return redirect('/dosen')->with('success', 'Dosen Berhasil Diupdate');
+        return redirect('/admin/dosen')->with('success', 'Dosen Berhasil Diupdate');
     }
 
     /**
@@ -135,13 +135,19 @@ class DosenController extends Controller
     public function destroy(Dosen $dosen)
     {
         Dosen::destroy($dosen->id);
-
-        return redirect('/dosen')->with('success', 'Dosen Berhasil DiHapus');
+        return redirect('/admin/dosen')->with('success', 'Dosen Berhasil DiHapus');
     }
 
     public function exportExcel()
     {
         return Excel::download(new ExportDosen, 'dosen.xlsx');
+    }
+
+    public function report()
+    {   
+        $title = 'Laporan Dosen';
+        $dosens = Dosen::latest()->get();
+        return view('reports.dosen-pdf', compact('title', 'dosens'));
     }
 
     public function exportPdf($slug)

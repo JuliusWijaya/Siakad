@@ -132,6 +132,13 @@ class JurusanController extends Controller
         return Excel::download(new ExportJurusan, 'jurusan.xlsx');
     }
 
+    public function report()
+    {
+        $title    = 'Laporan Jurusan';
+        $jurusans = Jurusan::latest()->get();
+        return view('reports.jurusan-pdf', compact('title', 'jurusans'));
+    }
+
     public function exportPdf($slug)
     {
         $jurusan = jurusan::where('slug', $slug)->first();

@@ -1,6 +1,6 @@
 StartFontMetrics 4.1
 Notice Converted by PHP-font-lib
-Comment https://github.com/PhenX/php-font-lib
+Comment https://github.com/dompdf/php-font-lib
 EncodingScheme FontSpecific
 Copyright Copyright (c) Font Awesome
 FontName Font Awesome 6 Free Regular
@@ -19,8 +19,10 @@ IsFixedPitch false
 UnderlineThickness 49
 UnderlinePosition -72
 FontHeightOffset 0
-Ascender 875
-Descender -125
+CapHeight 813
+XHeight 811
+Ascender 813
+Descender -63
 FontBBox 0 -125 1250 875
 StartCharMetrics 212
 U 33 ; WX 125 ; N exclamation ; G 1

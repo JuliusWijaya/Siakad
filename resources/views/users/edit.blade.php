@@ -3,7 +3,7 @@
 @section('content')
 <div class="col-md-5" style="margin: 0 auto;">
     <div class="card mt-5">
-        <h5 class="card-title text-center mt-3">Edit Jurusan</h5>
+        <h5 class="card-title text-center mt-3">Edit User {{ $user->name }}</h5>
         <div class="card-body">
             <form method="POST" action="{{ route('user.update', $user->id) }}">
                 @csrf

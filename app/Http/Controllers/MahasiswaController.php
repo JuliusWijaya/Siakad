@@ -62,7 +62,7 @@ class MahasiswaController extends Controller
             $mhs->ormawa()->sync($validatedData['ormawa_id']);
         }
         alert()->success('Success', 'New Students Successfully Added');
-        return redirect('/students');
+        return redirect()->route('students.index');
     }
 
     /**
@@ -123,7 +123,7 @@ class MahasiswaController extends Controller
         $student->fill($validatedData)->save();
         (isset($request->ormawa_id)) ? $student->ormawa()->sync($request->ormawa_id) : false;
         alert()->success('Success', $student->nama_mhs . ' Successfully Has Been Edit');
-        return redirect('/students');
+        return redirect('/admin/students');
     }
 
     /**
@@ -136,7 +136,7 @@ class MahasiswaController extends Controller
     {
         Mahasiswa::destroy($student->id);
         alert()->success('Success', $student->nama_mhs . ' Has Been Delete');
-        return redirect('/students');
+        return redirect('/admin/students');
     }
 
     public function exportExcel()

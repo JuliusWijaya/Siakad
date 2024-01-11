@@ -1,6 +1,6 @@
 StartFontMetrics 4.1
 Notice Converted by PHP-font-lib
-Comment https://github.com/PhenX/php-font-lib
+Comment https://github.com/dompdf/php-font-lib
 EncodingScheme FontSpecific
 Copyright Copyright 2020 The Poppins Project Authors (https://github.com/itfoundry/Poppins)
 FontName Poppins Thin
@@ -16,8 +16,10 @@ IsFixedPitch false
 UnderlineThickness 50
 UnderlinePosition -75
 FontHeightOffset 100
-Ascender 1050
-Descender -350
+CapHeight 704
+XHeight 540
+Ascender 740
+Descender -254
 FontBBox -514 -543 2649 1026
 StartCharMetrics 1029
 U 0 ; WX 0 ; N NULL ; G 1

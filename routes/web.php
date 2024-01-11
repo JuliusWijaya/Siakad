@@ -97,15 +97,23 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/post/{post:slug}/edit', [PostController::class, 'edit']);
     Route::get('/post/create/checkslug', [PostController::class, 'show'])->name('checkSlug');
 
-    Route::get('/print/mhs/{slug}', [MahasiswaController::class, 'exportPdf']);
-    Route::get('/export/mhs', [MahasiswaController::class, 'exportExcel']);
-    Route::get('/jurusan/print/{slug}', [JurusanController::class, 'exportPdf']);
-    Route::get('/jurusan/export', [JurusanController::class, 'exportExcel']);
-    Route::get('/print/wali/{id}', [WaliController::class, 'getData']);
-    Route::post('/print/wali', [WaliController::class, 'exportPdf'])->name('print.wali');
-    Route::get('/export/wali', [WaliController::class, 'export']);
-    Route::get('/print/dosen/{slug}', [DosenController::class, 'exportPdf']);
-    Route::get('/export/dosen', [DosenController::class, 'exportExcel']);
-    Route::get('/print/user/{id}', [UserController::class, 'exportPdf']);
-    Route::get('/users/export', [UserController::class, 'exportExcel']);
+    Route::get('/laporan/dosen', [DosenController::class, 'report']);
+    Route::get('/laporan/jurusan', [JurusanController::class, 'report']);
+    Route::get('/laporan/ormawa', [OrmawaController::class, 'report']);
+    Route::get('/laporan/user', [UserController::class, 'report']);
+    
+    Route::group(['prefix' => 'print'], function(){
+        Route::get('/mhs/{slug}', [MahasiswaController::class, 'exportPdf']);
+        Route::get('/export/mhs', [MahasiswaController::class, 'exportExcel']);
+        Route::get('/jurusan/{slug}', [JurusanController::class, 'exportPdf']);
+        Route::get('/jurusan/export', [JurusanController::class, 'exportExcel']);
+        Route::get('/wali/{id}', [WaliController::class, 'getData']);
+        Route::post('/wali', [WaliController::class, 'exportPdf'])->name('print.wali');
+        Route::get('/export/wali', [WaliController::class, 'export']);
+        Route::get('/dosen/{slug}', [DosenController::class, 'exportPdf']);
+        Route::get('/export/dosen', [DosenController::class, 'exportExcel']);
+        Route::get('/ormawa/{id}', [OrmawaController::class, 'exportPdf']);
+        Route::get('/user/{id}', [UserController::class, 'exportPdf']);
+        Route::get('/users/export', [UserController::class, 'exportExcel']);
+    });
 });

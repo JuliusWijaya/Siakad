@@ -7,7 +7,7 @@
             <div class="card mt-5">
                 <h5 class="card-title text-center mb-0 mt-2">Add Wali</h5>
                 <div class="card-body">
-                    <form method="POST" action="/wali">
+                    <form method="POST" action="{{ route('wali.store') }}">
                         @csrf
                         <div class="modal-body">
                             <div class="form-group">

@@ -20,8 +20,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public function scopeUser($query, array $get)
     {
         $query->when($get['search'] ?? false, function ($query, $get) {
-            return $query->where('name', 'like', '%' . $get . '%')
-                ->orWhere('email', 'like', '%' . $get . '%');
+            return $query->where('name', 'like', '%'.$get.'%')
+                ->orWhere('email', 'like', '%'.$get.'%');   
         });
     }
 }

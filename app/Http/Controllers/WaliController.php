@@ -62,7 +62,7 @@ class WaliController extends Controller
 
         Wali::create($validatedData);
 
-        return redirect('/wali')->with('success', 'Wali baru berhasil ditambahkan');
+        return redirect('/admin/wali')->with('success', 'Wali baru berhasil ditambahkan');
     }
 
     /**
@@ -122,7 +122,7 @@ class WaliController extends Controller
                 'pekerjaan'     => $request->pekerjaan,
             ]);
 
-        return redirect('/wali')->with('success', 'Wali Berhasil Diedit');
+        return redirect('/admin/wali')->with('success', 'Wali Berhasil Diedit');
     }
 
     /**
@@ -135,7 +135,7 @@ class WaliController extends Controller
     {
         Wali::destroy($wali->id);
 
-        return redirect('/wali')->with('success', 'Wali Berhasil Didelete');
+        return redirect('/admin/wali')->with('success', 'Wali Berhasil Didelete');
     }
 
     public function export()

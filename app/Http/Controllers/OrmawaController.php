@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ormawa;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class OrmawaController extends Controller
 {
@@ -73,5 +74,27 @@ class OrmawaController extends Controller
         Ormawa::destroy($ormawa->id);
         alert()->success('Success', 'Ormawa Successfully Delete');
         return back();
+    }
+
+    public function report()
+    {
+        $title    = 'Laporan Ormawa';
+        $ormawas  = Ormawa::latest()->get();
+        return view('reports.ormawa-pdf', compact('title', 'ormawas'));
+    }
+
+    public function exportPdf($id)
+    {
+        $ormawa = Ormawa::where('id', $id)->first();
+        $data = [
+            'data'     => str('Ormawa ')->append($ormawa->name),
+            'title'    => 'Ormawa Politeknik LP3I',
+            'ormawa'   => $ormawa
+        ];
+
+        $pdf = PDF::loadView('ormawa.print', $data);
+        $pdf->setPaper('A4', 'potrait');
+
+        return $pdf->stream($data['data'] . '.pdf');
     }
 }

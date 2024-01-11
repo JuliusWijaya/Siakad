@@ -1,8 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
     <a href="/dashboard" class="brand-link text-decoration-none">
-        <img src="{{ asset('/dist/img/logo.png') }}" alt="Logo" class="brand-image img-circle elevation-5" style="opacity: .8">
-        <span class="brand-text font-weight-light">Politeknik LP3I</span>
+        <p class="text-center font-weight-light mb-0">SIAKAD</p>
     </a>
 
     <!-- Sidebar -->
@@ -53,14 +51,15 @@
                                     <p>User</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="/admin/classes" class="nav-link {{ Request::is('admin/classes*') ? 'active' : '' }}">
+                                    <i class="fa-solid fa-user-graduate"></i>
+                                    <p>Kelas</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a href="/admin/classes" class="nav-link {{ Request::is('admin/classes*') ? 'active' : '' }}">
-                            <i class="fa-solid fa-user-graduate"></i>
-                            <p>Kelas</p>
-                        </a>
-                    </li>
+                    
                     <li class="nav-item">
                         <a href="/admin/students" class="nav-link {{ Request::is('admin/students*') ? 'active' : '' }}">
                             <i class="fa-solid fa-users"></i>
