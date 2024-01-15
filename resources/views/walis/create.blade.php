@@ -135,7 +135,7 @@
     $(document).ready(function(){
         $('#nama_wali').on('change', function() {
             const nama = $('#nama_wali').val();
-            let path = "/wali/create/checkSlug?nama_wali=" + nama;
+            let path = "/admin/wali/create/checkSlug?nama_wali=" + nama;
 
             $.ajax({
                 url: path,

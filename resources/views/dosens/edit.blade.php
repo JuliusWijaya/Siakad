@@ -83,12 +83,3 @@
 </div>
 @endsection
 
-@section('js')
-<script>
-    $(document).ready(function () {
-        $('.form-control').datetimepicker({
-            locale: 'id',
-        });
-    });
-</script>
-@endsection

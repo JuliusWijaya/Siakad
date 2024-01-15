@@ -81,7 +81,7 @@ class DosenController extends Controller
 
         return view('dosens.details', [
             'title'  => $title,
-            'dosen'  => $dosen
+            'dosen'  => $dosen->loadMissing('kelas.mahasiswa')
         ]);
     }
 

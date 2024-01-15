@@ -26,10 +26,15 @@
                                     <input type="text" id="disabledInput" class="form-control" value="{{ $dosen->alamat }}">
                                 </div>
                                 <div class="form-group">
+                                    <label for="disabledTextInput">DOSEN PA :</label>
+                                    <input type="text" id="disabledInput" class="form-control" 
+                                    value="{{ $dosen->kelas['name'] }}">
+                                </div>
+                                <div class="form-group">
                                     <label for="disabledTextInput">MAHASISWA :</label>
-                                    @forelse ($dosen->mahasiswa as $item)
+                                    @forelse ($dosen->kelas->mahasiswa as $item)
                                     <ul class="list-group">
-                                        <li class="list-group-item">{{ $item->nama_mhs }}</li>
+                                        <li class="list-group-item">- {{ $item->nama_mhs }}</li>
                                     </ul>
                                     @empty
                                     <ul class="list-group">
@@ -47,7 +52,7 @@
                         <a href="/admin/dosen/edit/{{ $dosen->slug }}" class="badge badge-warning">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </a>
-                        @if (!$dosen->mahasiswa->count())
+                        @if (!$dosen->kelas->mahasiswa->count())
                         <form action="{{ route('dosen.destroy', $dosen->id) }}" method="POST" class="d-inline ml-2">
                             @csrf
                             @method('delete')

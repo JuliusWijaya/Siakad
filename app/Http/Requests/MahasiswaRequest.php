@@ -39,7 +39,6 @@ class MahasiswaRequest extends FormRequest
             'jurusan_id' => $jurusan_id,
             'no_hp'      => 'required|max:13',
             'alamat'     => 'required',
-            'dosen_id'   => 'required',
             'ormawa_id'  => 'sometimes'
         ];
     }

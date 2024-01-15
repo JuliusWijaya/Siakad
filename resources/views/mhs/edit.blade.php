@@ -131,27 +131,6 @@
                             @enderror
                         </div>
                         
-                        <div class="form-group mb-3 mt-2">
-                            <label for="dosen_id">DOSEN</label>
-                            <select class="form-control @error('dosen_id') is-invalid @enderror" name="dosen_id" id="dosen_id">
-                                <option>-- Pilih Dosen --</option>
-                                @foreach ($dosens as $dosen)
-                                    @if (old('dosen_id', $student->dosen_id) == $dosen->id)
-                                    <option value="{{ $dosen->id }}" selected>
-                                        {{ $dosen->nama }}
-                                    </option>
-                                    @else
-                                    <option value="{{ $dosen->id }}">{{ $dosen->nama }}</option>
-                                    @endif
-                                @endforeach
-                            </select>
-                            @error('dosen_id')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-
                         <ol class="list-group list-group-numbered mb-3 mt-2">
                             @foreach ($student->ormawa as $item)
                                 <li class="list-group-item">

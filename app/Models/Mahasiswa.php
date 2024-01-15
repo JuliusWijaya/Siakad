@@ -36,11 +36,6 @@ class Mahasiswa extends Model
         return $this->hasOne(Wali::class);
     }
 
-    public function dosen()
-    {
-        return $this->belongsTo(Dosen::class);
-    }
-
     public function ormawa()
     {
         return $this->belongsToMany(Ormawa::class, 'mahasiswas_ormawa', 'mahasiswa_id', 'ormawa_id');

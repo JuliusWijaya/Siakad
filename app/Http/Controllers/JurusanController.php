@@ -121,7 +121,7 @@ class JurusanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Jurusan $jurusan)
-    {
+    {   
         Jurusan::destroy($jurusan->id);
         alert()->success('Success', 'Jurusan ' . $jurusan->nama_jurusan . ' Has Been Delete');
         return redirect('/admin/jurusan');

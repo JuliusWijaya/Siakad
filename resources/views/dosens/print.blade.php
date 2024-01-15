@@ -16,34 +16,37 @@
             </tr>
         </table>
     </div>
-
-    <table class="table">
-        <thead class="border border-info">
-            <tr>
-                <th class="border border-info">NO</th>
-                <th class="border border-info">NID</th>
-                <th class="border border-info">NAMA</th>
-                <th class="border border-info">TGL LAHIR</th>
-                <th class="border border-info">ALAMAT</th>
-                <th class="border border-info">MAHASISWA</th>
-            </tr>
-        </thead>
-        <tbody class="border border-info">
-            <tr>
-                <td class="border border-info">{{ $dosen->id }}</td>
-                <td class="border border-info">{{ $dosen->nid }}</td>
-                <td class="border border-info">{{ $dosen->nama }}</td>
-                <td class="border border-info">{{ $dosen->tgl_lahir }}</td>
-                <td class="border border-info">{{ $dosen->alamat }}</td>
-                <td class="border border-info">
-                    @forelse ($dosen->mahasiswa as $item)
-                     - {{ $item->nama_mhs }} 
-                    @empty
-                    <td class="border border-info">-</td>
-                    @endforelse
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead class="border border-info">
+                    <tr>
+                        <th class="border border-info">NO</th>
+                        <th class="border border-info">NID</th>
+                        <th class="border border-info">NAMA</th>
+                        <th class="border border-info">TGL LAHIR</th>
+                        <th class="border border-info">ALAMAT</th>
+                        <th class="border border-info">MAHASISWA</th>
+                    </tr>
+                </thead>
+                <tbody class="border border-info">
+                    <tr>
+                        <td class="border border-info">{{ $dosen->id }}</td>
+                        <td class="border border-info">{{ $dosen->nid }}</td>
+                        <td class="border border-info">{{ $dosen->nama }}</td>
+                        <td class="border border-info">{{ $dosen->tgl_lahir }}</td>
+                        <td class="border border-info">{{ $dosen->alamat }}</td>
+                        <td class="border border-info">
+                            @forelse ($dosen->kelas->mahasiswa as $item)
+                             - {{ $item->nama_mhs }} <br>
+                            @empty
+                             -
+                            @endforelse
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 @endsection

@@ -7,7 +7,7 @@
             <div class="card mt-5">
                 <h5 class="card-title text-center mb-0 mt-2">Add Dosen</h5>
                 <div class="card-body">
-                    <form method="POST" action="/dosen">
+                    <form method="POST" action="{{ route('dosen.store') }}">
                         @csrf
                         <div class="modal-body">
                             <div class="form-group">
@@ -78,7 +78,7 @@
     const slug = document.getElementById('slug');
 
     nama.addEventListener('change', function(){
-        fetch('/dosen/create/checkSlug?nama=' + nama.value)
+        fetch('/admin/dosen/create/checkSlug?nama=' + nama.value)
         .then(response => response.json())
         .then(data => slug.value = data.slug)
     });

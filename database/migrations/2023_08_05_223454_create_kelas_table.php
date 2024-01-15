@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('kelas', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100);
+            $table->unsignedBigInteger('dosen_id')->nullable();
+            $table->foreign('dosen_id')->references('id')->on('dosens')->onDelete('restrict');
             $table->timestamps();
         });
     }

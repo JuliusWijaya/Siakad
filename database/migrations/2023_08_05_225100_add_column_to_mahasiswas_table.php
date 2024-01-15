@@ -18,8 +18,6 @@ return new class extends Migration
             $table->foreign('kelas_id')->references('id')->on('kelas')->onDelete('restrict');
             $table->unsignedBigInteger('jurusan_id')->after('kelas_id');
             $table->foreign('jurusan_id')->references('id')->on('jurusans')->onDelete('restrict');
-            $table->unsignedBigInteger('dosen_id')->after('jurusan_id');
-            $table->foreign('dosen_id')->references('id')->on('dosens')->onDelete('restrict');
         });
     }
 
@@ -31,7 +29,9 @@ return new class extends Migration
     public function down()
     {
         Schema::table('mahasiswas', function (Blueprint $table) {
-            $table->dropForeign(['kelas_id', 'jurusan_id', 'dosen_id']);
+            $table->dropForeign(['kelas_id', 'jurusan_id']);
+            $table->dropColumn('kelas_id');
+            $table->dropColumn('jurusan_id');
         });
     }
 };

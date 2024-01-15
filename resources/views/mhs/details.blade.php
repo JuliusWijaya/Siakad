@@ -41,10 +41,11 @@
                         <label for="alamat" class="form-label">ALAMAT :</label>
                         <input type="text" class="form-control" id="alamat" value="{{ $details->alamat }}" readonly>
                     </div>
-
+                   
                     <div class="mb-2">
                         <label for="dosen_id" class="form-label">DOSEN :</label>
-                        <input type="text" class="form-control" id="dosen_id" value="{{ $details->dosen->nama }}" readonly>
+                        <input type="text" class="form-control" id="dosen_id" 
+                         value="{{ $details->kelas->dosen['nama'] }}" readonly>
                     </div>
 
                     <ol class="list-group list-group-numbered mb-3 mt-2">

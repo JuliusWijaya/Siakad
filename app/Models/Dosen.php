@@ -31,8 +31,8 @@ class Dosen extends Model
         });
     }
 
-    public function mahasiswa()
+    public function kelas()
     {
-        return $this->hasMany(Mahasiswa::class, 'dosen_id', 'id');
+        return $this->hasOne(Kelas::class, 'dosen_id', 'id');
     }
 }

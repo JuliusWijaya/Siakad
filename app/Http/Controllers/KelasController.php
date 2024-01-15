@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
+use App\Models\Dosen;
 use Illuminate\Http\Request;
 
 class KelasController extends Controller
@@ -15,13 +16,15 @@ class KelasController extends Controller
     public function index()
     {
         $kelas = Kelas::withCount('mahasiswa')->latest()->paginate(5);
-        $kelas->load('mahasiswa');
+        $kelas->load('mahasiswa', 'dosen');
         $rank = $kelas->firstItem();
+        $dosens = Dosen::pluck('nama', 'id');
 
         return view('kelas.index', [
             'title'  => 'Dashboard Kelas',
             'kelas'  => $kelas,
             'rank'   => $rank,
+            'dosens' => $dosens,
         ]);
     }
 
@@ -48,7 +51,8 @@ class KelasController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name'       => 'required|max:30',
+            'name'      => 'required|max:30',
+            'dosen_id'  => 'required',
         ]);
 
         Kelas::create($validatedData);

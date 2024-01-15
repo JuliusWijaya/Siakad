@@ -21,8 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             OrmawaSeeder::class,
         ]);
-        User::factory(5)->create();
-        Dosen::factory(5)->create();
 
         User::create([
             'name'       => 'Super Admin',
@@ -30,6 +28,9 @@ class DatabaseSeeder extends Seeder
             'password'   => bcrypt('password'),
             'position'   => 1
         ]);
+
+        User::factory(5)->create();
+        Dosen::factory(5)->create();
 
         Jurusan::insert([
             [

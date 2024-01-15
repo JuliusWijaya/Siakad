@@ -118,24 +118,7 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="dosen_id" class="form-label">DOSEN</label>
-                                <select class="form-control @error('dosen_id') is-invalid @enderror" name="dosen_id"
-                                    id="dosen_id" aria-describedby="validationServer04Feedback">
-                                    <option>-- Pilih Dosen --</option>
-                                    @foreach($dosens as $dosen)
-                                    <option value="{{ $dosen->id }}" @selected(old('dosen_id') == $dosen->id)>
-                                        {{ $dosen->nama }}
-                                    </option>
-                                    @endforeach
-                                </select>
-                                @error('dosen_id')
-                                <div class="invalid-feedback" id="validationServer04Feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-                            <div class="form-group col-md-6">
+                            <div class="form-group col">
                                 <label for="ormawa_id">ORMAWA</label>
                                 <select class="form-control @error('ormawa_id') is-invalid @enderror ormawas"
                                     name="ormawa_id[]" id="ormawa_id" multiple="multiple">

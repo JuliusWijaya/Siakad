@@ -75,7 +75,7 @@ class MahasiswaController extends Controller
     {
         $title    = 'Details Mahasiswa';
         $slug     = Mahasiswa::where('slug', $slug)->first();
-        $slug->load('ormawa');
+        $slug->load('ormawa', 'kelas.dosen');
 
         return view('mhs.details', [
             'title'      => $title,

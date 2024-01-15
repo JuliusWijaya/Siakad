@@ -24,6 +24,20 @@
                         </div>
                         @enderror
                     </div>
+                    <div class="form-group">
+                        <label for="dosen_id">Dosen PA</label>
+                        <select name="dosen_id" id="dosen_id" class="form-control">
+                            <option selected>-- Pilih Dosen --</option>
+                            @foreach ($dosens as $key => $dosen)
+                            <option value="{{ $key }}" @selected(old('dosen_id'))>{{ $dosen }}</option>
+                            @endforeach
+                        </select>
+                        @error('dosen_id')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -72,8 +86,9 @@
                     <tr class="text-center">
                         <th>NO</th>
                         <th scope="col">NAMA</th>
-                        <th scope="col">JUMLAH</th>
+                        <th scope="col">DOSEN PA</th>
                         <th scope="col">MHS</th>
+                        <th scope="col">JUMLAH</th>
                         <th scope="col">ACTION</th>
                     </tr>
                 </thead>
@@ -82,12 +97,13 @@
                     <tr>
                         <td class="text-center">{{ $rank++ }}</td>
                         <td>{{ $item->name }}</td>
-                        <td>{{ $item->mahasiswa->count() }}</td>
+                        <td>{{ $item->dosen->nama }}</td>
                         <td>
                             @foreach ($item->mahasiswa as $kls)
                             - {{ $kls->nama_mhs }} <br>
                             @endforeach
                         </td>
+                        <td>{{ $item->mahasiswa->count() }}</td>
                         <td class="text-center">
                             <button 
                              class="btn btn-warning myBtn" 
